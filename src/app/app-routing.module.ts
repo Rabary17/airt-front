@@ -15,7 +15,7 @@ const routes: Routes = [
     loadChildren: './editor/editor.module#EditorModule'
   },
   {
-    path: 'article',
+    path: 'ticket',
     loadChildren: './article/article.module#ArticleModule'
   }
 ];

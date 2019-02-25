@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 
-import { Article, ArticlesService } from '../core';
-
+import { User, Article, ArticlesService } from '../core';
+import { UserService } from '../core/services/user.service';
 @Component({
   selector: 'app-editor-page',
   templateUrl: './editor.component.html'
@@ -14,9 +14,11 @@ export class EditorComponent implements OnInit {
   tagField = new FormControl();
   errors: Object = {};
   isSubmitting = false;
+  users: [];
 
   constructor(
     private articlesService: ArticlesService,
+    private userService: UserService,
     private route: ActivatedRoute,
     private router: Router,
     private fb: FormBuilder
@@ -25,7 +27,9 @@ export class EditorComponent implements OnInit {
     this.articleForm = this.fb.group({
       title: '',
       description: '',
-      body: ''
+      body: '',
+      technician: '',
+      client: ''
     });
 
     // Initialized tagList as empty array
@@ -43,6 +47,7 @@ export class EditorComponent implements OnInit {
         this.articleForm.patchValue(data.article);
       }
     });
+    this.userService.getAllUser().subscribe(res => this.users = res.user);
   }
 
   addTag() {
@@ -68,7 +73,7 @@ export class EditorComponent implements OnInit {
 
     // post the changes
     this.articlesService.save(this.article).subscribe(
-      article => this.router.navigateByUrl('/article/' + article.slug),
+      article => this.router.navigateByUrl('/ticket/' + article.slug),
       err => {
         this.errors = err;
         this.isSubmitting = false;

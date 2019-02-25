@@ -1,6 +1,6 @@
 <nav class="navbar navbar-light">
   <div class="container">
-    <a class="navbar-brand" routerLink="/">conduit</a>
+    <a class="navbar-brand" routerLink="/">Project</a>
 
     <!-- Show this for logged out users -->
     <ul *appShowAuthed="false"
@@ -40,7 +40,7 @@
           routerLink="/"
           routerLinkActive="active"
           [routerLinkActiveOptions]="{ exact: true }">
-          Home
+          Accueil
         </a>
       </li>
 
@@ -48,7 +48,7 @@
         <a class="nav-link"
           routerLink="/editor"
           routerLinkActive="active">
-          <i class="ion-compose"></i>&nbsp;New Article
+          <i class="ion-compose"></i>&nbsp;Nouveau ticket
         </a>
       </li>
 
@@ -56,7 +56,7 @@
         <a class="nav-link"
           routerLink="/settings"
           routerLinkActive="active">
-          <i class="ion-gear-a"></i>&nbsp;Settings
+          <i class="ion-gear-a"></i>&nbsp;Configuration
         </a>
       </li>
 
