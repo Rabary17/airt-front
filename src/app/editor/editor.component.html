@@ -19,6 +19,8 @@
               <select class="form-control form-control-lg" formControlName="client" style="height: auto">
                 <option *ngFor="let client of clients" value="{{ client.id }}">{{ client.name }}</option>
               </select>
+              <input class="form-control" formControlName="client" type="text" placeholder="Client"  (keyup)="autoComplete()"/>
+              <div *ngFor="let client of clients">{{ client.name }}</div>
             </fieldset>
 
             <fieldset class="form-group">

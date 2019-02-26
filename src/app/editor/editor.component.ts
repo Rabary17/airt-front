@@ -55,6 +55,12 @@ export class EditorComponent implements OnInit {
     this.clientService.getAllClient().subscribe(res => this.clients = res.clients);
   }
 
+  autoComplete() {
+    if (this.articleForm.value.client.length > 3) {
+      console.log(this.articleForm.value.client);
+    }
+
+  }
   addTag() {
     // retrieve tag control
     const tag = this.tagField.value;
