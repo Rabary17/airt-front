@@ -16,7 +16,7 @@ export class EditorComponent implements OnInit {
   errors: Object = {};
   isSubmitting = false;
   users: [];
-  clients: [];
+  clients: Array<any>;
 
   constructor(
     private articlesService: ArticlesService,
@@ -56,11 +56,18 @@ export class EditorComponent implements OnInit {
   }
 
   autoComplete() {
+    const regex = new RegExp(this.articleForm.value.client, 'i');
     if (this.articleForm.value.client.length > 3) {
       console.log(this.articleForm.value.client);
+        this.clients = this.clients.filter( res => {
+          return res['name'].match(regex);
+          }
+        );
+    } else if (this.articleForm.value.client.length < 4) {
+        this.clientService.getAllClient().subscribe(res => this.clients = res.clients);
     }
-
   }
+
   addTag() {
     // retrieve tag control
     const tag = this.tagField.value;
