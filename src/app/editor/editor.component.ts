@@ -5,6 +5,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { User, Article, ArticlesService } from '../core';
 import { UserService } from '../core/services/user.service';
 import { ClientService } from '../core/services/client.service';
+import { Select2OptionData } from 'ng-select2';
 @Component({
   selector: 'app-editor-page',
   templateUrl: './editor.component.html'
@@ -15,8 +16,10 @@ export class EditorComponent implements OnInit {
   tagField = new FormControl();
   errors: Object = {};
   isSubmitting = false;
-  users: [];
-  clients: [];
+  users: Array<Select2OptionData>;
+  clients: Array<Select2OptionData>;
+
+
 
   constructor(
     private articlesService: ArticlesService,
@@ -37,7 +40,12 @@ export class EditorComponent implements OnInit {
 
     // Initialized tagList as empty array
     this.article.tagList = [];
-
+    this.users = [
+        {
+          id: '',
+          text: ''
+        }
+      ];
     // Optional: subscribe to value changes on the form
     // this.articleForm.valueChanges.subscribe(value => this.updateArticle(value));
   }
@@ -50,9 +58,33 @@ export class EditorComponent implements OnInit {
         this.articleForm.patchValue(data.article);
       }
     });
-    this.userService.getAllUser().subscribe(res => this.users = res.user);
+    // this.userService.getAllUser().subscribe(res => this.users = res.user);
+
+    this.userService.getAllUser().subscribe( res =>
+      this.users = this.users.concat({id: res.user[0].id, text: res.user[0].username})
+    );
+
     // console.log('*********************************');
     this.clientService.getAllClient().subscribe(res => this.clients = res.clients);
+    // this.users = [
+    //   {
+    //     id: 'opt1',
+    //     text: 'Options 1'
+    //   },
+    //   {
+    //     id: 'opt2',
+    //     text: 'Options 2'
+    //   },
+    //   {
+    //     id: 'opt3',
+    //     text: 'Options 3'
+    //   },
+    //   {
+    //     id: 'opt4',
+    //     text: 'Options 4'
+    //   }
+    // ];
+
   }
 
   addTag() {
