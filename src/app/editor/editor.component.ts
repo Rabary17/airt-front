@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 
 import { User, Article, ArticlesService } from '../core';
 import { UserService } from '../core/services/user.service';
+import { ClientService } from '../core/services/client.service';
 @Component({
   selector: 'app-editor-page',
   templateUrl: './editor.component.html'
@@ -15,9 +16,11 @@ export class EditorComponent implements OnInit {
   errors: Object = {};
   isSubmitting = false;
   users: [];
+  clients: [];
 
   constructor(
     private articlesService: ArticlesService,
+    private clientService: ClientService,
     private userService: UserService,
     private route: ActivatedRoute,
     private router: Router,
@@ -48,6 +51,8 @@ export class EditorComponent implements OnInit {
       }
     });
     this.userService.getAllUser().subscribe(res => this.users = res.user);
+    // console.log('*********************************');
+    this.clientService.getAllClient().subscribe(res => this.clients = res.clients);
   }
 
   addTag() {

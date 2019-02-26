@@ -16,7 +16,7 @@
            <a [routerLink]="['/settings']"
               [hidden]="!isUser"
               class="btn btn-sm btn-outline-secondary action-btn">
-              <i class="ion-gear-a"></i> Edit Profile Settings
+              <i class="ion-gear-a"></i> Modifier mon profil
             </a>
         </div>
 
@@ -35,7 +35,7 @@
                  routerLinkActive="active"
                  [routerLinkActiveOptions]="{ exact: true }"
                  [routerLink]="['/profile', profile.username]">
-                 My Posts
+                 Mes tickets
               </a>
             </li>
             <li class="nav-item">
@@ -43,7 +43,7 @@
                  routerLinkActive="active"
                  [routerLinkActiveOptions]="{ exact: true }"
                  [routerLink]="['/profile', profile.username, 'favorites']">
-                 Favorited Posts
+                 Important
               </a>
             </li>
           </ul>

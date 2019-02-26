@@ -45,7 +45,6 @@ export class ArticlesService {
 
     // Otherwise, create a new article
     } else {
-      console.log(article);
       return this.apiService.post('/tickets/', {article: article})
         .pipe(map(data => data.article));
     }

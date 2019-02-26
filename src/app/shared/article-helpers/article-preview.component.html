@@ -9,9 +9,10 @@
   </app-article-meta>
 
   <a [routerLink]="['/ticket', article.slug]" class="preview-link">
-    <h1>{{ article.title }}</h1>
-    <p>{{ article.description }}</p>
-    <span>Read more...</span>
+    <h1>{{ article.slug }}</h1>
+    <p>{{ article.title }}</p>
+    
+    <span>En savoir plus</span>
     <ul class="tag-list">
       <li class="tag-default tag-pill tag-outline"
         *ngFor="let tag of article.tagList">
@@ -19,4 +20,21 @@
       </li>
     </ul>
   </a>
+
+      
+  <div class="article-meta pull-xs-right">
+    <div class="info">
+      <span class="date">
+        Affécté à
+      </span>
+      <a class="author"
+      [routerLink]="['/profile', article.author.username]">
+      {{ article.technician.username }}
+    </a>
+
+    </div>
+    <a [routerLink]="['/profile', article.technician.username]">
+      <img [src]="article.technician.image" />
+    </a>
+  </div>
 </div>
