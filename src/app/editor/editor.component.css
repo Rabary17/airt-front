@@ -1,0 +1,18 @@
+.autocomplete{
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    position: absolute;
+    width: 50%;
+    background-color: #eee;
+}
+
+.tech_option{
+    padding: 5px;
+    color: #999;
+}
+
+.tech_option:hover{
+    background-color: #000;
+    cursor: pointer;
+    color: #fff;
+}

@@ -7,50 +7,55 @@
 
         <form [formGroup]="articleForm">
           <fieldset [disabled]="isSubmitting">
-            <!-- technician -->
-            <fieldset>
-              <!-- <select class="form-control form-control-lg" formControlName="technician" style="height: auto">
-                <option *ngFor="let technician of users" value="{{ technician.id }}">{{ technician.username }}</option>
-              </select> -->
-              <input class="form-control" formControlName="technician" type="text" placeholder="Technicien" (keyup)="autoCompleteTechnician()"/>
-              <div *ngFor="let technician of users" (click)="setTechValue(technician)">{{ technician.username }}</div>
-            </fieldset>
-            <!-- client --> 
-            
-            <fieldset>
+          <!-- client --> 
+
+            <fieldset class="form-group">
               <!-- <select class="form-control form-control-lg" formControlName="client" style="height: auto">
                 <option *ngFor="let client of clients" value="{{ client.id }}">{{ client.name }}</option>
               </select> -->
               <input class="form-control" formControlName="client" type="text" placeholder="Client" (keyup)="autoCompleteClient()"/>
-              <div *ngFor="let client of clients" (click)="setClientValue(client)">{{ client.name }}</div>
+              <div class="autocomplete form-group" *ngIf="showClients">
+                <div class="tech_option" *ngFor="let client of clients" (click)="setClientValue(client)">{{ client.name }}</div>
+              </div>
+            </fieldset>
+
+            <!-- technician -->
+            <fieldset class="form-group">
+              <!-- <select class="form-control form-control-lg" formControlName="technician" style="height: auto">
+                <option *ngFor="let technician of users" value="{{ technician.id }}">{{ technician.username }}</option>
+              </select> -->
+              <input class="form-control" formControlName="technician" type="text" placeholder="Technicien" (keyup)="autoCompleteTechnician()"/>
+              <div class="autocomplete form-group" *ngIf="showUsers">
+                  <div class="tech_option" *ngFor="let technician of users" (click)="setTechValue(technician)" >{{ technician.username }}</div>
+              </div>
             </fieldset>
 
             <fieldset class="form-group">
               <input class="form-control form-control-lg"
                 formControlName="title"
                 type="text"
-                placeholder="Article Title" />
+                placeholder="Titre du ticket" />
             </fieldset>
 
             <fieldset class="form-group">
               <input class="form-control"
                 formControlName="description"
                 type="text"
-                placeholder="What's this article about?" />
+                placeholder="Petite description" />
             </fieldset>
 
             <fieldset class="form-group">
               <textarea class="form-control"
                 formControlName="body"
                 rows="8"
-                placeholder="Write your article (in markdown)">
+                placeholder="Détails du ticket">
               </textarea>
             </fieldset>
 
             <fieldset class="form-group">
               <input class="form-control"
                 type="text"
-                placeholder="Enter tags"
+                placeholder="Mot clés"
                 [formControl]="tagField"
                 (keyup.enter)="addTag()" />
 
@@ -64,7 +69,7 @@
             </fieldset>
 
             <button class="btn btn-lg pull-xs-right btn-primary" type="button" (click)="submitForm()">
-              Publish Article
+              Ajouter
             </button>
 
           </fieldset>

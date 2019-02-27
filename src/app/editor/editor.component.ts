@@ -7,7 +7,8 @@ import { UserService } from '../core/services/user.service';
 import { ClientService } from '../core/services/client.service';
 @Component({
   selector: 'app-editor-page',
-  templateUrl: './editor.component.html'
+  templateUrl: './editor.component.html',
+  styleUrls: ['editor.component.css'],
 })
 export class EditorComponent implements OnInit {
   article: Article = {} as Article;
@@ -17,6 +18,8 @@ export class EditorComponent implements OnInit {
   isSubmitting = false;
   users: Array<any>;
   clients: Array<any>;
+  showUsers = false;
+  showClients = false;
 
   constructor(
     private articlesService: ArticlesService,
@@ -57,18 +60,21 @@ export class EditorComponent implements OnInit {
 
   autoCompleteClient() {
     const regex = new RegExp(this.articleForm.value.client, 'i');
-    if (this.articleForm.value.client.length > 3) {
+    if (this.articleForm.value.client.length > 1) {
       console.log(this.articleForm.value.client);
         this.clients = this.clients.filter( res => {
-          return res['name'].match(regex);
+          this.showClients = true;
+            return res['name'].match(regex);
           }
         );
-    } else if (this.articleForm.value.client.length < 4) {
+    } else if (this.articleForm.value.client.length < 1) {
+      this.showClients = false;
         this.clientService.getAllClient().subscribe(res => this.clients = res.clients);
     }
   }
+
   setClientValue(client) {
-    // this.articleForm.value.client.setValue(client._id);
+    this.showClients = false;
     this.articleForm.patchValue({
       client: client.name
     });
@@ -76,22 +82,25 @@ export class EditorComponent implements OnInit {
   }
   autoCompleteTechnician() {
     const regex = new RegExp(this.articleForm.value.technician, 'i');
-    if (this.articleForm.value.technician.length > 3) {
+    if (this.articleForm.value.technician.length > 1) {
       console.log(this.articleForm.value.technician);
         this.users = this.users.filter( res => {
+          this.showUsers = true;
           return res['username'].match(regex);
           }
         );
-    } else if (this.articleForm.value.technician.length < 4) {
+    } else if (this.articleForm.value.technician.length < 1) {
+        this.showUsers = false;
         this.userService.getAllUser().subscribe(res => this.users = res.user);
     }
   }
+
   setTechValue(tech) {
-    // this.articleForm.value.technician.setValue(tech.id);
+    this.showUsers = false;
     this.articleForm.patchValue({
-      technician: tech.id
+      technician: tech.username
     });
-    console.log(tech.id);
+    console.log(tech.username);
   }
 
   addTag() {
