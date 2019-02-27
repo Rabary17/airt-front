@@ -15,7 +15,7 @@ export class EditorComponent implements OnInit {
   tagField = new FormControl();
   errors: Object = {};
   isSubmitting = false;
-  users: [];
+  users: Array<any>;
   clients: Array<any>;
 
   constructor(
@@ -55,7 +55,7 @@ export class EditorComponent implements OnInit {
     this.clientService.getAllClient().subscribe(res => this.clients = res.clients);
   }
 
-  autoComplete() {
+  autoCompleteClient() {
     const regex = new RegExp(this.articleForm.value.client, 'i');
     if (this.articleForm.value.client.length > 3) {
       console.log(this.articleForm.value.client);
@@ -66,6 +66,32 @@ export class EditorComponent implements OnInit {
     } else if (this.articleForm.value.client.length < 4) {
         this.clientService.getAllClient().subscribe(res => this.clients = res.clients);
     }
+  }
+  setClientValue(client) {
+    // this.articleForm.value.client.setValue(client._id);
+    this.articleForm.patchValue({
+      client: client.name
+    });
+    console.log(client._id);
+  }
+  autoCompleteTechnician() {
+    const regex = new RegExp(this.articleForm.value.technician, 'i');
+    if (this.articleForm.value.technician.length > 3) {
+      console.log(this.articleForm.value.technician);
+        this.users = this.users.filter( res => {
+          return res['username'].match(regex);
+          }
+        );
+    } else if (this.articleForm.value.technician.length < 4) {
+        this.userService.getAllUser().subscribe(res => this.users = res.user);
+    }
+  }
+  setTechValue(tech) {
+    // this.articleForm.value.technician.setValue(tech.id);
+    this.articleForm.patchValue({
+      technician: tech.id
+    });
+    console.log(tech.id);
   }
 
   addTag() {

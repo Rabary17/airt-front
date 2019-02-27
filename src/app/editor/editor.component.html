@@ -9,18 +9,20 @@
           <fieldset [disabled]="isSubmitting">
             <!-- technician -->
             <fieldset>
-              <select class="form-control form-control-lg" formControlName="technician" style="height: auto">
+              <!-- <select class="form-control form-control-lg" formControlName="technician" style="height: auto">
                 <option *ngFor="let technician of users" value="{{ technician.id }}">{{ technician.username }}</option>
-              </select>
+              </select> -->
+              <input class="form-control" formControlName="technician" type="text" placeholder="Technicien" (keyup)="autoCompleteTechnician()"/>
+              <div *ngFor="let technician of users" (click)="setTechValue(technician)">{{ technician.username }}</div>
             </fieldset>
             <!-- client --> 
             
             <fieldset>
-              <select class="form-control form-control-lg" formControlName="client" style="height: auto">
+              <!-- <select class="form-control form-control-lg" formControlName="client" style="height: auto">
                 <option *ngFor="let client of clients" value="{{ client.id }}">{{ client.name }}</option>
-              </select>
-              <input class="form-control" formControlName="client" type="text" placeholder="Client"  (keyup)="autoComplete()"/>
-              <div *ngFor="let client of clients">{{ client.name }}</div>
+              </select> -->
+              <input class="form-control" formControlName="client" type="text" placeholder="Client" (keyup)="autoCompleteClient()"/>
+              <div *ngFor="let client of clients" (click)="setClientValue(client)">{{ client.name }}</div>
             </fieldset>
 
             <fieldset class="form-group">
