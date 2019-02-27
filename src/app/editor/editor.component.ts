@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
+import { Component, OnInit, ElementRef, HostListener, Output, EventEmitter, Input  } from '@angular/core';
+import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { User, Article, ArticlesService } from '../core';
@@ -20,6 +20,19 @@ export class EditorComponent implements OnInit {
   clients: Array<any>;
   showUsers = false;
   showClients = false;
+  show = false;
+
+  @HostListener('document: click', ['$event'])
+  public clickout(event) {
+    const clickedInside = this.eRef.nativeElement.contains(event.target);
+    if (!clickedInside) {
+      this.showUsers = false;
+      this.showClients = false;
+    } else if (clickedInside) {
+      this.showUsers = false;
+      this.showClients = false;
+    }
+  }
 
   constructor(
     private articlesService: ArticlesService,
@@ -27,12 +40,13 @@ export class EditorComponent implements OnInit {
     private userService: UserService,
     private route: ActivatedRoute,
     private router: Router,
+    private eRef: ElementRef,
     private fb: FormBuilder
   ) {
     // use the FormBuilder to create a form group
     this.articleForm = this.fb.group({
       title: '',
-      description: '',
+      description: ['', [Validators.required, Validators.minLength(6)]],
       body: '',
       technician: '',
       client: ''
