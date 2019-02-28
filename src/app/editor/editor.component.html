@@ -38,10 +38,11 @@
             </fieldset>
 
             <fieldset class="form-group">
-              <input class="form-control"
-                formControlName="description"
-                type="text"
-                placeholder="Petite description" />
+              <select class="form-control form-control-lg" formControlName="status" style="height: auto">
+                <option value="Non commencée">Non commencée</option>
+                <option value="En cours">En cours</option>
+                <option value="Terminé">Terminé</option>
+              </select>
             </fieldset>
 
             <fieldset class="form-group">

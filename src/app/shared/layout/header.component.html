@@ -1,9 +1,9 @@
-<nav class="navbar navbar-light">
+<nav class="navbar navbar-light" *appShowAuthed="true">
   <div class="container">
     <a class="navbar-brand" routerLink="/">Project</a>
 
     <!-- Show this for logged out users -->
-    <ul *appShowAuthed="false"
+    <ul 
       class="nav navbar-nav pull-xs-right">
 
       <li class="nav-item">
@@ -25,7 +25,7 @@
         <a class="nav-link"
           routerLink="/register"
           routerLinkActive="active">
-          Sign up
+          Ajouter un utilisateur
         </a>
       </li>
 

@@ -46,8 +46,8 @@ export class EditorComponent implements OnInit {
     // use the FormBuilder to create a form group
     this.articleForm = this.fb.group({
       title: '',
-      description: ['', [Validators.required, Validators.minLength(6)]],
-      body: '',
+      status: '',
+      body: ['', [Validators.required, Validators.minLength(6)]],
       technician: '',
       client: ''
     });
@@ -137,7 +137,7 @@ export class EditorComponent implements OnInit {
 
     // update the model
     this.updateArticle(this.articleForm.value);
-
+    console.log(this.article);
     // post the changes
     this.articlesService.save(this.article).subscribe(
       article => this.router.navigateByUrl('/ticket/' + article.slug),

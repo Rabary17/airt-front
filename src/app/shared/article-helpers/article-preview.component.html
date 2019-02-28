@@ -11,30 +11,36 @@
   <a [routerLink]="['/ticket', article.slug]" class="preview-link">
     <h1>{{ article.slug }}</h1>
     <p>{{ article.title }}</p>
-    
-    <span>En savoir plus</span>
-    <ul class="tag-list">
-      <li class="tag-default tag-pill tag-outline"
-        *ngFor="let tag of article.tagList">
-        {{ tag }}
-      </li>
-    </ul>
   </a>
 
       
   <div class="article-meta pull-xs-right">
     <div class="info">
-      <span class="date">
+      <h4 style="font-size:20px">
         Affécté à
-      </span>
+      </h4>
       <a class="author"
-      [routerLink]="['/profile', article.author.username]">
+      [routerLink]="['/profile', article.technician.username]">
       {{ article.technician.username }}
-    </a>
-
+      </a>
     </div>
     <a [routerLink]="['/profile', article.technician.username]">
       <img [src]="article.technician.image" />
     </a>
   </div>
+  <div>
+      <span class="date" >Mot clés : </span>
+      <ul class="tag-list">
+          <li class="tag-default tag-pill tag-outline"
+            *ngFor="let tag of article.tagList">
+            {{ tag }}
+          </li>
+      </ul>
+  </div>
+
+  <span 
+    style="font-style:italic;color:white;padding:2px;font-weight: 500" 
+    [ngClass]="{'red': article.status === 'Non commencée', 'yellow': article.status === 'En cours', 'green': article.status === 'Terminé'}">
+      {{ article.status }}
+  </span>
 </div>

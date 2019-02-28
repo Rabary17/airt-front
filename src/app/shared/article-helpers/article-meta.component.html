@@ -6,7 +6,7 @@
   <div class="info">
     <a class="author"
       [routerLink]="['/profile', article.author.username]">
-      {{ article.author.username }}
+      {{ article.client.name }}
     </a>
     <span class="date">
       {{ article.createdAt | date: 'longDate' }}

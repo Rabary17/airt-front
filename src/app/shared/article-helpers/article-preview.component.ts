@@ -4,6 +4,7 @@ import { Article } from '../../core';
 
 @Component({
   selector: 'app-article-preview',
+  styleUrls: ['article-preview.component.css'],
   templateUrl: './article-preview.component.html'
 })
 export class ArticlePreviewComponent {
