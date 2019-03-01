@@ -2,7 +2,7 @@ import { Component, OnInit, ElementRef, HostListener, Output, EventEmitter, Inpu
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 
-import { User, Article, ArticlesService } from '../core';
+import { User, Ticket, TicketsService } from '../core';
 import { UserService } from '../core/services/user.service';
 import { ClientService } from '../core/services/client.service';
 @Component({
@@ -11,7 +11,7 @@ import { ClientService } from '../core/services/client.service';
   styleUrls: ['editor.component.css'],
 })
 export class EditorComponent implements OnInit {
-  article: Article = {} as Article;
+  article: Ticket = {} as Ticket;
   articleForm: FormGroup;
   tagField = new FormControl();
   errors: Object = {};
@@ -35,7 +35,7 @@ export class EditorComponent implements OnInit {
   }
 
   constructor(
-    private articlesService: ArticlesService,
+    private articlesService: TicketsService,
     private clientService: ClientService,
     private userService: UserService,
     private route: ActivatedRoute,
@@ -61,7 +61,7 @@ export class EditorComponent implements OnInit {
 
   ngOnInit() {
     // If there's an article prefetched, load it
-    this.route.data.subscribe((data: { article: Article }) => {
+    this.route.data.subscribe((data: { article: Ticket }) => {
       if (data.article) {
         this.article = data.article;
         this.articleForm.patchValue(data.article);

@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 
-import { Article, ArticleListConfig, ArticlesService } from '../../core';
+import { Ticket, ArticleListConfig, TicketsService } from '../../core';
+
 @Component({
   selector: 'app-article-list',
   styleUrls: ['article-list.component.css'],
@@ -8,7 +9,7 @@ import { Article, ArticleListConfig, ArticlesService } from '../../core';
 })
 export class ArticleListComponent {
   constructor (
-    private articlesService: ArticlesService
+    private articlesService: TicketsService
   ) {}
 
   @Input() limit: number;
@@ -22,7 +23,7 @@ export class ArticleListComponent {
   }
 
   query: ArticleListConfig;
-  results: Article[];
+  results: Ticket[];
   loading = false;
   currentPage = 1;
   totalPages: Array<number> = [1];
@@ -41,8 +42,9 @@ export class ArticleListComponent {
       this.query.filters.limit = this.limit;
       this.query.filters.offset =  (this.limit * (this.currentPage - 1));
     }
-
+    console.log('this.query : ' + this.query);
     this.articlesService.query(this.query)
+
     .subscribe(data => {
       this.loading = false;
       this.results = data.articles;

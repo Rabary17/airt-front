@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 
-import { Article } from '../../core';
+import { Ticket } from '../../core';
 
 @Component({
   selector: 'app-article-preview',
@@ -8,7 +8,7 @@ import { Article } from '../../core';
   templateUrl: './article-preview.component.html'
 })
 export class ArticlePreviewComponent {
-  @Input() article: Article;
+  @Input() article: Ticket;
 
   onToggleFavorite(favorited: boolean) {
     this.article['favorited'] = favorited;

@@ -2,13 +2,13 @@ import { Injectable, } from '@angular/core';
 import { ActivatedRouteSnapshot, Resolve, Router, RouterStateSnapshot } from '@angular/router';
 import { Observable } from 'rxjs';
 
-import { Article, ArticlesService, UserService } from '../core';
+import { Ticket, TicketsService, UserService } from '../core';
 import { catchError } from 'rxjs/operators';
 
 @Injectable()
-export class ArticleResolver implements Resolve<Article> {
+export class ArticleResolver implements Resolve<Ticket> {
   constructor(
-    private articlesService: ArticlesService,
+    private articlesService: TicketsService,
     private router: Router,
     private userService: UserService
   ) {}

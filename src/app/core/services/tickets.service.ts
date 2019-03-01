@@ -3,16 +3,16 @@ import { HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 import { ApiService } from './api.service';
-import { Article, ArticleListConfig } from '../models';
+import { Ticket, ArticleListConfig } from '../models';
 import { map } from 'rxjs/operators';
 
 @Injectable()
-export class ArticlesService {
+export class TicketsService {
   constructor (
     private apiService: ApiService
   ) {}
 
-  query(config: ArticleListConfig): Observable<{articles: Article[], articlesCount: number}> {
+  query(config: ArticleListConfig): Observable<{articles: Ticket[], articlesCount: number}> {
     // Convert any filters over to Angular's URLSearchParams
     const params = {};
 
@@ -28,16 +28,22 @@ export class ArticlesService {
     );
   }
 
-  get(slug): Observable<Article> {
+  get(slug): Observable<Ticket> {
     return this.apiService.get('/tickets/' + slug)
       .pipe(map(data => data.article));
   }
+
+  getAll(): Observable<any> {
+    return this.apiService.get('/tickets/all')
+    .pipe(map(data => data.tickets));
+  }
+
 
   destroy(slug) {
     return this.apiService.delete('/tickets/' + slug);
   }
 
-  save(article): Observable<Article> {
+  save(article): Observable<Ticket> {
     // If we're updating an existing article
     if (article.slug) {
       return this.apiService.put('/tickets/' + article.slug, {article: article})
@@ -50,11 +56,11 @@ export class ArticlesService {
     }
   }
 
-  favorite(slug): Observable<Article> {
+  favorite(slug): Observable<Ticket> {
     return this.apiService.post('/tickets/' + slug + '/favorite');
   }
 
-  unfavorite(slug): Observable<Article> {
+  unfavorite(slug): Observable<Ticket> {
     return this.apiService.delete('/tickets/' + slug + '/favorite');
   }
 

@@ -1,10 +1,6 @@
-<p>admin menu works!</p>
-<nav class="navbar navbar-light">
-    <div class="container">
-      <a class="navbar-brand" routerLink="/"></a>
-      <!-- Show this for logged out users -->
-      <ul class="nav navbar-nav pull-xs-right">
-  
+  <div class="col-md-12">
+    <div class="feed-toggle">
+      <ul class="nav nav-pills outline-active">
         <li class="nav-item">
           <a class="nav-link"
           [routerLink]="['/admin/user']"
@@ -12,25 +8,20 @@
             Utilisateurs
           </a>
         </li>
-  
         <li class="nav-item">
           <a class="nav-link"
           [routerLink]="['/admin/ticket']"
             routerLinkActive="active">
-            Tous les articles
+            Tickets
           </a>
         </li>
-  
         <li class="nav-item">
           <a class="nav-link"
           [routerLink]="['/admin/client']"
             routerLinkActive="active">
-            Transactions
+            Clients
           </a>
         </li>
-  
       </ul>
-  
     </div>
-  </nav>
-  
+  </div>

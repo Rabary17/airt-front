@@ -3,8 +3,8 @@ import { FormControl } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import {
-  Article,
-  ArticlesService,
+  Ticket,
+  TicketsService,
   Comment,
   CommentsService,
   User,
@@ -16,7 +16,7 @@ import {
   templateUrl: './article.component.html'
 })
 export class ArticleComponent implements OnInit {
-  article: Article;
+  article: Ticket;
   currentUser: User;
   canModify: boolean;
   comments: Comment[];
@@ -27,7 +27,7 @@ export class ArticleComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private articlesService: ArticlesService,
+    private articlesService: TicketsService,
     private commentsService: CommentsService,
     private router: Router,
     private userService: UserService,
@@ -36,7 +36,7 @@ export class ArticleComponent implements OnInit {
   ngOnInit() {
     // Retreive the prefetched article
     this.route.data.subscribe(
-      (data: { article: Article }) => {
+      (data: { article: Ticket }) => {
         this.article = data.article;
 
         // Load the comments on this article

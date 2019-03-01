@@ -16,12 +16,12 @@ const adminRoutes: Routes = [
           resolve: {}
         },
         {
-          path: 'ticket',
+          path: 'client',
           component: ListClientComponent,
           resolve: {}
         },
         {
-          path: 'client',
+          path: 'ticket',
           component: ListTicketComponent,
           resolve: {}
         }

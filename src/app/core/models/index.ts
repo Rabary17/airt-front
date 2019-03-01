@@ -1,4 +1,4 @@
-export * from './article.model';
+export * from './ticket.model';
 export * from './article-list-config.model';
 export * from './comment.model';
 export * from './errors.model';
