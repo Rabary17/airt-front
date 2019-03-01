@@ -9,13 +9,13 @@
           <span [hidden]="!canModify">
           <a class="btn btn-sm btn-outline-secondary"
              [routerLink]="['/editor', article.slug]">
-            <i class="ion-edit"></i> Edit Article
+            <i class="ion-edit"></i> Modifier
           </a>
 
           <button class="btn btn-sm btn-outline-danger"
             [ngClass]="{disabled: isDeleting}"
             (click)="deleteArticle()">
-            <i class="ion-trash-a"></i> Delete Article
+            <i class="ion-trash-a"></i> Supprimer
           </button>
         </span>
 
@@ -61,13 +61,13 @@
           <span [hidden]="!canModify">
           <a class="btn btn-sm btn-outline-secondary"
              [routerLink]="['/editor', article.slug]">
-            <i class="ion-edit"></i> Edit Article
+            <i class="ion-edit"></i> Modifier
           </a>
 
           <button class="btn btn-sm btn-outline-danger"
             [ngClass]="{disabled: isDeleting}"
             (click)="deleteArticle()">
-            <i class="ion-trash-a"></i> Delete Article
+            <i class="ion-trash-a"></i> Supprimer
           </button>
         </span>
 
@@ -104,7 +104,7 @@
               <div class="card-footer">
                 <img [src]="currentUser.image" class="comment-author-img" />
                 <button class="btn btn-sm btn-primary" type="submit">
-                 Post Comment
+                 Commenter
                 </button>
               </div>
             </fieldset>
@@ -112,7 +112,7 @@
         </div>
 
         <div *appShowAuthed="false">
-          <a [routerLink]="['/login']">Sign in</a> or <a [routerLink]="['/register']">sign up</a> to add comments on this article.
+          <a [routerLink]="['/login']">Connectez-vous</a> ou <a [routerLink]="['/register']">créez un compte</a> pour commenter ce ticket.
         </div>
 
         <app-article-comment
