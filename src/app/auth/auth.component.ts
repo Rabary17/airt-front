@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 
-import { Errors, UserService } from '../core';
+import { Errors, UserService, User } from '../core';
 
 @Component({
   selector: 'app-auth-page',
@@ -14,6 +14,7 @@ export class AuthComponent implements OnInit {
   errors: Errors = {errors: {}};
   isSubmitting = false;
   authForm: FormGroup;
+  currentUser: User;
 
   constructor(
     private route: ActivatedRoute,
@@ -37,23 +38,47 @@ export class AuthComponent implements OnInit {
       // add form control for username if this is the register page
       if (this.authType === 'register') {
         this.authForm.addControl('username', new FormControl());
+        this.authForm.addControl('role', new FormControl());
       }
     });
+    this.userService.currentUser.subscribe(
+      (userData) => {
+        this.currentUser = userData;
+      }
+    );
   }
 
   submitForm() {
     this.isSubmitting = true;
     this.errors = {errors: {}};
 
-    const credentials = this.authForm.value;
-    this.userService
-    .attemptAuth(this.authType, credentials)
-    .subscribe(
-      data => this.router.navigateByUrl('/'),
-      err => {
-        this.errors = err;
-        this.isSubmitting = false;
+    if (this.authType === 'login') {
+      this.userService
+      .attemptAuth(this.authType, this.authForm.value)
+      .subscribe(
+        data => this.router.navigateByUrl('/'),
+        err => {
+          this.errors = err;
+          this.isSubmitting = false;
+        }
+      );
+    } else if (this.authType === 'register') {
+      if (this.currentUser.role === 'Manager') {
+        Object.assign(this.authForm, {role: 'Tech'});
       }
-    );
+      console.log(this.authForm.value);
+      this.userService
+      .addTech(this.authType, this.authForm.value)
+      .subscribe(
+        data => this.router.navigateByUrl('/'),
+        err => {
+          this.errors = err;
+          this.isSubmitting = false;
+        }
+      );
+    } else {
+      console.log('erreur');
+    }
+
   }
 }

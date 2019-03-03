@@ -67,6 +67,16 @@ export class UserService {
     ));
   }
 
+  addTech(type, credentials): Observable<User> {
+    const route = (type === 'login') ? '/login' : '';
+    return this.apiService.post('/users' + route, {user: credentials})
+      .pipe(map(
+      data => {
+        return data;
+      }
+    ));
+  }
+
   getCurrentUser(): User {
     return this.currentUserSubject.value;
   }

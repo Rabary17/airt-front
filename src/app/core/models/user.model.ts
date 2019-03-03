@@ -3,5 +3,6 @@ export interface User {
   token: string;
   username: string;
   bio: string;
+  role: string;
   image: string;
 }
