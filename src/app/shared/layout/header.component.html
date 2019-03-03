@@ -50,7 +50,7 @@
         </a>
       </li>
 
-      <li class="nav-item">
+      <li class="nav-item" *ngIf="currentUser.role === 'Admin'">
         <a class="nav-link"
           routerLink="/admin"
           routerLinkActive="active">

@@ -46,7 +46,7 @@
                 class="form-control form-control-lg"
                 type="text" />
             </fieldset>
-            <fieldset class="form-group">
+            <fieldset class="form-group" *ngIf="currentUser !== 'Manager'">
               <input
                 formControlName="password"
                 placeholder="Password"

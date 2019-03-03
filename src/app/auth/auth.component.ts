@@ -30,6 +30,12 @@ export class AuthComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.userService.currentUser.subscribe(
+      (userData) => {
+        this.currentUser = userData;
+        console.log(this.currentUser);
+      }
+    );
     this.route.url.subscribe(data => {
       // Get the last piece of the URL (it's either 'login' or 'register')
       this.authType = data[data.length - 1].path;
@@ -39,13 +45,11 @@ export class AuthComponent implements OnInit {
       if (this.authType === 'register') {
         this.authForm.addControl('username', new FormControl());
         this.authForm.addControl('role', new FormControl());
+        // if (this.currentUser.role === 'Manager') {
+        //   this.authForm.removeControl('password');
+        // }
       }
     });
-    this.userService.currentUser.subscribe(
-      (userData) => {
-        this.currentUser = userData;
-      }
-    );
   }
 
   submitForm() {
