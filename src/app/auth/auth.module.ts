@@ -15,7 +15,7 @@ import { AuthRoutingModule } from './auth-routing.module';
     AuthComponent
   ],
   providers: [
-    NoAuthGuard
+    NoAuthGuard,
   ]
 })
 export class AuthModule {}

@@ -68,9 +68,8 @@ export class AuthComponent implements OnInit {
       );
     } else if (this.authType === 'register') {
       if (this.currentUser.role === 'Manager') {
-        Object.assign(this.authForm, {role: 'Tech'});
+        this.authForm.patchValue({role: 'Tech'});
       }
-      console.log(this.authForm.value);
       this.userService
       .addTech(this.authType, this.authForm.value)
       .subscribe(

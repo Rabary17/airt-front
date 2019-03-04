@@ -12,7 +12,8 @@ import {
   ProfilesService,
   TagsService,
   UserService,
-  ClientService
+  ClientService,
+  AdminGuard
 } from './services';
 
 @NgModule({
@@ -29,7 +30,8 @@ import {
     ProfilesService,
     TagsService,
     UserService,
-    ClientService
+    ClientService,
+    AdminGuard
   ],
   declarations: []
 })

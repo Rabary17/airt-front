@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule, PreloadAllModules } from '@angular/router';
 import { AdminComponent } from '../app/admin/admin.component';
 import { NoAuthGuard } from './auth/no-auth-guard.service';
-
+import { AdminGuard } from './core/services/admin-guard.service';
 const routes: Routes = [
   {
     path: 'settings',
@@ -22,7 +22,8 @@ const routes: Routes = [
   },
   {
     path: 'admin',
-    loadChildren: './admin/admin.module#AdminModule'
+    loadChildren: './admin/admin.module#AdminModule',
+    canActivate: [AdminGuard],
   }
 ];
 
