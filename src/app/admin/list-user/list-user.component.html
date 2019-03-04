@@ -1,5 +1,20 @@
-<ul>
-  <li *ngFor="let user of Users">
-    {{ user.username }}
-  </li>
-</ul>
+<div class="container">
+  <h2>Liste des utilisateurs avec leur role</h2>
+  <p>avec leur role</p>            
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Nom</th>
+        <th>Role</th>
+        <th>Ticket affécté</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let user of Users">
+        <td>{{user.username}}</td>
+        <td>{{user.role || '-'}}</td>
+        <td>2</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

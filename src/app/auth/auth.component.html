@@ -1,17 +1,18 @@
 <div class="auth-page" 
   style="position: absolute;
-  top: 35%;
+  top: 40%;
   width: 50%;
   left: 50%;
-  transform: translateX(-50%) translateY(-65%);">
+  transform: translateX(-50%) translateY(-60%);">
   <div class="container page">
     <div class="row">
 
       <div class="col-md-6 offset-md-3 col-xs-12">
+        <div style="text-align: center"><img src="./assets/airtel.png" alt="airtel" style="width:300px"></div>
         <h1 class="text-xs-center">{{ title }}</h1>
         <p class="text-xs-center">
-          <a [routerLink]="['/login']" *ngIf="authType == 'register'">Have an account?</a>
-          <a [routerLink]="['/register']" *ngIf="authType == 'login'">Need an account?</a>
+          <a [routerLink]="['/login']" *ngIf="authType == 'register'">Comme membre de l'équipe</a>
+          <a [routerLink]="['/register']" *ngIf="authType == 'login'">Pour accéder au fonctionnalité de l'application</a>
         </p>
         <app-list-errors [errors]="errors"></app-list-errors>
         <form [formGroup]="authForm" (ngSubmit)="submitForm()">
@@ -49,7 +50,7 @@
             <fieldset class="form-group" *ngIf="currentUser !== 'Manager'">
               <input
                 formControlName="password"
-                placeholder="Password"
+                placeholder="Mot de passe"
                 class="form-control form-control-lg"
                 type="password" />
             </fieldset>

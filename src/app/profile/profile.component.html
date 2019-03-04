@@ -1,6 +1,6 @@
 <div class="profile-page">
 
-  <div class="user-info">
+  <div class="user-info" style="background: #333;background-image: url('../assets/background_2.png');background-size: cover;background-position: top;">
     <div class="container">
       <div class="row">
 
@@ -16,7 +16,7 @@
            <a [routerLink]="['/settings']"
               [hidden]="!isUser"
               class="btn btn-sm btn-outline-secondary action-btn">
-              <i class="ion-gear-a"></i> Modifier mon profil
+              <i class="fa fa-wrench"></i> Modifier mon profil
             </a>
         </div>
 
@@ -35,7 +35,7 @@
                  routerLinkActive="active"
                  [routerLinkActiveOptions]="{ exact: true }"
                  [routerLink]="['/profile', profile.username]">
-                 Mes tickets
+                 <i class="fa fa-user-tag"></i> Mes tickets
               </a>
             </li>
             <li class="nav-item">
@@ -43,7 +43,7 @@
                  routerLinkActive="active"
                  [routerLinkActiveOptions]="{ exact: true }"
                  [routerLink]="['/profile', profile.username, 'favorites']">
-                 Important
+                 <i class="fa fa-user-shield"></i> Important
               </a>
             </li>
           </ul>

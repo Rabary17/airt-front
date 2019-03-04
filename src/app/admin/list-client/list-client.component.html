@@ -1,5 +1,20 @@
-<ul>
-  <li *ngFor="let client of clients">
-    {{ client.name }}
-  </li>
-</ul>
+<div class="container">
+  <h2>Liste des clients</h2>
+  <p>avec les détails</p>            
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Nom</th>
+        <th>Nombre de ticket(s) traité(s)</th>
+        <th>Nombre de ticket(s) restant(s)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let client of clients">
+        <td>{{client.name}}</td>
+        <td>5</td>
+        <td>2</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

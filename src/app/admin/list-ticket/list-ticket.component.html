@@ -1,5 +1,22 @@
-<ul>
-  <li *ngFor="let ticket of tickets">
-    {{ ticket.slug }}
-  </li>
-</ul>
+<div class="container">
+  <h2>Liste des tickets</h2>
+  <p>avec les détails</p>            
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Référence</th>
+        <th>Client</th>
+        <th>Description</th>
+        <th>Utilisateur affécté</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let ticket of tickets">
+        <td>{{ticket.slug}}</td>
+        <td>{{ticket.client}}</td>
+        <td>{{ticket.title}}</td>
+        <td>{{ticket.technician}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

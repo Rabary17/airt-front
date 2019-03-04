@@ -1,6 +1,6 @@
 <nav class="navbar navbar-light" *appShowAuthed="true">
   <div class="container">
-    <a class="navbar-brand" routerLink="/">Project</a>
+    <a class="navbar-brand" routerLink="/"><img src="./assets/airtel_insigne.jpeg" alt="airtel" style="height: 50px;float: left;">Project</a>
 
     <!-- Show this for logged out users -->
 
@@ -13,6 +13,7 @@
           routerLink="/"
           routerLinkActive="active"
           [routerLinkActiveOptions]="{ exact: true }">
+          <i class="fa fa-home"></i>
           Accueil
         </a>
       </li>
@@ -21,7 +22,8 @@
         <a class="nav-link"
           routerLink="/editor"
           routerLinkActive="active">
-          <i class="ion-compose"></i>&nbsp;Nouveau ticket
+          <i class="fa fa-plus-circle"></i>
+          Nouveau ticket
         </a>
       </li>
 
@@ -29,6 +31,7 @@
         <a class="nav-link"
           routerLink="/register"
           routerLinkActive="active">
+          <i class="fa fa-user-plus"></i>
           Ajouter un utilisateur
         </a>
       </li>
@@ -37,7 +40,8 @@
         <a class="nav-link"
           routerLink="/settings"
           routerLinkActive="active">
-          <i class="ion-gear-a"></i>&nbsp;Configuration
+          <i class="fa fa-user-cog"></i>
+          Configuration
         </a>
       </li>
 
@@ -54,13 +58,15 @@
         <a class="nav-link"
           routerLink="/admin"
           routerLinkActive="active">
-          <i class="ion-gear-a"></i>&nbsp;Administration
+          <i class="fa fa-cogs"></i>
+          Administration
         </a>
       </li>
 
       <li class="nav-item">
         <button class="btn btn-outline-danger"
         (click)="logout()">
+        <i class="fa fa-power-off"></i>
         Déconnexion
         </button>
       </li>

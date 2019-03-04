@@ -41,6 +41,7 @@
   <span 
     style="font-style:italic;color:white;padding:2px;font-weight: 500" 
     [ngClass]="{'red': article.status === 'Non commencée', 'yellow': article.status === 'En cours', 'green': article.status === 'Terminé'}">
+      <i class="fa fa-bookmark"></i>
       {{ article.status }}
   </span>
 </div>

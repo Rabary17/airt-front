@@ -1,9 +1,9 @@
 <div class="home-page" *appShowAuthed="true">
 
-  <div class="banner" *appShowAuthed="true">
+  <div class="banner" *appShowAuthed="true" style="background: #333;background-image: url('../assets/background_1.png');background-size: cover;background-position: top;">
     <div class="container">
-      <h1 class="logo-font">Project</h1>
-      <p>Make our <i>dream</i> real.</p>
+      <h1 class="logo-font">Logiciel de gestion des tickets <i class="fa fa-tags"></i></h1>
+      <p>Un logiciel de gestion des tickets efficace garantit que le processus se déroule bien, sans erreur, et facilite l'assistance à la clientèle pour l'ensemble des personnes impliquées.</p>
     </div>
   </div>
 
@@ -17,6 +17,7 @@
               <a class="nav-link"
                  [ngClass]="{'active': listConfig.type === 'feed'}"
                  (click)="setListTo('feed')">
+                 <i class="fa fa-users"></i>
                  Tickets des technicien suivi
               </a>
             </li>
@@ -24,6 +25,7 @@
               <a class="nav-link"
                  [ngClass]="{'active': listConfig.type === 'all' && !listConfig.filters.tag}"
                  (click)="setListTo('all')">
+                 <i class="fa fa-th-list"></i>
                  Tous les tickets
               </a>
             </li>
