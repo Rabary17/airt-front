@@ -33,7 +33,6 @@ export class AuthComponent implements OnInit {
     this.userService.currentUser.subscribe(
       (userData) => {
         this.currentUser = userData;
-        console.log(this.currentUser);
       }
     );
     this.route.url.subscribe(data => {

@@ -13,9 +13,9 @@
     <tbody>
       <tr *ngFor="let ticket of tickets">
         <td>{{ticket.slug}}</td>
-        <td>{{ticket.client}}</td>
+        <td>{{ticket.client.name}}</td>
         <td>{{ticket.title}}</td>
-        <td>{{ticket.technician}}</td>
+        <td>{{ticket.technician.username}}</td>
       </tr>
     </tbody>
   </table>

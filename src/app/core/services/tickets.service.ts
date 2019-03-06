@@ -35,7 +35,7 @@ export class TicketsService {
 
   getAll(): Observable<any> {
     return this.apiService.get('/tickets/all')
-    .pipe(map(data => data.tickets));
+    .pipe(map(data => data.articles));
   }
 
 

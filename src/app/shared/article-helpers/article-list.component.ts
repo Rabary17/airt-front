@@ -42,12 +42,12 @@ export class ArticleListComponent {
       this.query.filters.limit = this.limit;
       this.query.filters.offset =  (this.limit * (this.currentPage - 1));
     }
-    console.log('this.query : ' + this.query);
     this.articlesService.query(this.query)
 
     .subscribe(data => {
       this.loading = false;
       this.results = data.articles;
+      console.log(this.results);
 
       // Used from http://www.jstips.co/en/create-range-0...n-easily-using-one-line/
       this.totalPages = Array.from(new Array(Math.ceil(data.articlesCount / this.limit)), (val, index) => index + 1);

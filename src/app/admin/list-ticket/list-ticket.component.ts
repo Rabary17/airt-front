@@ -28,6 +28,7 @@ export class ListTicketComponent implements OnInit {
 
 ngOnInit() {
   const array = [];
+  // this.ticketService.getAll().subscribe(res => this.tickets = res);
   this.ticketService.getAll().subscribe(res => this.tickets = res);
 }
 

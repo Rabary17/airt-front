@@ -6,7 +6,7 @@
           [routerLink]="['/admin/user']"
           routerLinkActive="active">
           <i class="fa fa-users"></i>
-            Utilisateurs
+            Utilisateurs <span class="badge  badge-blue">{{ totalUser }}</span>
           </a>
         </li>
         <li class="nav-item">
@@ -14,7 +14,7 @@
           [routerLink]="['/admin/ticket']"
             routerLinkActive="active">
             <i class="fa fa-tags"></i>
-            Tickets
+            Tickets <span class="badge  badge-blue">{{ totalTicket }}</span>
           </a>
         </li>
         <li class="nav-item">
@@ -22,7 +22,7 @@
           [routerLink]="['/admin/client']"
             routerLinkActive="active">
             <i class="fa fa-user-friends"></i> 
-            Clients
+            Clients  <span class="badge  badge-blue">{{ totalClient }}</span>
           </a>
         </li>
       </ul>
