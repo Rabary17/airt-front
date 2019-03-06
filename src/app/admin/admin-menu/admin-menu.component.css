@@ -1,7 +1,7 @@
 .badge-blue {
     padding: 0 6px;
     width: 20px;
-    background-color: #198eff;
+    background-color: #999;
     color: white;
-    border-radius: 50%;
+    border-radius: 8px;
 }
