@@ -1,14 +1,16 @@
 .autocomplete{
-    border: 1px solid #ccc;
+    /* border: 1px solid #ccc; */
     border-radius: 5px;
     position: absolute;
-    width: 50%;
-    background-color: #eee;
+    width: 100%;
+    background-color: #e6001c;
 }
 
 .tech_option{
     padding: 5px;
-    color: #999;
+    color: #fff;
+    border-radius: 5px;
+    border-top: 1px solid #fff;
 }
 
 .tech_option:hover{
