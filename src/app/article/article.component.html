@@ -2,7 +2,7 @@
 
   <div class="banner">
     <div class="container">
-      <h1>{{ article.title }} {{ article.status }}</h1>
+      <h1>{{ article.title }}</h1>
 
       <app-article-meta [article]="article">
 
@@ -33,6 +33,9 @@
         </span>
 
       </app-article-meta>
+      <div style="text-align: right;">
+        <span [ngClass]="{'red': article.status === 'Non commencée', 'yellow': article.status === 'En cours', 'green': article.status === 'Terminé'}" style="font-style: italic;color: white;padding: 2px;font-weight: 500;border-radius: 3px;padding: 5px;"> <i _ngcontent-c2="" class="fa fa-bookmark"></i> {{ article.status }}</span>
+      </div>
     </div>
   </div>
 
@@ -92,16 +95,16 @@
 
         <div *appShowAuthed="true">
           <app-list-errors [errors]="commentFormErrors"></app-list-errors>
-          <form class="card comment-form" (ngSubmit)="addComment()">
+          <form class="card comment-form" (ngSubmit)="addComment()" style="border: 1px solid #ccc">
             <fieldset [disabled]="isSubmitting">
               <div class="card-block">
                 <textarea class="form-control"
-                  placeholder="Write a comment..."
+                  placeholder="Ecrire un commentaire ..."
                   rows="3"
                   [formControl]="commentControl"
                 ></textarea>
               </div>
-              <div class="card-footer">
+              <div class="card-footer" *ngIf="commentControl.valid">
                 <img [src]="currentUser.image" class="comment-author-img" />
                 <button class="btn btn-sm btn-primary" type="submit">
                  Commenter

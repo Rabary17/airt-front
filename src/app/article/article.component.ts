@@ -13,6 +13,7 @@ import {
 
 @Component({
   selector: 'app-article-page',
+  styleUrls: ['article.component.css'],
   templateUrl: './article.component.html'
 })
 export class ArticleComponent implements OnInit {
