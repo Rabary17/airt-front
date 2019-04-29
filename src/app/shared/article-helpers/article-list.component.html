@@ -1,7 +1,31 @@
-<app-article-preview
+<!-- <app-article-preview
   *ngFor="let article of results"
   [article]="article">
-</app-article-preview>
+</app-article-preview> -->
+<table class="table table-striped table-hover">
+    <thead>
+      <tr>
+        <th scope="col">N° Ticket</th>
+        <th scope="col">Date</th>
+        <th scope="col">Client</th>
+        <th scope="col">Titre</th>
+        <th scope="col">status</th>
+        <th scope="col">RCA</th>
+        <th scope="col">Technicien</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr  *ngFor="let article of results">
+        <td> <a [routerLink]="['/ticket', article.slug]" class="preview-link">{{article.slug}}</a></td>
+        <td>{{article.createdAt}}</td>
+        <td>{{article.client.name}}</td>
+        <td>{{article.title}}</td>
+        <td>{{article.status}}</td>
+        <td>{{article.cause}}</td>
+        <td>{{article.technician.username}}</td>
+      </tr>
+    </tbody>
+</table>
 
 <div class="app-article-preview"
   [hidden]="!loading">

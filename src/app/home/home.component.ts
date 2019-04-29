@@ -1,18 +1,36 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ElementRef, HostListener } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { ArticleListConfig, TagsService, UserService } from '../core';
+import * as $ from 'jquery';
+import { ClickOutsideDirective } from '../shared/click-outside.directive';
 
 @Component({
   selector: 'app-home-page',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
+
+
 export class HomeComponent implements OnInit {
+  directives: [ClickOutsideDirective]
+  @HostListener('document: click', ['$event'])
+  public clickout(event) {
+    const clickedInside = this.eRef.nativeElement.contains(event.target);
+    if (!clickedInside) {
+      this.toogle = false;
+      console.log('false');
+    } else if (clickedInside) {
+      this.toogle = true;
+      console.log('true');
+    }
+  }
+
   constructor(
     private router: Router,
     private tagsService: TagsService,
-    private userService: UserService
+    private userService: UserService,
+    private eRef: ElementRef,
   ) {}
 
   isAuthenticated: boolean;
@@ -22,8 +40,11 @@ export class HomeComponent implements OnInit {
   };
   tags: Array<string> = [];
   tagsLoaded = false;
+  toogle = false;
 
+  
   ngOnInit() {
+    console.log(this.toogle);
     this.userService.isAuthenticated.subscribe(
       (authenticated) => {
         this.isAuthenticated = authenticated;
@@ -41,6 +62,12 @@ export class HomeComponent implements OnInit {
     .subscribe(tags => {
       this.tags = tags;
       this.tagsLoaded = true;
+    });
+    $(document).ready(function(){
+      $("#menu-toggle").click(function(e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("toggled");
+      });
     });
   }
 

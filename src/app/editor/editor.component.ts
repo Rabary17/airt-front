@@ -6,6 +6,7 @@ import { User, Ticket, TicketsService } from '../core';
 import { UserService } from '../core/services/user.service';
 import { ClientService } from '../core/services/client.service';
 
+
 @Component({
   selector: 'app-editor-page',
   templateUrl: './editor.component.html',

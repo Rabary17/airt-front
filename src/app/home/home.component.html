@@ -1,67 +1,108 @@
-<div class="home-page" *appShowAuthed="true">
+<div class="home-page d-flex container-fluid toggled" *appShowAuthed="true" id="wrapper">
 
-  <div class="banner" *appShowAuthed="true" style="background: #333;background-image: url('../assets/background_1.png');background-size: cover;background-position: top;">
-    <div class="container">
-      <!-- <h1 class="logo-font"><i class="fa fa-tags"></i></h1> -->
-      <p>Un logiciel de gestion des tickets efficace garantit que le processus se déroule bien, sans erreur, et facilite l'assistance à la clientèle pour l'ensemble des personnes impliquées.</p>
-    </div>
-  </div>
-
-  <div class="container page">
-    <div class="row">
-
-      <div class="col-md-9">
-        <div class="feed-toggle">
-          <ul class="nav nav-pills outline-active">
-            <li class="nav-item">
-              <a class="nav-link"
-                 [ngClass]="{'active': listConfig.type === 'feed'}"
-                 (click)="setListTo('feed')">
-                 <i class="fa fa-users"></i>
-                 Tickets des technicien suivi
+    <!-- Sidebar -->
+    <div class="bg-light" id="sidebar-wrapper" (appClickOutside)="clickout()">
+        <div class="sidebar-heading">Mot clés</div>
+        <div class="list-group list-group-flush">
+            <div class="tag-list">
+              <a *ngFor="let tag of tags"
+                (click)="setListTo('all', {tag: tag})"
+                class="tag-default tag-pill">
+                {{ tag }}
               </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link"
-                 [ngClass]="{'active': listConfig.type === 'all' && !listConfig.filters.tag}"
-                 (click)="setListTo('all')">
-                 <i class="fa fa-th-list"></i>
-                 Tous les tickets
-              </a>
-            </li>
-            <li class="nav-item" [hidden]="!listConfig.filters.tag">
-              <a class="nav-link active">
-                <i class="ion-pound"></i> {{ listConfig.filters.tag }}
-              </a>
-            </li>
-          </ul>
+            </div>
+  
+            <div [hidden]="tagsLoaded">
+                Chargement des mots clés...
+            </div>
+  
+            <div [hidden]="!tagsLoaded || tags.length > 0">
+              Il n'y a pas encore de mot clés
+            </div>
         </div>
+    </div>
+      <!-- /#sidebar-wrapper -->
 
-        <app-article-list [limit]="10" [config]="listConfig"></app-article-list>
+    <div style="width:100%">
+      <div class="banner" *appShowAuthed="true" style="background: #333;background-image: url('../assets/background_1.png');background-size: cover;background-position: top;">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-3">
+                <fieldset class="form-group">
+                    <label for="tags">Rechercher parmi les tickets</label>
+                    <input class="form-control"
+                      type="text"
+                      id="globalSearch tags"
+                      placeholder="N°.. , client, titre .."
+                    />
+                </fieldset>
+            </div>
+            <div class="col-md-3">
+              
+              <fieldset class="form-group">
+                  <label for="tags">Tags</label>
+                  <button class="form-control" id="menu-toggle">
+                      tags
+                    </button>
+              </fieldset>
+            </div>
+            <div class="col-md-3">
+                <fieldset class="form-group">
+                    <label for="tags">Client</label>
+                    <input class="form-control"
+                      type="text"
+                      id="globalSearch tags"
+                      placeholder="N°.. , client, titre .."
+                    />
+                </fieldset>
+            </div>
+            <div class="col-md-3">
+                <fieldset class="form-group">
+                    <label for="tags">Technicien</label>
+                    <input class="form-control"
+                      type="text"
+                      id="globalSearch tags"
+                      placeholder="N°.. , client, titre .."
+                    />
+                </fieldset>
+            </div>
+          </div>
+        </div>
       </div>
 
-      <div class="col-md-3">
-        <div class="sidebar">
-          <p>Mots clés</p>
+      <div class="container page">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="feed-toggle">
+              <ul class="nav nav-pills outline-active">
+                <li class="nav-item">
+                  <a class="nav-link"
+                    [ngClass]="{'active': listConfig.type === 'feed'}"
+                    (click)="setListTo('feed')">
+                    <i class="fa fa-users"></i>
+                    Tickets des technicien suivi
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link"
+                    [ngClass]="{'active': listConfig.type === 'all' && !listConfig.filters.tag}"
+                    (click)="setListTo('all')">
+                    <i class="fa fa-th-list"></i>
+                    Tous les tickets
+                  </a>
+                </li>
+                <li class="nav-item" [hidden]="!listConfig.filters.tag">
+                  <a class="nav-link active">
+                    <i class="ion-pound"></i> {{ listConfig.filters.tag }}
+                  </a>
+                </li>
+              </ul>
+            </div>
 
-          <div class="tag-list">
-            <a *ngFor="let tag of tags"
-               (click)="setListTo('all', {tag: tag})"
-               class="tag-default tag-pill">
-               {{ tag }}
-            </a>
+            <app-article-list [limit]="10" [config]="listConfig"></app-article-list>
           </div>
 
-          <div [hidden]="tagsLoaded">
-              Chargement des mots clés...
-          </div>
-
-          <div [hidden]="!tagsLoaded || tags.length > 0">
-            Il n'y a pas encore de mot clés
-          </div>
         </div>
       </div>
-
     </div>
-  </div>
 </div>

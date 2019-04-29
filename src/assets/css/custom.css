@@ -25,3 +25,16 @@ fieldset > label {
 .navbar-nav {
     flex-direction: unset !important;
 }
+
+.filter-title{
+    font-size: 10px !important;
+}
+
+.container-fluid{
+    margin: 0;
+    padding: 0;
+}
+
+.tag-list{
+    padding: 10px;
+}
