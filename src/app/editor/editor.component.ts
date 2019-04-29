@@ -5,6 +5,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { User, Ticket, TicketsService } from '../core';
 import { UserService } from '../core/services/user.service';
 import { ClientService } from '../core/services/client.service';
+
 @Component({
   selector: 'app-editor-page',
   templateUrl: './editor.component.html',
@@ -34,6 +35,8 @@ export class EditorComponent implements OnInit {
     }
   }
 
+  public selectSource : Array<any>;
+
   constructor(
     private articlesService: TicketsService,
     private clientService: ClientService,
@@ -45,13 +48,13 @@ export class EditorComponent implements OnInit {
   ) {
     // use the FormBuilder to create a form group
     this.articleForm = this.fb.group({
-      title: '',
-      status: [ null, [Validators.required]],
-      source: [ null, [Validators.required]],
-      cause: [ null, [Validators.required]],
+      title: '',  
+      status: '',
+      source: '',
+      cause: '',
       body: ['', [Validators.required, Validators.minLength(6)]],
-      technician: [ null, [Validators.required]],
-      client: [ null, [Validators.required]],
+      technician: '',
+      client: '',
     });
 
     // Initialized tagList as empty array
@@ -72,6 +75,7 @@ export class EditorComponent implements OnInit {
     this.userService.getAllUser().subscribe(res => this.users = res.user);
     // console.log('*********************************');
     this.clientService.getAllClient().subscribe(res => this.clients = res.clients);
+
   }
 
   autoCompleteClient() {

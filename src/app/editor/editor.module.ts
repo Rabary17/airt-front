@@ -6,9 +6,10 @@ import { EditableArticleResolver } from './editable-article-resolver.service';
 import { AuthGuard } from '../core';
 import { SharedModule } from '../shared';
 import { EditorRoutingModule } from './editor-routing.module';
+import {NgSelectModule, NgOption} from '@ng-select/ng-select';
 
 @NgModule({
-  imports: [SharedModule, EditorRoutingModule],
+  imports: [SharedModule, EditorRoutingModule, NgSelectModule],
   declarations: [EditorComponent],
   providers: [EditableArticleResolver]
 })

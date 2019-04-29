@@ -18,6 +18,11 @@
                 <div class="tech_option" *ngFor="let client of clients" (click)="setClientValue(client)">{{ client.name }}</div>
               </div>
             </fieldset>
+            <!-- <ng-select class="form-control form-control-lg" [items]="selectSource"
+            bindLabel="name"
+            placeholder="Select city"
+            formControlName="source">
+            </ng-select> -->
 
              <!-- source -->
             <fieldset class="form-group">

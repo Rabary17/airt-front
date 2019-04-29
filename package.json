@@ -24,11 +24,10 @@
     "@angular/platform-browser": "6.0.7",
     "@angular/platform-browser-dynamic": "6.0.7",
     "@angular/router": "6.0.7",
+    "@ng-select/ng-select": "^2.18.0",
     "core-js": "^2.4.1",
     "jquery": "^3.4.0",
     "marked": "^0.6.2",
-    "ng-select2": "^1.0.8",
-    "ngx-select2": "^0.2.1",
     "rxjs": "^6.2.1",
     "rxjs-compat": "^6.0.0-rc.0",
     "zone.js": "^0.8.26"
