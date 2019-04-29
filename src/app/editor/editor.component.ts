@@ -46,10 +46,12 @@ export class EditorComponent implements OnInit {
     // use the FormBuilder to create a form group
     this.articleForm = this.fb.group({
       title: '',
-      status: '',
+      status: [ null, [Validators.required]],
+      source: [ null, [Validators.required]],
+      cause: [ null, [Validators.required]],
       body: ['', [Validators.required, Validators.minLength(6)]],
-      technician: '',
-      client: ''
+      technician: [ null, [Validators.required]],
+      client: [ null, [Validators.required]],
     });
 
     // Initialized tagList as empty array

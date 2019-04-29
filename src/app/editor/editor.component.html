@@ -19,6 +19,48 @@
               </div>
             </fieldset>
 
+             <!-- source -->
+            <fieldset class="form-group">
+                <select id="select-source" class="form-control form-control-lg" formControlName="source" style="height: auto" placeholder="Please select a fruit.">
+                  <optgroup label="Client">
+                      <option value="Appel Client">Appel</option>
+                      <option value="Mail Client">Mail</option>
+                      <option value="Grid faillure Client">Grid faillure</option>
+                  </optgroup>
+
+                  <optgroup label="Supervision">
+                      <option value="Site Down">Site Down</option>
+                      <option value="Client Down">Client Down</option>
+                      <option value="Transmission issue">Transmission issue</option>
+                      <option value="Planned activity">Planned activity</option>
+                   </optgroup>
+                </select>
+              </fieldset>
+              
+            <!-- cause -->
+            <fieldset class="form-group">
+                <select class="form-control form-control-lg" formControlName="cause" style="height: auto">
+                  <optgroup label="Incident">
+                      <option value="Lenteur connexion">Lenteur connexion</option>
+                      <option value="Coupure connexion">Coupure connexion</option>
+                      <option value="Remplacement équipement">Remplacement équipement</option>
+                   </optgroup>
+
+                   <optgroup label="Nouvelle installation">
+                      <option value="Site survey">Site survey</option>
+                      <option value="Installation">Installation</option>
+                      <option value="Mise en ligne">Mise en ligne</option>
+                   </optgroup>
+
+                   <optgroup label="Désintallation fin de contrat">
+                      <option value="Site survey désintallation">Site survey</option>
+                      <option value="Désintallation">Désintallation</option>
+                      <option value="Retour équipement">Retour équipement</option>
+                   </optgroup>
+
+                </select>
+              </fieldset>
+
             <!-- technician -->
             <fieldset class="form-group">
               <!-- <select class="form-control form-control-lg" formControlName="technician" style="height: auto">
@@ -39,9 +81,13 @@
 
             <fieldset class="form-group">
               <select class="form-control form-control-lg" formControlName="status" style="height: auto">
-                <option value="Non commencée">Non commencée</option>
-                <option value="En cours">En cours</option>
-                <option value="Terminé">Terminé</option>
+                <option value="Open">Open</option>
+                <option value="In progress">In progress</option>            
+                <optgroup label="Pending">
+                    <option value="Pending customers side">Customers side</option>
+                    <option value="Pending airtel  side">Airtel side</option>
+                 </optgroup>
+                <option value="Close">Close</option>
               </select>
             </fieldset>
 
