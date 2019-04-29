@@ -1,132 +1,158 @@
 <div class="editor-page">
   <div class="container page">
     <div class="row">
-      <div class="col-md-6 offset-md-3 col-xs-12" style="padding:0">
+      <div class="col-md-10 offset-md-1 col-xs-12" style="padding:0">
 
         <app-list-errors [errors]="errors"></app-list-errors>
 
+        <div class="card">
+            <div class="card-header">
+              <i class="fa fa-info-circle"></i> Add new ticket
+            </div>
         <form [formGroup]="articleForm">
-          <fieldset [disabled]="isSubmitting">
-          <!-- client --> 
+            <fieldset [disabled]="isSubmitting">
+              <div class="row">
+                  <div class="col-md-12">
+                        <div class="row">
+                          <div class="col-md-6 ">
+                              <fieldset class="form-group">
+                                  <!-- <select class="form-control " formControlName="client" style="height: auto">
+                                    <option *ngFor="let client of clients" value="{{ client.id }}">{{ client.name }}</option>
+                                  </select> -->
+                                  <label for="client">Client</label>
+                                  <input class="form-control" formControlName="client" type="text" placeholder="Client" (keyup)="autoCompleteClient()" (clickout)="hide()"  id="client"/>
+                                  <div class="autocomplete form-group" *ngIf="showClients" >
+                                    <div class="tech_option" *ngFor="let client of clients" (click)="setClientValue(client)">{{ client.name }}</div>
+                                  </div>
+                                </fieldset>
+                          </div>
+                          <div class="col-md-6 ">
+                              <fieldset class="form-group">
+                                  <label for="source">Source</label>
+                                  <select class="form-control " formControlName="source" style="height: auto" placeholder="Please select a fruit." id="source">
+                                    <optgroup label="Client">
+                                        <option value="Appel Client">Appel</option>
+                                        <option value="Mail Client">Mail</option>
+                                        <option value="Grid faillure Client">Grid faillure</option>
+                                    </optgroup>
+        
+                                    <optgroup label="Supervision">
+                                        <option value="Site Down">Site Down</option>
+                                        <option value="Client Down">Client Down</option>
+                                        <option value="Transmission issue">Transmission issue</option>
+                                        <option value="Planned activity">Planned activity</option>
+                                    </optgroup>
+                                  </select>
+                                </fieldset>
+                          </div>
+                         
+                          <div class="col-md-6 ">
+                              <fieldset class="form-group">
+                                  <label for="cause">Cause</label>
+                                  <select class="form-control " formControlName="cause" style="height: auto" id="cause">
+                                    <optgroup label="Incident">
+                                        <option value="Lenteur connexion">Lenteur connexion</option>
+                                        <option value="Coupure connexion">Coupure connexion</option>
+                                        <option value="Remplacement équipement">Remplacement équipement</option>
+                                    </optgroup>
+          
+                                    <optgroup label="Nouvelle installation">
+                                        <option value="Site survey">Site survey</option>
+                                        <option value="Installation">Installation</option>
+                                        <option value="Mise en ligne">Mise en ligne</option>
+                                    </optgroup>
+          
+                                    <optgroup label="Désintallation fin de contrat">
+                                        <option value="Site survey désintallation">Site survey</option>
+                                        <option value="Désintallation">Désintallation</option>
+                                        <option value="Retour équipement">Retour équipement</option>
+                                    </optgroup>
+          
+                                  </select>
+                                </fieldset>
+                          </div>
+                          <div class="col-md-6 ">
+                              <fieldset class="form-group">
+                                  <!-- <select class="form-control " formControlName="technician" style="height: auto">
+                                    <option *ngFor="let technician of users" value="{{ technician.id }}">{{ technician.username }}</option>
+                                  </select> -->
+                                  <label for="technicien">Technicien affété</label>
+                                  <input class="form-control" formControlName="technician" type="text" placeholder="Technicien" (keyup)="autoCompleteTechnician()" (clickout)="hide()" id="technicien"/>
+                                  <div class="autocomplete form-group" *ngIf="showUsers"  >
+                                      <div class="tech_option" *ngFor="let technician of users" (click)="setTechValue(technician)" >{{ technician.username }}</div>
+                                  </div>
+                                </fieldset>    
+                          </div>
+                          <div class="col-md-6 ">
+                              <fieldset class="form-group">
+                                  <label for="titre">Titre</label>
+                                  <input class="form-control "
+                                    formControlName="title"
+                                    type="text"
+                                    id="titre"
+                                    placeholder="Titre du ticket" />
+                                </fieldset>
+                          </div>
+                          <div class="col-md-6 ">
+                              <fieldset class="form-group">
+                                  <label for="status">Status</label>
+                                  <select class="form-control " formControlName="status" style="height: auto" id="status">
+                                    <option value="Open">Open</option>
+                                    <option value="In progress">In progress</option>            
+                                    <optgroup label="Pending">
+                                        <option value="Pending customers side">Customers side</option>
+                                        <option value="Pending airtel  side">Airtel side</option>
+                                    </optgroup>
+                                    <option value="Close">Close</option>
+                                  </select>
+                                </fieldset>
+                          </div>
+                          <div class="col-md-12">
+                              <fieldset class="form-group">
+                                  <label for="tags">Tags</label>
+                                  <input class="form-control"
+                                    type="text"
+                                    id="tags"
+                                    placeholder="Mot clés"
+                                    [formControl]="tagField"
+                                    (keyup.enter)="addTag()" />
+            
+                                  <div class="tag-list">
+                                    <span *ngFor="let tag of article.tagList"
+                                      class="tag-default tag-pill">
+                                      <i class="ion-close-round" (click)="removeTag(tag)"></i>
+                                      {{ tag }}
+                                    </span>
+                                  </div>
+                                </fieldset>
+                          </div>
+                          <div class="col-md-12">
+                              <fieldset class="form-group">
+                                  <label for="details">Détails</label>
+                                  <textarea class="form-control"
+                                    formControlName="body"
+                                    rows="4"
+                                    id="details"
+                                    placeholder="Détails du ticket">
+                                  </textarea>
+                                </fieldset>
+                          </div>
 
-            <fieldset class="form-group">
-              <!-- <select class="form-control form-control-lg" formControlName="client" style="height: auto">
-                <option *ngFor="let client of clients" value="{{ client.id }}">{{ client.name }}</option>
-              </select> -->
-              <input class="form-control" formControlName="client" type="text" placeholder="Client" (keyup)="autoCompleteClient()" (clickout)="hide()"/>
-              <div class="autocomplete form-group" *ngIf="showClients" >
-                <div class="tech_option" *ngFor="let client of clients" (click)="setClientValue(client)">{{ client.name }}</div>
+                        </div>
+                  </div>
+
               </div>
-            </fieldset>
-            <!-- <ng-select class="form-control form-control-lg" [items]="selectSource"
-            bindLabel="name"
-            placeholder="Select city"
-            formControlName="source">
-            </ng-select> -->
-
-             <!-- source -->
-            <fieldset class="form-group">
-                <select id="select-source" class="form-control form-control-lg" formControlName="source" style="height: auto" placeholder="Please select a fruit.">
-                  <optgroup label="Client">
-                      <option value="Appel Client">Appel</option>
-                      <option value="Mail Client">Mail</option>
-                      <option value="Grid faillure Client">Grid faillure</option>
-                  </optgroup>
-
-                  <optgroup label="Supervision">
-                      <option value="Site Down">Site Down</option>
-                      <option value="Client Down">Client Down</option>
-                      <option value="Transmission issue">Transmission issue</option>
-                      <option value="Planned activity">Planned activity</option>
-                   </optgroup>
-                </select>
-              </fieldset>
-              
-            <!-- cause -->
-            <fieldset class="form-group">
-                <select class="form-control form-control-lg" formControlName="cause" style="height: auto">
-                  <optgroup label="Incident">
-                      <option value="Lenteur connexion">Lenteur connexion</option>
-                      <option value="Coupure connexion">Coupure connexion</option>
-                      <option value="Remplacement équipement">Remplacement équipement</option>
-                   </optgroup>
-
-                   <optgroup label="Nouvelle installation">
-                      <option value="Site survey">Site survey</option>
-                      <option value="Installation">Installation</option>
-                      <option value="Mise en ligne">Mise en ligne</option>
-                   </optgroup>
-
-                   <optgroup label="Désintallation fin de contrat">
-                      <option value="Site survey désintallation">Site survey</option>
-                      <option value="Désintallation">Désintallation</option>
-                      <option value="Retour équipement">Retour équipement</option>
-                   </optgroup>
-
-                </select>
-              </fieldset>
-
-            <!-- technician -->
-            <fieldset class="form-group">
-              <!-- <select class="form-control form-control-lg" formControlName="technician" style="height: auto">
-                <option *ngFor="let technician of users" value="{{ technician.id }}">{{ technician.username }}</option>
-              </select> -->
-              <input class="form-control" formControlName="technician" type="text" placeholder="Technicien" (keyup)="autoCompleteTechnician()" (clickout)="hide()"/>
-              <div class="autocomplete form-group" *ngIf="showUsers"  >
-                  <div class="tech_option" *ngFor="let technician of users" (click)="setTechValue(technician)" >{{ technician.username }}</div>
-              </div>
-            </fieldset>
-
-            <fieldset class="form-group">
-              <input class="form-control form-control-lg"
-                formControlName="title"
-                type="text"
-                placeholder="Titre du ticket" />
-            </fieldset>
-
-            <fieldset class="form-group">
-              <select class="form-control form-control-lg" formControlName="status" style="height: auto">
-                <option value="Open">Open</option>
-                <option value="In progress">In progress</option>            
-                <optgroup label="Pending">
-                    <option value="Pending customers side">Customers side</option>
-                    <option value="Pending airtel  side">Airtel side</option>
-                 </optgroup>
-                <option value="Close">Close</option>
-              </select>
-            </fieldset>
-
-            <fieldset class="form-group">
-              <textarea class="form-control"
-                formControlName="body"
-                rows="8"
-                placeholder="Détails du ticket">
-              </textarea>
-            </fieldset>
-
-            <fieldset class="form-group">
-              <input class="form-control"
-                type="text"
-                placeholder="Mot clés"
-                [formControl]="tagField"
-                (keyup.enter)="addTag()" />
-
-              <div class="tag-list">
-                <span *ngFor="let tag of article.tagList"
-                  class="tag-default tag-pill">
-                  <i class="ion-close-round" (click)="removeTag(tag)"></i>
-                  {{ tag }}
-                </span>
-              </div>
-            </fieldset>
-
-            <button class="btn btn-lg pull-xs-right btn-primary" type="button" (click)="submitForm()">
-              Ajouter
-            </button>
 
           </fieldset>
         </form>
-
+            
+        </div>
+      
+        <div class="col-md-6  offset-md-1">
+            <button class="btn btn-lg pull-xs-right btn-primary" type="button" (click)="submitForm()">
+                Ajouter
+            </button>
+        </div>
       </div>
     </div>
   </div>

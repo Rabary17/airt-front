@@ -1,0 +1,27 @@
+form{
+    padding: 20px;
+}
+
+select{
+    height: 38px !important;
+}
+
+.form-group {
+    margin-bottom: 0 !important;
+}
+
+fieldset > label {
+    font-size: 10px;
+}
+
+.card-header{
+    border-bottom: none !important;
+}
+
+.card{
+    border: none !important;
+}
+
+.navbar-nav {
+    flex-direction: unset !important;
+}
