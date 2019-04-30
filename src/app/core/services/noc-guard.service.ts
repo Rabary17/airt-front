@@ -7,8 +7,8 @@ import { take } from 'rxjs/operators';
 import {  Role } from '../../core/models/role.model'
 
 @Injectable()
-export class AdminGuard implements CanActivate {
-    isAdmin = false;
+export class NocGuard implements CanActivate {
+    isNoc = false;
   constructor(
     private router: Router,
     private userService: UserService
@@ -20,11 +20,13 @@ export class AdminGuard implements CanActivate {
   ): Observable<boolean> {
 
     this.userService.currentUser.subscribe((userData) => {
-        if (userData.role === Role.Admin ) {
-            return this.isAdmin = true;
+        if (userData.role === Role.Noc ) {
+          console.log('userData.role', userData.role);
+          console.log('Role.Noc', Role.Noc);
+            return this.isNoc = true;
         }
     });
-    return of(this.isAdmin);
+    return of(this.isNoc);
 
   }
 }

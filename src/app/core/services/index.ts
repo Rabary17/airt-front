@@ -8,3 +8,5 @@ export * from './tags.service';
 export * from './user.service';
 export * from './client.service';
 export * from './admin-guard.service';
+export * from './manager-guard.service';
+export * from './noc-guard.service';

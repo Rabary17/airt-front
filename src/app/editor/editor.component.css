@@ -4,6 +4,7 @@
     position: absolute;
     width: 100%;
     background-color: #e6001c;
+    z-index: 9;
 }
 
 .tech_option{

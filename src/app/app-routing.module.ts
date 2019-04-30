@@ -3,6 +3,8 @@ import { Routes, RouterModule, PreloadAllModules } from '@angular/router';
 import { AdminComponent } from '../app/admin/admin.component';
 import { NoAuthGuard } from './auth/no-auth-guard.service';
 import { AdminGuard } from './core/services/admin-guard.service';
+import { ManagerGuard } from './core/services/manager-guard.service';
+import { NocGuard } from './core/services/noc-guard.service';
 const routes: Routes = [
   {
     path: 'settings',
@@ -14,16 +16,18 @@ const routes: Routes = [
   },
   {
     path: 'editor',
-    loadChildren: './editor/editor.module#EditorModule'
+    loadChildren: './editor/editor.module#EditorModule',
+    canActivate: [NocGuard],
   },
   {
     path: 'ticket',
-    loadChildren: './article/article.module#ArticleModule'
+    loadChildren: './article/article.module#ArticleModule',
+    
   },
   {
     path: 'admin',
     loadChildren: './admin/admin.module#AdminModule',
-    canActivate: [AdminGuard],
+    canActivate: [ManagerGuard],
   }
 ];
 

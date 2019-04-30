@@ -25,7 +25,7 @@
                 type="text"
                 *ngIf="authType == 'register'" />
             </fieldset>
-            <fieldset class="form-group" *ngIf="authType == 'register' && currentUser.role === 'Admin'">
+            <fieldset class="form-group" *ngIf="authType == 'register' && currentUser.role === 'Manager'">
               <select formControlName="role" 
               style="width: 100%;
               border: none;
@@ -35,8 +35,9 @@
               border-radius: 5px;
               padding-left: 20px;
               color: rgb(85, 89, 92);">
+              <option value="Manager">Manager</option>
                 <option value="Admin">Administrateur</option>
-                <option value="Manager">Manager</option>
+                <option value="Noc">Noc</option>
                 <option value="Tech" default="default">Technicien</option>
               </select>
           </fieldset>

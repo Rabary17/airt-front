@@ -8,7 +8,7 @@
     <ul *appShowAuthed="true"
       class="nav navbar-nav pull-xs-right">
 
-      <li class="nav-item">
+      <li class="nav-item" *ngIf="currentUser.role === 'Manager'">
         <a class="nav-link"
           routerLink="/"
           routerLinkActive="active"
@@ -18,7 +18,7 @@
         </a>
       </li>
 
-      <li class="nav-item">
+      <li class="nav-item" *ngIf="currentUser.role === 'Noc'">
         <a class="nav-link"
           routerLink="/editor"
           routerLinkActive="active">
@@ -27,7 +27,7 @@
         </a>
       </li>
 
-      <li class="nav-item">
+      <li class="nav-item" *ngIf="currentUser.role === 'Manager'">
         <a class="nav-link"
           routerLink="/register"
           routerLinkActive="active">
@@ -50,11 +50,13 @@
           [routerLink]="['/profile', currentUser.username]"
           routerLinkActive="active">
           <img [src]="currentUser.image" *ngIf="currentUser.image" class="user-pic" />
-          {{ currentUser.username }}
+          <span id="connected-user">{{ currentUser.username }}
+            <span id="connected-user-role">{{ currentUser.role }}</span>
+          </span>
         </a>
       </li>
 
-      <li class="nav-item" *ngIf="currentUser.role === 'Admin'">
+      <li class="nav-item" *ngIf="currentUser.role === 'Manager'">
         <a class="nav-link"
           routerLink="/admin"
           routerLinkActive="active">

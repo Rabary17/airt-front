@@ -4,13 +4,14 @@ import { User, UserService } from '../../core';
 import { Router } from '@angular/router';
 @Component({
   selector: 'app-layout-header',
-  templateUrl: './header.component.html'
+  templateUrl: './header.component.html',
+  styleUrls: ['header.component.css'],
 })
 export class HeaderComponent implements OnInit {
   constructor(
     private userService: UserService,
-    private router: Router
-  ) {}
+    private router: Router,
+  ) { }
 
   currentUser: User;
 

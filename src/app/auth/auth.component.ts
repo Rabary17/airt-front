@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms'
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { Errors, UserService, User } from '../core';
+import { Role } from '../core/models/role.model'
 
 @Component({
   selector: 'app-auth-page',
@@ -66,7 +67,7 @@ export class AuthComponent implements OnInit {
         }
       );
     } else if (this.authType === 'register') {
-      if (this.currentUser.role === 'Manager') {
+      if (this.currentUser.role === Role.Noc) {
         this.authForm.patchValue({role: 'Tech'});
       }
       this.userService

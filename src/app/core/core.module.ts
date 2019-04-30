@@ -13,7 +13,9 @@ import {
   TagsService,
   UserService,
   ClientService,
-  AdminGuard
+  AdminGuard,
+  ManagerGuard,
+  NocGuard
 } from './services';
 
 @NgModule({
@@ -31,7 +33,9 @@ import {
     TagsService,
     UserService,
     ClientService,
-    AdminGuard
+    AdminGuard,
+    ManagerGuard,
+    NocGuard
   ],
   declarations: []
 })
