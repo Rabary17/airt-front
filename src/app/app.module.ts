@@ -27,7 +27,6 @@ import { CoreModule } from './core/core.module';
     AppRoutingModule,
     AdminModule,
     AdminRoutingModule
-
   ],
   providers: [],
   bootstrap: [AppComponent]
