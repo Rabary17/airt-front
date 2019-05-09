@@ -28,6 +28,10 @@ const routes: Routes = [
     path: 'admin',
     loadChildren: './admin/admin.module#AdminModule',
     canActivate: [ManagerGuard],
+  },
+  {
+    path: 'technicien',
+    loadChildren: './technicien/technicien.module#TechnicienModule',
   }
 ];
 

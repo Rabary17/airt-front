@@ -1,0 +1,30 @@
+  <div class="col-md-12">
+    <div class="feed-toggle">
+      <ul class="nav nav-pills outline-active">
+        <li class="nav-item">
+          <a class="nav-link"
+          [routerLink]="['/admin/user']"
+          routerLinkActive="active">
+          <i class="fa fa-users"></i>
+            Utilisateurs <span class="badge  badge-blue">{{ totalUser }}</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link"
+          [routerLink]="['/admin/ticket']"
+            routerLinkActive="active">
+            <i class="fa fa-tags"></i>
+            Tickets <span class="badge  badge-blue">{{ totalTicket }}</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link"
+          [routerLink]="['/admin/client']"
+            routerLinkActive="active">
+            <i class="fa fa-user-friends"></i> 
+            Clients  <span class="badge  badge-blue">{{ totalClient }}</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>

@@ -5,6 +5,7 @@ import { AuthModule } from './auth/auth.module';
 import { HomeModule } from './home/home.module';
 import { AdminModule } from './admin/admin.module';
 import { AdminRoutingModule } from './admin/admin-routing.module';
+import { TechnicienModule } from './technicien/technicien.module'
 
 
 import {
