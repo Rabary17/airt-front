@@ -59,7 +59,7 @@ export class AuthComponent implements OnInit {
     if (this.authType === 'login') {
       this.userService
       .attemptAuth(this.authType, this.authForm.value)
-      .subscribe( (data) => {
+      .subscribe( (data: any) => {
         console.log(data);
        if (data.user.role === Role.Admin){
           this.router.navigateByUrl('/profile/' + data.user.username);

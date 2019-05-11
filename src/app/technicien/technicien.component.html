@@ -1,8 +1,27 @@
 <div class="container page">
   <div class="row">
-    <app-technicien-menu></app-technicien-menu>
+    <!-- <app-technicien-menu></app-technicien-menu> -->
     <div class="col-md-12" style="margin-top:20px;">
-      <router-outlet></router-outlet>
+      <!-- <router-outlet></router-outlet> -->
+      <div class="articles-toggle">
+        <ul class="nav nav-pills outline-active">
+          <li class="nav-item">
+            <a class="nav-link active">
+              <i class="fa fa-user-shield"></i> Open
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active">
+              <i class="fa fa-wait"></i> Pending
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active">
+              <i class="fa fa-check"></i> Close
+            </a>
+          </li>
+        </ul>
+      </div>
     </div>
   </div>
 </div>
