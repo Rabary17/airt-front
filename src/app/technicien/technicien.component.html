@@ -15,20 +15,29 @@
     <!-- <app-technicien-menu></app-technicien-menu> -->
 
     <div class="col-md-12" style="margin-top:20px;">
-      <!-- <router-outlet></router-outlet> -->
       <div class="articles-toggle">
         <ul class="nav nav-pills outline-active">
-          <li class="nav-item">
+          <li class="nav-item" (click)="filter('All')">
+                <a class="nav-link active">
+                  <i class="fa fa-user-shield"></i> All
+                </a>
+          </li>
+          <li class="nav-item" (click)="filter('Open')">
             <a class="nav-link active">
               <i class="fa fa-user-shield"></i> Open
             </a>
           </li>
-          <li class="nav-item">
+          <li class="nav-item" (click)="filter('In progress')">
+              <a class="nav-link active">
+                <i class="fa fa-wait"></i> In progress
+              </a>
+            </li>
+          <li class="nav-item" (click)="filter('Pending')">
             <a class="nav-link active">
               <i class="fa fa-wait"></i> Pending
             </a>
           </li>
-          <li class="nav-item">
+          <li class="nav-item" (click)="filter('Close')">
             <a class="nav-link active">
               <i class="fa fa-check"></i> Close
             </a>
@@ -36,6 +45,81 @@
         </ul>
       </div>
     </div>
+
+    <table class="table table-striped table-hover">
+        <thead>
+          <tr>
+            <th scope="col">N° Ticket</th>
+            <th scope="col">Date</th>
+            <th scope="col">Client</th>
+            <th scope="col">Titre</th>
+            <th scope="col">status</th>
+            <th scope="col">RCA</th>
+            <th scope="col">Technicien</th>
+          </tr>
+        </thead>
+        
+        <tbody *ngIf="filtre === 'All'">
+          <tr  *ngFor="let article of allTicket">
+            <td> <a [routerLink]="['/ticket', article.slug]" class="preview-link">{{article.slug}}</a></td>
+            <td>{{article.createdAt}}</td>
+            <td>{{article.client.name}}</td>
+            <td>{{article.title}}</td>
+            <td>{{article.status}}</td>
+            <td>{{article.cause}}</td>
+            <td>{{article.technician.username}}</td>
+          </tr>
+        </tbody>
+
+        <tbody *ngIf="filtre === 'Open'">
+            <tr  *ngFor="let article of openTicket">
+              <td> <a [routerLink]="['/ticket', article.slug]" class="preview-link">{{article.slug}}</a></td>
+              <td>{{article.createdAt}}</td>
+              <td>{{article.client.name}}</td>
+              <td>{{article.title}}</td>
+              <td>{{article.status}}</td>
+              <td>{{article.cause}}</td>
+              <td>{{article.technician.username}}</td>
+            </tr>
+          </tbody>
+
+          <tbody *ngIf="filtre === 'In progress'">
+              <tr  *ngFor="let article of inprogressTicket">
+                <td> <a [routerLink]="['/ticket', article.slug]" class="preview-link">{{article.slug}}</a></td>
+                <td>{{article.createdAt}}</td>
+                <td>{{article.client.name}}</td>
+                <td>{{article.title}}</td>
+                <td>{{article.status}}</td>
+                <td>{{article.cause}}</td>
+                <td>{{article.technician.username}}</td>
+              </tr>
+            </tbody>
+
+          <tbody *ngIf="filtre === 'Pending'">
+              <tr  *ngFor="let article of pendingTicket">
+                <td> <a [routerLink]="['/ticket', article.slug]" class="preview-link">{{article.slug}}</a></td>
+                <td>{{article.createdAt}}</td>
+                <td>{{article.client.name}}</td>
+                <td>{{article.title}}</td>
+                <td>{{article.status}}</td>
+                <td>{{article.cause}}</td>
+                <td>{{article.technician.username}}</td>
+              </tr>
+            </tbody>
+
+          
+            <tbody  *ngIf="filtre === 'Close'">
+                <tr  *ngFor="let article of closeTicket">
+                  <td> <a [routerLink]="['/ticket', article.slug]" class="preview-link">{{article.slug}}</a></td>
+                  <td>{{article.createdAt}}</td>
+                  <td>{{article.client.name}}</td>
+                  <td>{{article.title}}</td>
+                  <td>{{article.status}}</td>
+                  <td>{{article.cause}}</td>
+                  <td>{{article.technician.username}}</td>
+                </tr>
+              </tbody>
+    </table>
   </div>
 </div>
 

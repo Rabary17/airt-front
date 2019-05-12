@@ -60,15 +60,23 @@ export class AuthComponent implements OnInit {
       this.userService
       .attemptAuth(this.authType, this.authForm.value)
       .subscribe( (data: any) => {
-       if (data.user.role === Role.Admin){
-          this.router.navigateByUrl('/profile/' + data.user.username);
-       } else if (data.user.role === Role.Tech){
-          this.router.navigateByUrl('/technicien');
-       } else if (data.user.role === Role.Noc) {
-        this.router.navigateByUrl('/profile/' + data.user.username);
-       } else if (data.user.role === Role.Manager) {
-        this.router.navigateByUrl('/');
-       } 
+        try {
+          if (data.user.role === Role.Admin){
+            this.router.navigateByUrl('/profile/' + data.user.username);
+              console.log('redirect to Admin but admin protected by manager');
+           } else if (data.user.role === Role.Tech){
+              this.router.navigateByUrl('/technicien');
+              console.log('redirect to technicien with no guard');
+           } else if (data.user.role === Role.Noc) {
+            this.router.navigateByUrl('/profile/' + data.user.username);
+            console.log('redirect to Noc');
+           } else if (data.user.role === Role.Manager) {
+            this.router.navigateByUrl('/');
+            console.log('redirect to Manager');
+            } 
+        } catch (error) {
+            console.log(error);
+        }
       },
         err => {
           this.errors = err;

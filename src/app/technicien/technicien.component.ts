@@ -20,7 +20,12 @@ export class TechnicienComponent implements OnInit {
   ) { }
 
   allTicket: Array<any>;
+  openTicket: Array<any>;
+  inprogressTicket: Array<any>;
+  pendingTicket: Array<any>;
+  closeTicket: Array<any>;
   currentUser;
+  filtre: String = 'All';
 
   ngOnInit() {
     let user = this._UserService.getCurrentUser().username;
@@ -28,12 +33,26 @@ export class TechnicienComponent implements OnInit {
       return this.currentUser = data;
     })
     this._ticketService.getAll().subscribe( data => {
-      return this.allTicket = data.filter(x => 
+      this.allTicket = data.filter(x => 
         x.technician.username === user
       ); 
-      console.log(this.allTicket);
-      
+      this.openTicket = data.filter(x => 
+        x.status === 'Open'
+      ); 
+      this.inprogressTicket = data.filter(x => 
+        x.status === 'In progress'
+      ); 
+      this.pendingTicket = data.filter(x => 
+        x.status === 'Pending'
+      ); 
+      this.closeTicket = data.filter(x => 
+        x.status === 'Close'
+      ); 
     })
+  }
+
+  filter(type: String) {
+    this.filtre = type;
   }
 
 }
