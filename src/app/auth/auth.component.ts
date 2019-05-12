@@ -60,7 +60,6 @@ export class AuthComponent implements OnInit {
       this.userService
       .attemptAuth(this.authType, this.authForm.value)
       .subscribe( (data: any) => {
-        console.log(data);
        if (data.user.role === Role.Admin){
           this.router.navigateByUrl('/profile/' + data.user.username);
        } else if (data.user.role === Role.Tech){
