@@ -9,3 +9,40 @@
   .green {
     background-color: green;
   }
+
+  .table-bordered td, .table-bordered th {
+    border: 1px solid #dee2e636;
+    max-width: 100px;
+}
+
+.card-block {
+  border: 3px solid #9292920f;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.card-footer{
+  background-color: transparent;
+}
+
+.article-page .card .card-footer {
+  border-top: none;
+}
+
+.comment-author-img{
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+}
+
+.bloc-comment{
+  text-align: center;
+  padding-top: 40px;
+}
+#comment-bloc{
+  display: flex;
+}
+
+.p-you{
+  font-weight: 900;
+}

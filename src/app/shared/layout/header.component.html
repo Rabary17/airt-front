@@ -18,6 +18,16 @@
         </a>
       </li>
 
+      <li class="nav-item" *ngIf="currentUser.role === 'Tech'">
+          <a class="nav-link"
+            routerLink="/technicien"
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: true }">
+            <i class="fa fa-home"></i>
+            Dashboard
+          </a>
+        </li>
+
       <li class="nav-item" *ngIf="currentUser.role === 'Noc'">
         <a class="nav-link"
           routerLink="/editor"

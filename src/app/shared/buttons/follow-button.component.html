@@ -3,7 +3,8 @@
   [ngClass]="{ 'disabled': isSubmitting,
                'btn-outline-secondary': !profile.following,
                'btn-secondary': profile.following }"
-  (click)="toggleFollowing()">
+  (click)="toggleFollowing()"
+  style="margin: 0 5px">
   <i class="ion-plus-round"></i>
   &nbsp;
   {{ profile.following ? 'Unfollow' : 'Follow' }} {{ profile.username }}

@@ -1,10 +1,15 @@
-<div class="user-info" >
-  <div class="container">
-    <div class="col-xs-12 col-md-10 offset-md-1">
-        <img class="user-img" src="http://localhost/madadev/smiley-cyrus.jpg">
-        <h4>technicien</h4>
+<div class="user-info tech-user-info" >
+  <div class="container tech-container" >
+    <div class="col-xs-12 col-md-10 offset-md-1" id="banner-tech">
+        <img class="user-img tech-img" src="http://localhost/madadev/smiley-cyrus.jpg">
+        <div>
+            <h4>{{currentUser.username}}</h4>
+            <span><i class="fab fa-critical-role"></i> {{currentUser.role}}</span>
+        </div>
+
+        <p>{{currentUser.bio}}</p>
         <a [routerLink]="['/settings']"
-          class="btn btn-sm btn-outline-secondary action-btn">
+          class="btn btn-sm btn-outline-secondary action-btn edit-profil-tech">
           <i class="fa fa-wrench"></i> Modifier mon profil
         </a>
     </div>
@@ -19,27 +24,32 @@
         <ul class="nav nav-pills outline-active">
           <li class="nav-item" (click)="filter('All')">
                 <a class="nav-link active">
-                  <i class="fa fa-user-shield"></i> All
+                  <i class="fa fa-user-shield"></i> All 
+                  <span class="badge badge-light">{{allTicket.length}}</span>
                 </a>
           </li>
           <li class="nav-item" (click)="filter('Open')">
-            <a class="nav-link active">
-              <i class="fa fa-user-shield"></i> Open
+            <a class="nav-link">
+              <i class="fa fa-user-shield"></i> Open 
+              <span class="badge badge-light">{{openTicket.length}}</span>
             </a>
           </li>
           <li class="nav-item" (click)="filter('In progress')">
-              <a class="nav-link active">
-                <i class="fa fa-wait"></i> In progress
+              <a class="nav-link">
+                <i class="fa fa-wait"></i> In progress 
+                <span class="badge badge-light">{{inprogressTicket.length}}</span>
               </a>
             </li>
           <li class="nav-item" (click)="filter('Pending')">
-            <a class="nav-link active">
-              <i class="fa fa-wait"></i> Pending
+            <a class="nav-link">
+              <i class="fa fa-wait"></i> Pending 
+              <span class="badge badge-light">{{pendingTicket.length}}</span>
             </a>
           </li>
           <li class="nav-item" (click)="filter('Close')">
-            <a class="nav-link active">
-              <i class="fa fa-check"></i> Close
+            <a class="nav-link">
+              <i class="fa fa-check"></i> Close 
+              <span class="badge badge-light">{{closeTicket.length}}</span>
             </a>
           </li>
         </ul>

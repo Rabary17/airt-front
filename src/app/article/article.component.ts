@@ -19,6 +19,7 @@ import {
 export class ArticleComponent implements OnInit {
   article: Ticket;
   currentUser: User;
+  avatar: String;
   canModify: boolean;
   comments: Comment[];
   commentControl = new FormControl();
@@ -39,6 +40,7 @@ export class ArticleComponent implements OnInit {
     this.route.data.subscribe(
       (data: { article: Ticket }) => {
         this.article = data.article;
+        console.log(this.article);
 
         // Load the comments on this article
         this.populateComments();
@@ -49,6 +51,7 @@ export class ArticleComponent implements OnInit {
     this.userService.currentUser.subscribe(
       (userData: User) => {
         this.currentUser = userData;
+        this.avatar = this.currentUser.image ? this.currentUser.image : 'http://localhost/madadev/smiley-cyrus.jpg';
 
         this.canModify = (this.currentUser.username === this.article.author.username);
       }
