@@ -70,11 +70,12 @@
           <form class="card comment-form" (ngSubmit)="addComment()" style="border: 1px solid #ccc">
             <fieldset [disabled]="isSubmitting">
               <div class="card-block">
-                <textarea class="form-control"
+                <angular-editor class="form-control"
                   placeholder="Ecrire un commentaire ..."
                   rows="3"
                   [formControl]="commentControl"
-                ></textarea>
+                  [config]="editorConfig"
+                ></angular-editor>
 
                 <app-filelist></app-filelist>
                 <app-fileupload></app-fileupload>

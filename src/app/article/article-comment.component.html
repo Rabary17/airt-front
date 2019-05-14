@@ -1,7 +1,6 @@
 <div class="card">
   <div class="card-block">
-    <p class="card-text">
-      {{ comment.body }}
+    <p class="card-text" [innerHTML]="comment.body">
     </p>
   </div>
   <div class="card-footer">

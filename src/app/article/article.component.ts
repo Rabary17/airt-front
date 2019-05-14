@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { AngularEditorConfig } from '@kolkov/angular-editor';
 
 import {
   Ticket,
@@ -30,6 +31,31 @@ export class ArticleComponent implements OnInit {
   isSubmitting = false;
   isDeleting = false;
   file: Array<any> ;
+
+  editorConfig: AngularEditorConfig = {
+    editable: true,
+    spellcheck: true,
+    height: '5rem',
+    minHeight: '5rem',
+    placeholder: 'Ecrivez votre commentaire',
+    translate: 'no',
+    uploadUrl: 'v1/images', // if needed
+    customClasses: [ // optional
+      {
+        name: "quote",
+        class: "quote",
+      },
+      {
+        name: 'redText',
+        class: 'redText'
+      },
+      {
+        name: "titleText",
+        class: "titleText",
+        tag: "h1",
+      },
+    ]
+  };
 
   constructor(
     private route: ActivatedRoute,
@@ -102,11 +128,7 @@ export class ArticleComponent implements OnInit {
       }
     );
 
-    const commentBody = {
-      'value': this.commentControl.value,
-      'file': this.file,
-    }
-    console.log('this.file', this.file);
+    const commentBody = this.commentControl.value;
     this.commentsService
       .add(this.article.slug, commentBody)
       .subscribe(
