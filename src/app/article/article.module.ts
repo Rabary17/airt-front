@@ -7,6 +7,8 @@ import { ArticleResolver } from './article-resolver.service';
 import { MarkdownPipe } from './markdown.pipe';
 import { SharedModule } from '../shared';
 import { ArticleRoutingModule } from './article-routing.module';
+import { FileuploadComponent } from '../fileupload/fileupload.component';
+import { FileListComponent } from '../fileupload/file-list.component'
 
 @NgModule({
   imports: [
@@ -16,6 +18,8 @@ import { ArticleRoutingModule } from './article-routing.module';
   declarations: [
     ArticleComponent,
     ArticleCommentComponent,
+    FileuploadComponent,
+    FileListComponent,
     MarkdownPipe
   ],
 
