@@ -1,5 +1,6 @@
-<p>Upload file</p>
-<form [formGroup] = "formGroup" (ngSubmit)="onSubmit()">
- <input type="file" (change)="onFileChange($event)" />
- <input type="submit" [disabled]="formGroup.invalid" value="upload" />
+
+<form [formGroup] = "formGroup" (ngSubmit)="onSubmit()" id="addfile-form">
+ <label for="file" class="label-file">Choisir une image</label>
+ <input id="file" class="input-file" type="file" (change)="onFileChange($event)" />
+ <input id="upload-file-comment" type="submit" [disabled]="formGroup.invalid" value="upload" />
 </form>

@@ -76,12 +76,14 @@
                   [formControl]="commentControl"
                   [config]="editorConfig"
                 ></angular-editor>
-
-                <app-filelist></app-filelist>
-                <app-fileupload></app-fileupload>
+                
+                <form [formGroup] = "formGroup" (ngSubmit)="onSubmit()" id="addfile-form">
+                    <label for="file" class="label-file">Choisir une image</label>
+                    <input id="file" class="input-file" type="file" (change)="onFileChange($event)" multiple/>
+                    <input id="upload-file-comment" type="submit" [disabled]="formGroup.invalid" value="upload" />
+                   </form>
               </div>
               <div class="card-footer" *ngIf="commentControl.valid">
-               
                 <button class="btn btn-sm btn-primary" type="submit">
                  Commenter
                 </button>

@@ -2,6 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AngularEditorConfig } from '@kolkov/angular-editor';
+import { BehaviorSubject, Subject, Observable } from 'rxjs';
+import { finalize } from 'rxjs/operators';
+import { HttpClient } from '@angular/common/http';
+import { environment } from '../../environments/environment';
+import { FormBuilder, Validators } from '@angular/forms';
 
 import {
   Ticket,
@@ -21,6 +26,11 @@ import {
 })
 export class ArticleComponent implements OnInit {
 
+  public formGroup = this.fb.group({
+    file: [null, Validators.required]
+  });
+ 
+  
   article: Ticket;
   currentUser: User;
   avatar: String;
@@ -31,6 +41,7 @@ export class ArticleComponent implements OnInit {
   isSubmitting = false;
   isDeleting = false;
   file: Array<any> ;
+  private fileName;
 
   editorConfig: AngularEditorConfig = {
     editable: true,
@@ -39,7 +50,7 @@ export class ArticleComponent implements OnInit {
     minHeight: '5rem',
     placeholder: 'Ecrivez votre commentaire',
     translate: 'no',
-    uploadUrl: 'v1/images', // if needed
+    uploadUrl: 'http://localhost:3000/api/upload/files', // if needed
     customClasses: [ // optional
       {
         name: "quote",
@@ -63,7 +74,9 @@ export class ArticleComponent implements OnInit {
     private commentsService: CommentsService,
     private router: Router,
     private userService: UserService,
-    private fileService: FileService
+    private fileService: FileService,
+    private http: HttpClient,
+    private fb: FormBuilder
   ) { }
 
   ngOnInit() {
@@ -118,23 +131,36 @@ export class ArticleComponent implements OnInit {
     this.commentsService.getAll(this.article.slug)
       .subscribe(comments => this.comments = comments);
   }
+  onFileChange(event) {
+    const reader = new FileReader();
+ 
+    if (event.target.files && event.target.files.length) {
+      this.fileName = event.target.files[0].name;
+      const [file] = event.target.files;
+      reader.readAsDataURL(file);
+     
+      reader.onload = () => {
+        this.formGroup.patchValue({
+          file: reader.result
+        });
+      };
+      
+    }
+  }
 
   addComment() {
     this.isSubmitting = true;
     this.commentFormErrors = {};
-    this.fileService.list().subscribe(res => 
-      {
-        this.file = res;
-      }
-    );
 
     const commentBody = this.commentControl.value;
     this.commentsService
-      .add(this.article.slug, commentBody)
+      .add(this.article.slug, commentBody, this.fileName)
       .subscribe(
         comment => {
           this.comments.unshift(comment);
           this.commentControl.reset('');
+          this.upload(this.fileName, this.formGroup.get('file').value);
+          this.formGroup.get('file').reset('');
           this.isSubmitting = false;
         },
         errors => {
@@ -142,6 +168,15 @@ export class ArticleComponent implements OnInit {
           this.commentFormErrors = errors;
         }
       );
+  }
+
+  upload(fileName: string, fileContent: string): void {
+    this.http.put(`${environment.api_url}` + '/upload/files', {name: fileName, content: fileContent})
+    .subscribe(res => {
+      console.log(res);
+    }, error => {
+      console.log(error);
+    });
   }
 
   onDeleteComment(comment) {

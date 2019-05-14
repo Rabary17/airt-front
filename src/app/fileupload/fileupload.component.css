@@ -1,0 +1,35 @@
+
+.label-file {
+    cursor: pointer;
+    color: #00b1ca;
+    font-weight: bold;
+}
+.label-file:hover {
+    color: #25a5c4;
+}
+
+
+.input-file {
+    display: none;
+}
+
+#addfile-form{
+display: flex;
+align-items: center;
+justify-content: space-between;
+}
+
+#upload-file-comment{
+    background-color: #25a5c4;
+    color: white;
+    border: none;
+    margin-left: 20px;
+    cursor: pointer;
+    padding: 5px 10px;
+    border-radius: 10px;
+}
+
+#upload-file-comment:hover{
+    background-color: #25a5c4a6;
+    color: white;
+}

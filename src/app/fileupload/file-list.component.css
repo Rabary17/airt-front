@@ -1,3 +1,7 @@
 .list-file{
     padding: 10px;
 }
+.pj-title{
+    text-align: right;
+    border-bottom: 1px solid #eee;
+}

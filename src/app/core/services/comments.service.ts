@@ -12,12 +12,12 @@ export class CommentsService {
     private apiService: ApiService
   ) {}
 
-  add(slug, payload): Observable<Comment> {
+  add(slug, payload, file): Observable<Comment> {
     console.log('payload', payload);
     return this.apiService
     .post(
       `/tickets/${slug}/comments`,
-      { comment: { body: payload } }
+      { comment: { body: payload, file: file } }
     ).pipe(map(data => data.comment));
   }
 

@@ -1,10 +1,10 @@
 <div class="list-file">
-  <p>Your files</p>
+  <p class="pj-title" *ngIf="fileList$ | async">Ajouter des pièces Jointes</p>
   <ol>
   <li *ngFor="let fileName of fileList$ | async" >
     <span style="width:100px;height: 100px;"></span>{{fileName}}&nbsp;&nbsp;
-    <span (click)="download(fileName)">download</span>&nbsp;
-    <span (click)="remove(fileName)">remove</span>
+    <span (click)="download(fileName)"><i class="fa fa-download"></i></span>&nbsp;
+    <span (click)="remove(fileName)"><i class="fa fa-times"></i></span>
   </li>
   </ol>
 </div>
