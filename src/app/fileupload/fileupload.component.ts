@@ -29,6 +29,7 @@ export class FileuploadComponent {
           file: reader.result
         });
       };
+      
     }
   }
  

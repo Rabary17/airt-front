@@ -1,8 +1,10 @@
-<h1>Your files</h1>
-<ul>
- <li *ngFor="let fileName of fileList$ | async" >
-   {{fileName}}&nbsp;&nbsp;
-   <span (click)="download(fileName)">download</span>&nbsp;
-   <span (click)="remove(fileName)">remove</span>
- </li>
-</ul>
+<div class="list-file">
+  <p>Your files</p>
+  <ol>
+  <li *ngFor="let fileName of fileList$ | async" >
+    <span style="width:100px;height: 100px;"></span>{{fileName}}&nbsp;&nbsp;
+    <span (click)="download(fileName)">download</span>&nbsp;
+    <span (click)="remove(fileName)">remove</span>
+  </li>
+  </ol>
+</div>

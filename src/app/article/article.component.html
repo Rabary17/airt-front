@@ -75,6 +75,9 @@
                   rows="3"
                   [formControl]="commentControl"
                 ></textarea>
+
+                <app-filelist></app-filelist>
+                <app-fileupload></app-fileupload>
               </div>
               <div class="card-footer" *ngIf="commentControl.valid">
                
@@ -85,8 +88,7 @@
             </fieldset>
           </form>
         </div>
-        <app-filelist></app-filelist>
-        <app-fileupload></app-fileupload>
+       
         <div *appShowAuthed="false">
           <a [routerLink]="['/login']">Connectez-vous</a> ou <a [routerLink]="['/register']">créez un compte</a> pour commenter ce ticket.
         </div>

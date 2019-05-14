@@ -8,8 +8,10 @@ import {
   Comment,
   CommentsService,
   User,
-  UserService
+  UserService,
+  FileService
 } from '../core';
+
 
 @Component({
   selector: 'app-article-page',
@@ -17,6 +19,7 @@ import {
   templateUrl: './article.component.html'
 })
 export class ArticleComponent implements OnInit {
+
   article: Ticket;
   currentUser: User;
   avatar: String;
@@ -26,6 +29,7 @@ export class ArticleComponent implements OnInit {
   commentFormErrors = {};
   isSubmitting = false;
   isDeleting = false;
+  file: Array<any> ;
 
   constructor(
     private route: ActivatedRoute,
@@ -33,6 +37,7 @@ export class ArticleComponent implements OnInit {
     private commentsService: CommentsService,
     private router: Router,
     private userService: UserService,
+    private fileService: FileService
   ) { }
 
   ngOnInit() {
@@ -91,8 +96,17 @@ export class ArticleComponent implements OnInit {
   addComment() {
     this.isSubmitting = true;
     this.commentFormErrors = {};
+    this.fileService.list().subscribe(res => 
+      {
+        this.file = res;
+      }
+    );
 
-    const commentBody = this.commentControl.value;
+    const commentBody = {
+      'value': this.commentControl.value,
+      'file': this.file,
+    }
+    console.log('this.file', this.file);
     this.commentsService
       .add(this.article.slug, commentBody)
       .subscribe(
