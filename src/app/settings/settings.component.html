@@ -9,13 +9,26 @@
 
         <form [formGroup]="settingsForm" (ngSubmit)="submitForm()">
           <fieldset [disabled]="isSubmitting">
+            
+
+              <input class="form-control" type="text" formControlName="image" hidden/>
+              <input class="form-control" type="text" formControlName="cover" hidden />
 
             <fieldset class="form-group">
-              <input class="form-control"
-                type="text"
-                placeholder="Url de l'image, ex: https://scontent.ftnr2-1.fna.fbcdn.net/image.png"
-                formControlName="image" />
-            </fieldset>
+                <input class="form-control"
+                  type="file"
+                  (change)="onFileChange1($event)"
+                  placeholder="Url de l'image, ex: https://scontent.ftnr2-1.fna.fbcdn.net/image.png"
+                  />
+              </fieldset>
+
+            <fieldset class="form-group">
+                <input class="form-control"
+                  type="file"
+                  (change)="onFileChange2($event)"
+                  placeholder="Url de l'image, ex: https://scontent.ftnr2-1.fna.fbcdn.net/image.png"
+                  />
+              </fieldset>
 
             <fieldset class="form-group">
               <input class="form-control form-control-lg"
