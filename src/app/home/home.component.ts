@@ -13,19 +13,6 @@ import { ClickOutsideDirective } from '../shared/click-outside.directive';
 
 
 export class HomeComponent implements OnInit {
-  directives: [ClickOutsideDirective]
-  @HostListener('document: click', ['$event'])
-  public clickout(event) {
-    const clickedInside = this.eRef.nativeElement.contains(event.target);
-    if (!clickedInside) {
-      this.toogle = false;
-      console.log('false');
-    } else if (clickedInside) {
-      this.toogle = true;
-      console.log('true');
-    }
-  }
-
   constructor(
     private router: Router,
     private tagsService: TagsService,

@@ -13,7 +13,6 @@ const routes: Routes = [
   {
     path: 'profile',
     loadChildren: './profile/profile.module#ProfileModule',
-    canActivate: [ManagerGuard, NocGuard]
   },
   {
     path: 'editor',
