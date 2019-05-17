@@ -87,8 +87,6 @@ export class ArticleComponent implements OnInit {
     this.route.data.subscribe(
       (data: { article: Ticket }) => {
         this.article = data.article;
-        console.log(this.article);
-
         // Load the comments on this article
         this.populateComments();
       }
@@ -132,8 +130,12 @@ export class ArticleComponent implements OnInit {
 
   populateComments() {
     this.commentsService.getAll(this.article.slug)
-      .subscribe(comments => this.comments = comments);
+      .subscribe((comments) => {
+        this.comments = comments;
+        console.log(this.comments);
+      });
   }
+
   onFileChange(event) {
     const reader = new FileReader();
     // this.imageContainer.push(event.target.file);
@@ -153,10 +155,10 @@ export class ArticleComponent implements OnInit {
         // push le nom et la base64 du fichier dans le tableau
         this.imageContainer.push({'filename': event.target.files[0].name, 'filecontent': reader.result});
       };
-      
+
     }
   }
-  
+
   public remove(fileName: string):  void {
     // supprime la liste des fichiers dans tous les tables
     this.fileList.splice(this.fileList.findIndex(name => name === fileName), 1);
