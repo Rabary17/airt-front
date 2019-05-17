@@ -13,7 +13,6 @@ export class CommentsService {
   ) {}
 
   add(slug, payload, file): Observable<Comment> {
-    console.log('payload', payload);
     return this.apiService
     .post(
       `/tickets/${slug}/comments`,

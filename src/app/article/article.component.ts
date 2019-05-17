@@ -26,10 +26,23 @@ import {
 })
 export class ArticleComponent implements OnInit {
 
+ 
+  constructor(
+    private route: ActivatedRoute,
+    private articlesService: TicketsService,
+    private commentsService: CommentsService,
+    private router: Router,
+    private userService: UserService,
+    private fileService: FileService,
+    private http: HttpClient,
+    private fb: FormBuilder
+  ) { }
   public formGroup = this.fb.group({
     file: [null, Validators.required]
   });
  
+  private fileList: string[] = new Array<string>();
+  private fileList$: Subject<string[]> = new Subject<string[]>();
   
   article: Ticket;
   currentUser: User;
@@ -40,7 +53,7 @@ export class ArticleComponent implements OnInit {
   commentFormErrors = {};
   isSubmitting = false;
   isDeleting = false;
-  file: Array<any> ;
+  imageContainer = [];
   private fileName;
 
   editorConfig: AngularEditorConfig = {
@@ -68,16 +81,6 @@ export class ArticleComponent implements OnInit {
     ]
   };
 
-  constructor(
-    private route: ActivatedRoute,
-    private articlesService: TicketsService,
-    private commentsService: CommentsService,
-    private router: Router,
-    private userService: UserService,
-    private fileService: FileService,
-    private http: HttpClient,
-    private fb: FormBuilder
-  ) { }
 
   ngOnInit() {
     // Retreive the prefetched article
@@ -133,33 +136,53 @@ export class ArticleComponent implements OnInit {
   }
   onFileChange(event) {
     const reader = new FileReader();
+    // this.imageContainer.push(event.target.file);
  
     if (event.target.files && event.target.files.length) {
       this.fileName = event.target.files[0].name;
       const [file] = event.target.files;
       reader.readAsDataURL(file);
-     
+      // push le nom des fichiers dans un tableau
+      this.fileList.push(this.fileName);
+      // met à jour la liste des fichier dans le service 
+      this.fileList$.next(this.fileList);
       reader.onload = () => {
         this.formGroup.patchValue({
           file: reader.result
         });
+        // push le nom et la base64 du fichier dans le tableau
+        this.imageContainer.push({'filename': event.target.files[0].name, 'filecontent': reader.result});
       };
       
     }
   }
-
+  
+  public remove(fileName: string):  void {
+    // supprime la liste des fichiers dans tous les tables
+    this.fileList.splice(this.fileList.findIndex(name => name === fileName), 1);
+    this.imageContainer.splice(this.fileList.findIndex(name => name === fileName), 1);
+    this.fileList$.next(this.fileList);
+  }
   addComment() {
     this.isSubmitting = true;
     this.commentFormErrors = {};
-
+    // create file on server
+    this.imageContainer.forEach((file) => {
+      this.fileService.upload(file.filename, file.filecontent);
+    //   this.http.put(`${environment.api_url}` + '/upload/files', {name: file.filename, content: file.filecontent})
+    //   .subscribe(res => {
+    //     console.log(res);
+    //   }, error => {
+    //     console.log(error)
+    // });
+    });
     const commentBody = this.commentControl.value;
     this.commentsService
-      .add(this.article.slug, commentBody, this.fileName)
+      .add(this.article.slug, commentBody, this.fileList)
       .subscribe(
         comment => {
           this.comments.unshift(comment);
           this.commentControl.reset('');
-          this.upload(this.fileName, this.formGroup.get('file').value);
           this.formGroup.get('file').reset('');
           this.isSubmitting = false;
         },
@@ -169,16 +192,6 @@ export class ArticleComponent implements OnInit {
         }
       );
   }
-
-  upload(fileName: string, fileContent: string): void {
-    this.http.put(`${environment.api_url}` + '/upload/files', {name: fileName, content: fileContent})
-    .subscribe(res => {
-      console.log(res);
-    }, error => {
-      console.log(error);
-    });
-  }
-
   onDeleteComment(comment) {
     this.commentsService.destroy(comment.id, this.article.slug)
       .subscribe(

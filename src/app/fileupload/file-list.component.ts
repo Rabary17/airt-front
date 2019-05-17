@@ -20,4 +20,5 @@ export class FileListComponent {
  public remove(fileName: string):  void {
    this.fileService.remove(fileName);
  }
+ 
 }

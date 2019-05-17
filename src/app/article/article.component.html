@@ -76,7 +76,17 @@
                   [formControl]="commentControl"
                   [config]="editorConfig"
                 ></angular-editor>
-                
+
+                <div class="list-file">
+                  <p class="pj-title" *ngIf="fileList$ | async">Ajouter des pièces Jointes</p>
+                  <ol>
+                  <li *ngFor="let fileName of fileList$ | async" >
+                    <span style="width:100px;height: 100px;"></span>{{fileName}}&nbsp;&nbsp;
+                    <span (click)="remove(fileName)"><i class="fa fa-times"></i></span>
+                  </li>
+                  </ol>
+                </div>
+
                 <form [formGroup] = "formGroup" (ngSubmit)="onSubmit()" id="addfile-form">
                     <label for="file" class="label-file">Choisir une image</label>
                     <input id="file" class="input-file" type="file" (change)="onFileChange($event)" multiple/>
