@@ -1,7 +1,11 @@
 <div class="card">
   <div class="card-block">
-    <p class="card-text" [innerHTML]="comment.body">
-    </p>
+    <p class="card-text" [innerHTML]="comment.body"></p>
+    <ul>
+      <li>
+        {{comment.file}}
+      </li>
+    </ul>
   </div>
   <div class="card-footer">
     <a class="comment-author" [routerLink]="['/profile', comment.author.username]">

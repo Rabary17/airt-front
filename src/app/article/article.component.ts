@@ -131,8 +131,17 @@ export class ArticleComponent implements OnInit {
   populateComments() {
     this.commentsService.getAll(this.article.slug)
       .subscribe((comments) => {
-        this.comments = comments;
-        console.log(this.comments);
+        // this.comments = comments;
+        comments.forEach((comment) => {
+          let commentaire = Array<string>();
+          comment.file.map((element) => {
+              let elem = 'http://localhost:3000/api/public/uploads/' + element;
+              console.log('file ', elem);
+              commentaire.push(elem);
+            });
+            comment.file = commentaire;
+        })
+        
       });
   }
 
@@ -165,18 +174,13 @@ export class ArticleComponent implements OnInit {
     this.imageContainer.splice(this.fileList.findIndex(name => name === fileName), 1);
     this.fileList$.next(this.fileList);
   }
+  
   addComment() {
     this.isSubmitting = true;
     this.commentFormErrors = {};
     // create file on server
     this.imageContainer.forEach((file) => {
       this.fileService.upload(file.filename, file.filecontent);
-    //   this.http.put(`${environment.api_url}` + '/upload/files', {name: file.filename, content: file.filecontent})
-    //   .subscribe(res => {
-    //     console.log(res);
-    //   }, error => {
-    //     console.log(error)
-    // });
     });
     const commentBody = this.commentControl.value;
     this.commentsService
