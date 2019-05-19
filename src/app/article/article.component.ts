@@ -189,7 +189,16 @@ export class ArticleComponent implements OnInit {
       .add(this.article.slug, commentBody, this.fileList)
       .subscribe(
         comment => {
-          this.comments.unshift(comment);
+          let com = comment.file.map((res) => {
+            return 'http://localhost:3000/api/public/uploads/' + res;
+          })
+          Promise.all(com).then((file) => {
+            comment.file = file;
+            this.comments.unshift(comment);
+          }).then((comm) => {
+            
+          })
+          
           this.commentControl.reset('');
           this.formGroup.get('file').reset('');
           this.isSubmitting = false;
