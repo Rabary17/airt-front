@@ -1,0 +1,8 @@
+.pj-list{
+    display: flex;
+    list-style-type: none;
+}
+.pj-list li img{
+    width: 100px;
+    height: 100px;
+}
