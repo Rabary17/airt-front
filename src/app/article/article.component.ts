@@ -40,15 +40,16 @@ export class ArticleComponent implements OnInit {
   public formGroup = this.fb.group({
     file: [null, Validators.required]
   });
- 
-  private fileList: string[] = new Array<string>();
+  
+  private fileList: Array<string> = [];
+  // private fileList: string[] = new Array<string>();
   private fileList$: Subject<string[]> = new Subject<string[]>();
   
   article: Ticket;
   currentUser: User;
   avatar: String;
   canModify: boolean;
-  comments: Comment[];
+  comments: Array<Comment> = [];
   commentControl = new FormControl();
   commentFormErrors = {};
   isSubmitting = false;
@@ -131,19 +132,20 @@ export class ArticleComponent implements OnInit {
   populateComments() {
     this.commentsService.getAll(this.article.slug)
       .subscribe((comments) => {
-        // this.comments = comments;
-        comments.forEach((comment) => {
-          let commentaire = Array<string>();
-          comment.file.map((element) => {
-              let elem = 'http://localhost:3000/api/public/uploads/' + element;
-              console.log('file ', elem);
-              commentaire.push(elem);
-            });
-            comment.file = commentaire;
+        const promises = comments.map((com) => {
+          const profile = com.file.map((file) => {
+            return 'http://localhost:3000/api/public/uploads/' + file;
+          });
+          
+          Promise.all(profile).then((res) =>
+          {
+            com.file = res;
+            this.comments.push(com);
+          }
+          )
         })
-        
-      });
-  }
+        })
+      };
 
   onFileChange(event) {
     const reader = new FileReader();

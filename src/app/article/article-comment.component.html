@@ -2,8 +2,8 @@
   <div class="card-block">
     <p class="card-text" [innerHTML]="comment.body"></p>
     <ul>
-      <li>
-        {{comment.file}}
+      <li *ngFor="let file of comment.file">
+                <img [src]="file"/>
       </li>
     </ul>
   </div>
