@@ -21,6 +21,7 @@ import {
   UserService,
   FileService
 } from '../core';
+import { asTextData } from '@angular/core/src/view';
 
 
 @Component({
@@ -264,8 +265,8 @@ export class ArticleComponent implements OnInit {
             this.comments.unshift(comment);
             this.email = {
               'contactEmail' : 'rabary@passion4humanity.com',
-              'contactMessage' : 'test',
-              'contactName': 'code'
+              'contactMessage' : comment.body,
+              'contactName': 'Technician'
 
             };
             this.mailerService.send(this.email).subscribe((res) => {
