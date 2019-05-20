@@ -13,3 +13,4 @@ export * from './noc-guard.service';
 export * from './technicien.service';
 export * from './file.service';
 export * from './quillInitialize.service';
+export * from './mailer.service'

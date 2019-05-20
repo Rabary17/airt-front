@@ -7,6 +7,8 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import { FormBuilder, Validators } from '@angular/forms';
 import { QuillInitializeService } from '../core/services/quillInitialize.service';
+import { MailerService } from '../core/services/mailer.service';
+import { Mail } from '../core/models/mail.model';
 import 'quill-mention';
 import 'quill-emoji';
 
@@ -38,7 +40,8 @@ export class ArticleComponent implements OnInit {
     private fileService: FileService,
     private http: HttpClient,
     private fb: FormBuilder,
-    private quillInitializeService: QuillInitializeService
+    private quillInitializeService: QuillInitializeService,
+    private mailerService: MailerService
   ) { }
   
   public formGroup = this.fb.group({
@@ -59,6 +62,7 @@ export class ArticleComponent implements OnInit {
   isSubmitting = false;
   isDeleting = false;
   imageContainer = [];
+  email: Mail;
   private fileName;
 
   htmlText ="<p>Testing</p>"
@@ -258,6 +262,15 @@ export class ArticleComponent implements OnInit {
           Promise.all(com).then((file) => {
             comment.file = file;
             this.comments.unshift(comment);
+            this.email = {
+              'contactEmail' : 'rabary@passion4humanity.com',
+              'contactMessage' : 'test',
+              'contactName': 'code'
+
+            };
+            this.mailerService.send(this.email).subscribe((res) => {
+              console.log('EMAIL ENVOYE', res);
+            })
           }).then((comm) => {
             
           })
@@ -305,5 +318,6 @@ export class ArticleComponent implements OnInit {
   onBlur = () =>{
     console.log("Blurred");
   }
+  
 
 }

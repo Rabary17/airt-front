@@ -12,6 +12,7 @@ import { FileListComponent } from '../fileupload/file-list.component';
 import { HttpClientModule} from '@angular/common/http';
 import { QuillModule } from 'ngx-quill';
 import {QuillInitializeService} from "../core/services/quillInitialize.service";
+import { MailerService } from '../core/services/mailer.service'
 
 @NgModule({
   imports: [
@@ -31,7 +32,8 @@ import {QuillInitializeService} from "../core/services/quillInitialize.service";
 
   providers: [
     ArticleResolver,
-    QuillInitializeService
+    QuillInitializeService,
+    MailerService
   ]
 })
 export class ArticleModule {}
