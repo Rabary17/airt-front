@@ -6,3 +6,11 @@
     width: 100px;
     height: 100px;
 }
+
+.card-comment{
+    background-color: #eee;
+}
+
+.card-footer{
+    border-top: none;
+}
