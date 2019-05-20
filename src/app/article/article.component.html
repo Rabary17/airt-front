@@ -70,25 +70,36 @@
           <form class="card comment-form" (ngSubmit)="addComment()" style="border: 1px solid #ccc">
             <fieldset [disabled]="isSubmitting">
               <div class="card-block">
-                <angular-editor class="form-control"
+                <!-- <angular-editor class="form-control" 
                   placeholder="Ecrire un commentaire ..."
                   rows="3"
                   [formControl]="commentControl"
                   [config]="editorConfig"
+                  class="te-basic-tools"
                 ></angular-editor>
+                <quill-editor class="form-control"
+              [options]="editorOptions">
+            </quill-editor> -->
 
+            <quill-editor 
+            [formControl]="commentControl"
+            placeholder="Ecrire un commentaire ..."
+            [modules]="quillConfig"
+            (onSelectionChanged)="onSelectionChanged($event)"
+            (onContentChanged)="onContentChanged($event)"></quill-editor>
+            
                 <div class="list-file">
-                  <p class="pj-title" *ngIf="fileList$ | async">Ajouter des pièces Jointes</p>
+                  <p class="pj-title" *ngIf="fileList$ | async"><span>Pièces Jointes :</span></p>
                   <ol>
                   <li *ngFor="let fileName of fileList$ | async" >
                     <span style="width:100px;height: 100px;"></span>{{fileName}}&nbsp;&nbsp;
-                    <span (click)="remove(fileName)"><i class="fa fa-times"></i></span>
+                    <span (click)="remove(fileName)"><i class="fa fa-times-circle"></i></span>
                   </li>
                   </ol>
                 </div>
 
                 <form [formGroup] = "formGroup" (ngSubmit)="onSubmit()" id="addfile-form">
-                    <label for="file" class="label-file">Choisir une image</label>
+                    <label for="file" class="label-file"><i class="fa fa-plus-circle"></i> Choisir une image</label>
                     <input id="file" class="input-file" type="file" (change)="onFileChange($event)" multiple/>
                     <input id="upload-file-comment" type="submit" [disabled]="formGroup.invalid" value="upload" />
                    </form>
@@ -119,3 +130,7 @@
 
   </div>
 </div>
+
+<script>
+$('#angularEditor').hide(); 
+</script>

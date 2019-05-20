@@ -18,7 +18,7 @@
 .card-block {
   border: 3px solid #9292920f;
   border-radius: 10px;
-  overflow: hidden;
+  /* overflow: hidden; */
 }
 
 .card-footer{
@@ -45,4 +45,51 @@
 
 .p-you{
   font-weight: 900;
+}
+
+.pj-title{
+  font-size: 12px;
+  text-align: left;
+  padding: 5px 30px;
+  color: white;
+  margin: 0;
+}
+.fa-times-circle{
+  color: red;
+  cursor: pointer;
+}
+.pj-title span{
+  background-color: black;
+  padding: 0 10px;
+  border-radius: 9px;
+}
+
+.te-basic-tools .angular-editor-button[title='Bold']{
+  display: none !important;
+}
+.label-file {
+  cursor: pointer;
+  color: #449d44;
+  font-weight: bold;
+  width: 100%;
+  text-align: center;
+}
+.label-file:hover {
+  color: #25a5c4;
+  font-weight: bold;
+}
+
+.input-file {
+  display: none;
+}
+
+#upload-file-comment{
+  display: none;
+}
+
+.ql-toolbar.ql-snow{
+  border: none !important;
+}
+.ql-container.ql-snow{
+  border: none !important;
 }

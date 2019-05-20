@@ -12,3 +12,4 @@ export * from './manager-guard.service';
 export * from './noc-guard.service';
 export * from './technicien.service';
 export * from './file.service';
+export * from './quillInitialize.service';

@@ -10,14 +10,15 @@ import { ArticleRoutingModule } from './article-routing.module';
 import { FileuploadComponent } from '../fileupload/fileupload.component';
 import { FileListComponent } from '../fileupload/file-list.component';
 import { HttpClientModule} from '@angular/common/http';
-import { AngularEditorModule } from '@kolkov/angular-editor';
+import { QuillModule } from 'ngx-quill';
+import {QuillInitializeService} from "../core/services/quillInitialize.service";
 
 @NgModule({
   imports: [
     SharedModule,
     ArticleRoutingModule,
-    AngularEditorModule,
-    HttpClientModule
+    HttpClientModule,
+    QuillModule
   ],
   declarations: [
     ArticleComponent,
@@ -25,10 +26,12 @@ import { AngularEditorModule } from '@kolkov/angular-editor';
     FileuploadComponent,
     FileListComponent,
     MarkdownPipe
+    
   ],
 
   providers: [
-    ArticleResolver
+    ArticleResolver,
+    QuillInitializeService
   ]
 })
 export class ArticleModule {}
