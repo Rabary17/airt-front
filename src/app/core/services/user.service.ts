@@ -100,4 +100,14 @@ export class UserService {
     }));
   }
 
+  // check email user
+    checkUser(email) {
+      return this.apiService.post('/users/check', email)
+        .pipe(map(
+        data => {
+          console.log(data)
+          return data;
+        }
+      ));
+    }
 }

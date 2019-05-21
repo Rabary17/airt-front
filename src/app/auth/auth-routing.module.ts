@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AuthComponent } from './auth.component';
 import { NoAuthGuard } from './no-auth-guard.service';
+import { ResetComponent } from './reset/reset.component';
 import { ManagerGuard } from '../core/services/manager-guard.service';
 
 const routes: Routes = [
@@ -14,6 +15,10 @@ const routes: Routes = [
     path: 'register',
     component: AuthComponent,
     canActivate: [ManagerGuard]
+  },
+  {
+    path: 'reset',
+    component: ResetComponent
   }
 ];
 

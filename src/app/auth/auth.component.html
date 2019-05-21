@@ -58,6 +58,7 @@
             <button class="btn btn-lg btn-primary pull-xs-right" [disabled]="!authForm.valid" type="submit">
               {{ title }}
             </button>
+            <a [routerLink]="['/reset']" *ngIf="authType == 'login'">Mot de passe oublié ?</a>
           </fieldset>
         </form>
       </div>
