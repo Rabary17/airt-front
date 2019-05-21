@@ -1,4 +1,6 @@
 import { Profile } from './profile.model';
+import { User } from './user.model';
+import { Client } from './client.model'
 
 export interface Ticket {
   slug: string;
@@ -6,6 +8,8 @@ export interface Ticket {
   status: string;
   body: string;
   source: string;
+  client: Client;
+  technician: User;
   cause: string;
   tagList: string[];
   createdAt: string;

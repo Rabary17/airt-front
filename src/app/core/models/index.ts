@@ -6,3 +6,4 @@ export * from './profile.model';
 export * from './user.model';
 export * from './role.model';
 export * from './mail.model';
+export * from './client.model';
