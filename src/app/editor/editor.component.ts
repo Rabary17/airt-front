@@ -82,7 +82,6 @@ export class EditorComponent implements OnInit {
   autoCompleteClient() {
     const regex = new RegExp(this.articleForm.value.client, 'i');
     if (this.articleForm.value.client.length > 1) {
-      console.log(this.articleForm.value.client);
         this.clients = this.clients.filter( res => {
           this.showClients = true;
             return res['name'].match(regex);
@@ -90,7 +89,9 @@ export class EditorComponent implements OnInit {
         );
     } else if (this.articleForm.value.client.length < 1) {
       this.showClients = false;
-        this.clientService.getAllClient().subscribe(res => this.clients = res.clients);
+        this.clientService.getAllClient().subscribe((res) =>  {
+          this.clients = res.clients;
+        });
     }
   }
 
