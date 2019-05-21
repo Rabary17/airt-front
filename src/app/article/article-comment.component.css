@@ -13,4 +13,9 @@
 
 .card-footer{
     border-top: none;
+    background-color: #333;
+}
+
+.article-page .card .mod-options {
+    color: #fff !important;
 }

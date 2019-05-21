@@ -1,6 +1,7 @@
 export interface Mail {
     contactName: string,
     contactEmail: string,
-    contactMessage: string
+    contactMessage: string,
+    refTicket: string
 }
   

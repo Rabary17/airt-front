@@ -93,3 +93,7 @@
 .ql-container.ql-snow{
   border: none !important;
 }
+
+.article-page .card .mod-options {
+  color: #fff !important;
+}

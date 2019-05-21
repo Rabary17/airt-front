@@ -263,11 +263,69 @@ export class ArticleComponent implements OnInit {
           Promise.all(com).then((file) => {
             comment.file = file;
             this.comments.unshift(comment);
+            let mail = `<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+            <html lang="en">
+            <head>
+              <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+              <meta name="viewport" content="width=device-width, initial-scale=1">
+              <meta http-equiv="X-UA-Compatible" content="IE=edge">
+            
+              <title>AfroEgypt</title>
+            
+              <style type="text/css">
+              </style>    
+            </head>
+            <body style="margin:0; padding:0;">
+              <center>
+                <table width="50%" border="0" cellpadding="0" cellspacing="0" bgcolor="#F2F2F2">
+                    <th height="50px" bgcolor="#0c8b42" style="font-size:20px;color: #fbbb0d">
+                     AFROEGYPT
+                        <td align="center" valign="top">
+                           
+                        </td>
+                    </th>
+                    <tr style="padding: 20px 0;">
+                        <td align="center" valign="top">
+                        <h2>Cher client,</h2>
+                        <p>Ce mail est envoyé pour vous tenir au courant de l'avancement<br>des travaux que vous nous avez confié.</p>
+
+                        <p>Vous pouvez suivre le lien ci-dessous pour voir son avancement</p>
+                        <br>
+                        <a href="#" style="font-size:15px;color:#0c8b42;background-color: #ffffff; text-decoration:underline;padding:10px;" target="_blank">Ticket N° Ref-5879865</a>
+                        <br>
+                        <p style="padding-top: 10px;font-size: 8px;">Ce lien sera expiré dans 30mn.</p>
+                        <p>Nous vous remerçions pour votre confiance.</p>
+                        </td>
+                    </tr>
+                </table>
+                <table border="0" cellpadding="0" cellspacing="0" width="50%" id="emailFooter" bgcolor="#eee" style="padding: 10px 0;">
+                  <tr>
+                      <td style="font-size:8px; margin-top:5px;" align="center" valign="center" cellpadding="0" class="footerContent" style="padding-bottom:15px;">
+                          &copy; 8 Abubakr St, fayrouz District
+                          <br />
+                          Behind Mall of Arabia 6 th octobar , GizaEGYPT
+                      </td>
+                  </tr>
+                  <tr>
+                      <td align="center" valign="top">
+                          <table border="0" cellpadding="5" cellspacing="0" id="utilityLink">
+                              <tr>
+                                  <td valign="top" class="utilityLinkContent">
+                                      <a href="..." target="_blank"  style="font-size:8px;">Unsubscribe</a>
+                                  </td>
+                              </tr>
+                          </table>
+                      </td>
+                  </tr>
+              </table>
+              </center>
+            </body>
+            </html>`
             this.email = {
               'contactEmail' : 'rabary@passion4humanity.com',
-              'contactMessage' : comment.body,
+              'contactMessage' : mail,
+              'refTicket' : this.article.slug,
               'contactName': 'Technician'
-
             };
             this.mailerService.send(this.email).subscribe((res) => {
               console.log('EMAIL ENVOYE', res);
