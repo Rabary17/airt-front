@@ -7,9 +7,10 @@ import { AuthGuard } from '../core';
 import { SharedModule } from '../shared';
 import { EditorRoutingModule } from './editor-routing.module';
 import {NgSelectModule, NgOption} from '@ng-select/ng-select';
+import {AutocompleteLibModule} from 'angular-ng-autocomplete';
 
 @NgModule({
-  imports: [SharedModule, EditorRoutingModule, NgSelectModule],
+  imports: [SharedModule, EditorRoutingModule, NgSelectModule, AutocompleteLibModule],
   declarations: [EditorComponent],
   providers: [EditableArticleResolver]
 })

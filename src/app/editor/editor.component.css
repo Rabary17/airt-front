@@ -19,3 +19,64 @@
     cursor: pointer;
     color: #fff;
 }
+
+.ng-autocomplete {
+    position: relative;
+    z-index: 99;
+    width: 100%;
+}
+
+.new-client{
+    text-align: center;
+    background-color: #fbbb0d;
+}
+
+.new-client p{
+    margin: 0;
+}
+
+.new-client .nc{
+    padding: 0 20px;
+    margin: 0 20px;
+}
+
+.no-result button{
+    background-color: #0c8b42;
+    border: none;
+    color: white;
+    padding: 5px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.no-result{
+    padding: .4em 0;
+    display: flex;
+    font-size: .95em;
+    line-height: 1.4;
+    justify-content: space-around;
+    border-bottom: 1px solid rgba(230,230,230,.7);
+    align-items: center;
+}
+
+.new-client label{
+    display: inline-block;
+    width: 100%;
+    text-align: left;
+}
+
+.submit-btn{
+    background-color: #0c8b42;
+    border: none;
+    cursor: pointer;
+    color: white;
+    padding: 10px;
+    margin: 20px 20px;
+    border-radius: 5px;
+}
+.cancel-btn{
+    background-color: #dc3545;
+}
+.ng-autocomplete div:first-child{
+    box-shadow: none;
+}

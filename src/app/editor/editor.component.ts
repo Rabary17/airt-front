@@ -2,7 +2,7 @@ import { Component, OnInit, ElementRef, HostListener, Output, EventEmitter, Inpu
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 
-import { User, Ticket, TicketsService } from '../core';
+import { User, Ticket, TicketsService, Role } from '../core';
 import { UserService } from '../core/services/user.service';
 import { ClientService } from '../core/services/client.service';
 
@@ -23,6 +23,10 @@ export class EditorComponent implements OnInit {
   showUsers = false;
   showClients = false;
   show = false;
+  clientForm: FormGroup;
+  formAddClient:boolean =  false;
+  keyword = 'name';
+  keywordTech = 'username'
 
   @HostListener('document: click', ['$event'])
   public clickout(event) {
@@ -57,12 +61,17 @@ export class EditorComponent implements OnInit {
       technician: '',
       client: '',
     });
+    this.clientForm = this.fb.group({
+      name: ['', [Validators.required, Validators.minLength(2)]],  
+      email: ['', [Validators.required, Validators.email]],
+    });
+
 
     // Initialized tagList as empty array
     this.article.tagList = [];
 
     // Optional: subscribe to value changes on the form
-    // this.articleForm.valueChanges.subscribe(value => this.updateArticle(value));
+     // this.articleForm.valueChanges.subscribe(value => this.updateArticle(value));
   }
 
   ngOnInit() {
@@ -71,14 +80,61 @@ export class EditorComponent implements OnInit {
       if (data.article) {
         this.article = data.article;
         this.articleForm.patchValue(data.article);
+        this.articleForm.controls['client'].setValue(data.article.client.name);
+        this.articleForm.controls['technician'].setValue(data.article.technician.username);
       }
     });
-    this.userService.getAllUser().subscribe(res => this.users = res.user);
+    this.userService.getAllUser().subscribe((res) => {
+      let listTech = [];
+      let prom = res.user.filter((tech) => {
+        return tech.role === Role.Tech;
+      });
+      Promise.all(prom).then((res) =>{
+        console.log(res);
+        listTech.push(res);
+        this.users = res;
+      })
+      
+    });
+    
     // console.log('*********************************');
-    this.clientService.getAllClient().subscribe(res => this.clients = res.clients);
+    this.clientService.getAllClient().subscribe((res) => {
+      this.clients = res.clients,
+      console.log(this.clients);
+    });
 
   }
 
+  showAddClient () {
+    this.formAddClient = true;
+  }
+  cancelClient () {
+    this.formAddClient = false;
+    this.clientForm.reset('');
+  }
+
+  // newClient = ``
+  selectEvent(item) {
+    // do something with selected item
+  }
+
+  onChangeSearch(val: string) {
+    // fetch remote data from here
+    // And reassign the 'data' which is binded to 'data' property.
+  }
+
+  onFocused(e){
+    // do something when input is focused
+  }
+
+  addClient() {
+    console.log(this.clientForm.value);
+    this.clientService.addNewClient(this.clientForm.value).subscribe((res) => {
+      this.clients.unshift(res);
+      this.formAddClient = false;
+      this.clientForm.reset('');
+    })
+  }
   autoCompleteClient() {
     const regex = new RegExp(this.articleForm.value.client, 'i');
     if (this.articleForm.value.client.length > 1) {
@@ -145,6 +201,7 @@ export class EditorComponent implements OnInit {
 
     // update the model
     this.updateArticle(this.articleForm.value);
+    console.log('client', this.articleForm.value);
     console.log(this.article);
     // post the changes
     this.articlesService.save(this.article).subscribe(

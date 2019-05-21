@@ -20,10 +20,47 @@
                                     <option *ngFor="let client of clients" value="{{ client.id }}">{{ client.name }}</option>
                                   </select> -->
                                   <label for="client">Client</label>
-                                  <input class="form-control" formControlName="client" type="text" placeholder="Client" (keyup)="autoCompleteClient()" (clickout)="hide()"  id="client"/>
-                                  <div class="autocomplete form-group" *ngIf="showClients" >
-                                    <div class="tech_option" *ngFor="let client of clients" (click)="setClientValue(client)">{{ client.name }}</div>
-                                  </div>
+                                  <div class="ng-autocomplete">
+                                    <ng-autocomplete 
+                                      [data]="clients"
+                                      [searchKeyword]="keyword"
+                                      (selected)='selectEvent($event)'
+                                      (inputChanged)='onChangeSearch($event)'
+                                      (inputFocused)='onFocused($event)'
+                                      [itemTemplate]="itemTemplateClient"
+                                      [notFoundTemplate]="notFoundTemplateClient"
+                                      formControlName="client"
+                                      placeHolder="Nom du client">                                 
+                                    </ng-autocomplete>
+                                     
+                                    <ng-template #itemTemplateClient let-item>
+                                    <a [innerHTML]="item.name"></a>
+                                    </ng-template>
+                                     
+                                    <ng-template #notFoundTemplateClient let-notFound>
+                                    <div class="no-result">Aucun résultat trouvé<br>
+                                          <span> | </span><br>
+                                          <button (click)="showAddClient()"><i class="fa fa-plus-circle"></i> Ajouter un client</button>
+                                    </div>
+                                    <div *ngIf="formAddClient === true">
+                                        <form [formGroup]="clientForm" autocomplete="off" class="new-client">
+
+                                            <fieldset class="form-group">
+                                              <label for="email">Email du client</label>
+                                              <input class="form-control" formcontrolname="email" placeholder="Email du client" type="text" id="email" required>
+                                            </fieldset>
+
+                                              <fieldset class="form-group">
+                                                  <label for="name">Nom du client</label>
+                                                  <input class="form-control" formcontrolname="name" placeholder="Nom" type="text" id="name" required>
+                                              </fieldset>
+
+                                          <input class="submit-btn" type="submit" value="Ajouter" (click)="addClient()" [disabled]="!clientForm.valid"/> ou 
+                                          <input class="submit-btn cancel-btn"  type="submit" value="Annuler" (click)="cancelClient()"/>
+                                        </form>
+                                    </div>
+                                    </ng-template>
+                                    </div>
                                 </fieldset>
                           </div>
                           <div class="col-md-6 ">
@@ -77,10 +114,31 @@
                                     <option *ngFor="let technician of users" value="{{ technician.id }}">{{ technician.username }}</option>
                                   </select> -->
                                   <label for="technicien">Technicien affété</label>
-                                  <input class="form-control" formControlName="technician" type="text" placeholder="Technicien" (keyup)="autoCompleteTechnician()" (clickout)="hide()" id="technicien"/>
+                                  <div class="ng-autocomplete">
+                                      <ng-autocomplete 
+                                        [data]="users"
+                                        [searchKeyword]="keywordTech"
+                                        (selected)='selectEvent($event)'
+                                        (inputChanged)='onChangeSearch($event)'
+                                        (inputFocused)='onFocused($event)'
+                                        [itemTemplate]="itemTemplateTech"
+                                        [notFoundTemplate]="notFoundTemplateTech"
+                                        formControlName="technician"
+                                        placeHolder="Nom du technicien">                                 
+                                      </ng-autocomplete>
+                                      <ng-template #itemTemplateTech let-item>
+                                          <a [innerHTML]="item.username"></a>
+                                      </ng-template>
+                                           
+                                      <ng-template #notFoundTemplateTech let-notFound>
+                                        <div class="no-result">Aucun résultat trouvé<br>
+                                        </div>
+                                      </ng-template>
+                                  </div>
+                                  <!-- <input class="form-control" formControlName="technician" type="text" placeholder="Technicien" (keyup)="autoCompleteTechnician()" (clickout)="hide()" id="technicien"/>
                                   <div class="autocomplete form-group" *ngIf="showUsers"  >
                                       <div class="tech_option" *ngFor="let technician of users" (click)="setTechValue(technician)" >{{ technician.username }}</div>
-                                  </div>
+                                  </div> -->
                                 </fieldset>    
                           </div>
                           <div class="col-md-6 ">

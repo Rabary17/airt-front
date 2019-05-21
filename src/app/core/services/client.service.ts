@@ -17,6 +17,14 @@ constructor (
   private jwtService: JwtService
 ) {}
 
+addNewClient (client) {
+return this.apiService.post('/client/add', client)
+  .pipe(map(
+    data => {
+      return data;
+    }
+  ));
+}
 getAllClient () {
     return this.apiService.get('/client')
     .pipe(map(
