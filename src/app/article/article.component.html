@@ -98,14 +98,14 @@
                   </ol>
                 </div>
 
-                <form [formGroup] = "formGroup" (ngSubmit)="onSubmit()" id="addfile-form">
+                <form id="addfile-form">
                     <label for="file" class="label-file"><i class="fa fa-plus-circle"></i> Choisir une image</label>
                     <input id="file" class="input-file" type="file" (change)="onFileChange($event)" multiple/>
                     <input id="upload-file-comment" type="submit" [disabled]="formGroup.invalid" value="upload" />
                    </form>
               </div>
-              <div class="card-footer" *ngIf="commentControl.valid">
-                <button class="btn btn-sm btn-primary" type="submit">
+              <div class="card-footer" >
+                <button class="btn btn-sm btn-primary" type="submit" [disabled]="!commentControl.valid">
                  Commenter
                 </button>
               </div>
