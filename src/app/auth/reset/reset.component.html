@@ -8,11 +8,17 @@
     <div class="row">
       
       <div class="col-md-6 offset-md-3 col-xs-12">
-        <div style="text-align: center"><img src="./assets/a
-          irtel.png" alt="airtel" style="width:300px"></div>
+        <div style="text-align: center"><img src="./assets/airtel.png" alt="airtel" style="width:100px"></div>
         <h2 class="text-xs-center">Reinitialisation</h2>
         <p class="text-xs-center">Veuillez entrez votre adresse email</p>
-        <app-list-errors [errors]="errors"></app-list-errors>
+        <!-- <app-list-errors [errors]="errors"></app-list-errors> -->
+        <div class="spinner-loading" *ngIf="isSubmitting"><img src="assets/images/spinner.svg"/> Veuillez patienter ...</div>
+        <ul class="error-messages">
+          <li>{{errors}}</li>
+        </ul>
+        <ul class="succes-messages">
+            <li>{{msg}}</li>
+          </ul>
         <form [formGroup]="resetForm" (ngSubmit)="submitForm()">
           <fieldset [disabled]="isSubmitting">
             <fieldset class="form-group">

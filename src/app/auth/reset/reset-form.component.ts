@@ -13,7 +13,8 @@ export class ResetFormComponent implements OnInit {
 
   resetPasswordForm: FormGroup;
   currentUser: User;
-  errors: Errors = {errors: {}};
+  errors = '';
+  msg = ''
   isSubmitting = false;
   token: string;
 
@@ -47,19 +48,22 @@ export class ResetFormComponent implements OnInit {
   }
 
   submitForm() {
-    this.errors = {errors: {}};
+    this.errors = '';
+    this.msg = '';
     this.isSubmitting = true;
     let data = {
         'newpass' : this.resetPasswordForm.controls.password.value,
         'token': this.token
     }
     this.userService.postNewPassword(data).subscribe((res) => {
-        this.isSubmitting = false;
-        console.log(res),
-        err => {
-            console.log(err);
-            this.errors = err;
-        }
+        if(res.errors) {
+            this.errors = res.errors,
+            this.isSubmitting = false
+          } else if(res.msg) {
+            console.log(res.msg)
+            this.msg = res.msg;
+            this.isSubmitting = false
+          }
     })
        
   }

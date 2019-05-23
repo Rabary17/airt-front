@@ -13,7 +13,8 @@ export class ResetComponent implements OnInit {
 
   resetForm: FormGroup;
   currentUser: User;
-  errors: Errors = {errors: {}};
+  errors = '';
+  msg = '';
   isSubmitting = false;
 
   constructor(
@@ -35,13 +36,17 @@ export class ResetComponent implements OnInit {
   }
 
   submitForm() {
+    this.errors = '';
+    this.msg = '';
     this.isSubmitting = true;
     this.userService.checkUser(this.resetForm.value).subscribe((res) => {
-      console.log(res);
-      this.isSubmitting = false;
-    }
-      
-    )
-    
+      if(res.errors) {
+        this.errors = res.errors,
+        this.isSubmitting = false
+      } else if(res.msg) {
+        this.msg = res.msg;
+        this.isSubmitting = false
+      }
+    })
   }
 }

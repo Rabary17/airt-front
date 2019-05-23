@@ -43,3 +43,15 @@ fieldset > label {
     list-style-type: none;
     background-color: #eee;
 }
+
+.succes-messages{
+    list-style-type: none;
+    background-color: rgb(172, 255, 152);
+    
+}
+
+.spinner-loading{
+    text-align: center;
+    background-color: #eee;
+
+}
