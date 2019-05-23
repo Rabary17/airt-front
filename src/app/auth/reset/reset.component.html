@@ -1,46 +1,50 @@
-<div class="auth-page" 
-  style="position: absolute;
-  top: 45%;
-  width: 50%;
-  left: 50%;
-  transform: translateX(-50%) translateY(-55%);">
-  <div class="container page">
-    <div class="row">
-      
-      <div class="col-md-6 offset-md-3 col-xs-12">
-        <div style="text-align: center"><img src="./assets/airtel.png" alt="airtel" style="width:100px"></div>
-        <h2 class="text-xs-center">Reinitialisation</h2>
-        <p class="text-xs-center">Veuillez entrez votre adresse email</p>
-        <!-- <app-list-errors [errors]="errors"></app-list-errors> -->
-        <div class="spinner-loading" *ngIf="isSubmitting"><img src="assets/images/spinner.svg"/> Veuillez patienter ...</div>
-        <ul class="error-messages">
-          <li>{{errors}}</li>
-        </ul>
-        <ul class="succes-messages">
-            <li>{{msg}}</li>
+<section style="background-image: url('http://localhost:3000/public/uploads/background_login.jpg');">
+  <div class="auth-page" 
+    style="position: absolute;
+    top: 45%;
+    width: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-55%);">
+    <div class="container page">
+      <div class="row">
+        
+        <div class="col-md-6 offset-md-3 col-xs-12">
+          <div class="logo_container">
+            <img src="./assets/airtel.png" alt="airtel" style="width:100px">
+          </div>
+          <h1 class="text-xs-center">Reinitialisation</h1>
+          <p class="text-xs-center">Veuillez entrez votre adresse email</p>
+          <!-- <app-list-errors [errors]="errors"></app-list-errors> -->
+          <div class="spinner-loading" *ngIf="isSubmitting"><img src="assets/images/spinner.svg"/> Veuillez patienter ...</div>
+          <ul class="error-messages">
+            <li>{{errors}}</li>
           </ul>
-        <form [formGroup]="resetForm" (ngSubmit)="submitForm()">
-          <fieldset [disabled]="isSubmitting">
-            <fieldset class="form-group">
-              <label for="email">Vous allez être invité à consulter votre boite mail.</label>
-              <input
-                formControlName="email"
-                placeholder="contact@realtime.io"
-                class="form-control form-control-lg"
-                type="text"
-                id="email"
-                required
+          <ul class="succes-messages" *ngIf="msg !== ''">
+              <li><i class="fa fa-info-circle"> </i> {{msg}}</li>
+            </ul>
+          <form [formGroup]="resetForm" (ngSubmit)="submitForm()">
+            <fieldset [disabled]="isSubmitting">
+              <fieldset class="form-group">
+                <label for="email">Vous allez être invité à consulter votre boite mail.</label>
+                <input
+                  formControlName="email"
+                  placeholder="contact@realtime.io"
+                  class="form-control form-control-lg"
+                  type="text"
+                  id="email"
+                  required
+                />
+                <input
+                type="submit"
+                [disabled]="!resetForm.valid"
+                class="btn btn-lg btn-primary pull-xs-right"
+                id="submit-reset"
               />
-              <input
-              type="submit"
-              [disabled]="!resetForm.valid"
-              class="btn btn-lg btn-primary pull-xs-right"
-              id="submit-reset"
-            />
+              </fieldset>
             </fieldset>
-          </fieldset>
-        </form>
+          </form>
+        </div>
       </div>
     </div>
   </div>
-</div>
+</section>

@@ -53,5 +53,9 @@ fieldset > label {
 .spinner-loading{
     text-align: center;
     background-color: #eee;
+}
 
+.logo_container{
+    text-align: center;
+    margin-bottom: 20px;
 }

@@ -7,6 +7,7 @@ import { Role } from '../core/models/role.model'
 
 @Component({
   selector: 'app-auth-page',
+  styleUrls: ['./auth.component.css'],
   templateUrl: './auth.component.html'
 })
 export class AuthComponent implements OnInit {

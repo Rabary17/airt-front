@@ -5,3 +5,6 @@
     border: none;
 }
 
+.form-group {
+    margin-bottom: 10px !important;
+}

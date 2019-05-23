@@ -1,68 +1,76 @@
-<div class="auth-page" 
-  style="position: absolute;
-  top: 45%;
-  width: 50%;
-  left: 50%;
-  transform: translateX(-50%) translateY(-55%);">
-  <div class="container page">
-    <div class="row">
+<section style="background-image: url(http://localhost:3000/api/public/uploads/background_login.jpg);
+width: 100%;
+position: absolute;
+height: 100%;
+background-position: center center;
+background-size: cover;
+">
+  <div class="auth-page" 
+    style="position: absolute;
+    top: 45%;
+    width: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-55%);">
+    <div class="container page">
+      <div class="row">
 
-      <div class="col-md-6 offset-md-3 col-xs-12">
-        <div style="text-align: center"><img src="./assets/airtel.png" alt="airtel" style="width:100px"></div>
-        <h1 class="text-xs-center">{{ title }}</h1>
-        <p class="text-xs-center">
-          <a [routerLink]="['/login']" *ngIf="authType == 'register'">Comme membre de l'équipe</a>
-          <a [routerLink]="['/register']" *ngIf="authType == 'login'">Pour accéder au fonctionnalité de l'application</a>
-        </p>
-        <app-list-errors [errors]="errors"></app-list-errors>
-        <form [formGroup]="authForm" (ngSubmit)="submitForm()">
-          <fieldset [disabled]="isSubmitting">
-            <fieldset class="form-group">
-              <input
-                formControlName="username"
-                placeholder="Nom d'utilisateur"
-                class="form-control form-control-lg"
-                type="text"
-                *ngIf="authType == 'register'" />
-            </fieldset>
-            <fieldset class="form-group" *ngIf="authType == 'register' && currentUser.role === 'Manager'">
-              <select formControlName="role" 
-              style="width: 100%;
-              border: none;
-              height: 50px;
-              background-color: white;
-              border: 1px solid #ccc;
-              border-radius: 5px;
-              padding-left: 20px;
-              color: rgb(85, 89, 92);">
-              <option value="Manager">Manager</option>
-                <option value="Admin">Administrateur</option>
-                <option value="Noc">Noc</option>
-                <option value="Tech" default="default">Technicien</option>
-              </select>
-          </fieldset>
-            <fieldset class="form-group">
-              <input
-                formControlName="email"
-                placeholder="Email"
-                class="form-control form-control-lg"
-                type="text" />
-            </fieldset>
-            <fieldset class="form-group" *ngIf="currentUser !== 'Manager'">
-              <input
-                formControlName="password"
-                placeholder="Mot de passe"
-                class="form-control form-control-lg"
-                type="password" />
-            </fieldset>
-            <button class="btn btn-lg btn-primary pull-xs-right" [disabled]="!authForm.valid" type="submit">
-              {{ title }}
-            </button>
+        <div class="col-md-6 offset-md-3 col-xs-12">
+          <div class="logo_container"><img src="./assets/airtel.png" alt="airtel" style="width:100px"></div>
+          <h1 class="text-xs-center">{{ title }}</h1>
+          <p class="text-xs-center">
+            <span *ngIf="authType == 'register'">Comme membre de l'équipe</span>
+            <span *ngIf="authType == 'login'">Pour accéder au fonctionnalité de l'application</span><br>
             <a [routerLink]="['/reset']" *ngIf="authType == 'login'">Mot de passe oublié ?</a>
-          </fieldset>
-        </form>
-      </div>
+          </p>
+          <app-list-errors [errors]="errors"></app-list-errors>
+          <form [formGroup]="authForm" (ngSubmit)="submitForm()">
+            <fieldset [disabled]="isSubmitting">
+              <fieldset class="form-group">
+                <input
+                  formControlName="username"
+                  placeholder="Nom d'utilisateur"
+                  class="form-control form-control-lg"
+                  type="text"
+                  *ngIf="authType == 'register'" />
+              </fieldset>
+              <fieldset class="form-group" *ngIf="authType == 'register' && currentUser.role === 'Manager'">
+                <select formControlName="role" 
+                style="width: 100%;
+                border: none;
+                height: 50px;
+                background-color: white;
+                border: 1px solid #ccc;
+                border-radius: 5px;
+                padding-left: 20px;
+                color: rgb(85, 89, 92);">
+                <option value="Manager">Manager</option>
+                  <option value="Admin">Administrateur</option>
+                  <option value="Noc">Noc</option>
+                  <option value="Tech" default="default">Technicien</option>
+                </select>
+            </fieldset>
+              <fieldset class="form-group">
+                <input
+                  formControlName="email"
+                  placeholder="Email"
+                  class="form-control form-control-lg"
+                  type="text" />
+              </fieldset>
+              <fieldset class="form-group" *ngIf="currentUser !== 'Manager'">
+                <input
+                  formControlName="password"
+                  placeholder="Mot de passe"
+                  class="form-control form-control-lg"
+                  type="password" />
+              </fieldset>
+              <button class="btn btn-lg btn-primary pull-xs-right" [disabled]="!authForm.valid" type="submit">
+                {{ title }}
+              </button>
+            </fieldset>
+          </form>
+        </div>
 
+      </div>
     </div>
   </div>
-</div>
+</section>

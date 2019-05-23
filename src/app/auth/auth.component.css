@@ -1,0 +1,7 @@
+.form-group {
+    margin-bottom: 10px !important;
+}
+
+.submit_container{
+    display: flex;
+}
