@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { AuthComponent } from './auth.component';
 import { NoAuthGuard } from './no-auth-guard.service';
 import { ResetComponent } from './reset/reset.component';
+import { ResetFormComponent } from './reset/reset-form.component';
 import { ManagerGuard } from '../core/services/manager-guard.service';
 
 const routes: Routes = [
@@ -19,6 +20,10 @@ const routes: Routes = [
   {
     path: 'reset',
     component: ResetComponent
+  },
+  {
+    path: 'reset/:token',
+    component: ResetFormComponent
   }
 ];
 

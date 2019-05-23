@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 
@@ -10,6 +10,7 @@ import { Role } from '../core/models/role.model'
   templateUrl: './auth.component.html'
 })
 export class AuthComponent implements OnInit {
+
   authType: String = '';
   title: String = '';
   errors: Errors = {errors: {}};
@@ -31,6 +32,7 @@ export class AuthComponent implements OnInit {
   }
 
   ngOnInit() {
+    console.log(this.errors);
     this.userService.currentUser.subscribe(
       (userData) => {
         this.currentUser = userData;
@@ -79,6 +81,7 @@ export class AuthComponent implements OnInit {
         }
       },
         err => {
+          console.log(err);
           this.errors = err;
           this.isSubmitting = false;
         }

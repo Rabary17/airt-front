@@ -26,19 +26,22 @@ export class ResetComponent implements OnInit {
   }
 
   ngOnInit() {
-
+    console.log(this.errors);
+    this.userService.currentUser.subscribe(
+      (userData) => {
+        this.currentUser = userData;
+      }
+    );
   }
 
   submitForm() {
     this.isSubmitting = true;
-    console.log(this.resetForm.value);
-    this.userService.checkUser(this.resetForm.value).subscribe(res => {
-      this.isSubmitting = false,
-      err => {
-        this.errors = err;
-        this.isSubmitting = false;
-      }
-    })
+    this.userService.checkUser(this.resetForm.value).subscribe((res) => {
+      console.log(res);
+      this.isSubmitting = false;
+    }
+      
+    )
     
   }
 }

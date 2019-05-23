@@ -105,9 +105,19 @@ export class UserService {
       return this.apiService.post('/users/check', email)
         .pipe(map(
         data => {
-          console.log(data)
           return data;
         }
       ));
     }
+      // check email user
+      postNewPassword(data) {
+        console.log(data);
+        return this.apiService.post('/reset/token', {data: data})
+          .pipe(map(
+          data => {
+            console.log(data);
+            return data;
+          }
+        ));
+      }
 }

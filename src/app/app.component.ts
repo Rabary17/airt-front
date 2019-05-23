@@ -2,7 +2,7 @@ import { Component, OnInit, HostListener, Inject } from '@angular/core';
 
 import { UserService } from './core';
 import { JwtService } from './core/services/jwt.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { DOCUMENT } from '@angular/platform-browser';
 
 
@@ -18,6 +18,7 @@ export class AppComponent implements OnInit {
     private userService: UserService,
     private jwtService: JwtService,
     private router: Router,
+    private route: ActivatedRoute,
     @Inject(DOCUMENT) private document: any
   ) {}
 
@@ -35,10 +36,20 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     this.userService.populate();
-    if (this.jwtService.getToken()) {
-      console.log('connécté');
-    } else {
-      this.router.navigateByUrl('/login');
-    }
+    this.route.data.subscribe((url) => {
+      if (url.path === 'reset') {
+        return this.router.navigateByUrl('/reset');
+      } else {
+                  if (this.jwtService.getToken()) {
+                    console.log('connécté');
+                  } else 
+                    { 
+                      console.log('loggggggin')
+                    this.router.navigateByUrl('/login');
+                  }
+      }
+    });
+    
+
   }
 }

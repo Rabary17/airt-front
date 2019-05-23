@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule, PreloadAllModules } from '@angular/router';
 import { AdminComponent } from '../app/admin/admin.component';
+import { ResetFormComponent } from '../app/auth/reset/reset-form.component';
 import { NoAuthGuard } from './auth/no-auth-guard.service';
 import { AdminGuard } from './core/services/admin-guard.service';
 import { ManagerGuard } from './core/services/manager-guard.service';

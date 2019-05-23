@@ -38,3 +38,8 @@ fieldset > label {
 .tag-list{
     padding: 10px;
 }
+
+.error-messages{
+    list-style-type: none;
+    background-color: #eee;
+}
