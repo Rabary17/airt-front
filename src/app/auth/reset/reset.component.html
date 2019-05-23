@@ -1,4 +1,10 @@
-<section style="background-image: url('http://localhost:3000/public/uploads/background_login.jpg');">
+<section style="background-image: url(http://localhost:3000/api/public/uploads/background_login.jpg);
+width: 100%;
+position: absolute;
+min-height: 100%;
+background-position: center center;
+background-size: cover;
+">
   <div class="auth-page" 
     style="position: absolute;
     top: 45%;
@@ -8,12 +14,12 @@
     <div class="container page">
       <div class="row">
         
-        <div class="col-md-6 offset-md-3 col-xs-12">
+        <div class="col-md-6 offset-md-3 col-xs-12" style="padding: 10px;border: 5px solid #ffffff14;border-radius: 10px;">
           <div class="logo_container">
             <img src="./assets/airtel.png" alt="airtel" style="width:100px">
           </div>
-          <h1 class="text-xs-center">Reinitialisation</h1>
-          <p class="text-xs-center">Veuillez entrez votre adresse email</p>
+          <h1 class="text-xs-center white">Reinitialisation</h1>
+          <p class="text-xs-center white">Veuillez entrez votre adresse email</p>
           <!-- <app-list-errors [errors]="errors"></app-list-errors> -->
           <div class="spinner-loading" *ngIf="isSubmitting"><img src="assets/images/spinner.svg"/> Veuillez patienter ...</div>
           <ul class="error-messages">
@@ -25,7 +31,7 @@
           <form [formGroup]="resetForm" (ngSubmit)="submitForm()">
             <fieldset [disabled]="isSubmitting">
               <fieldset class="form-group">
-                <label for="email">Vous allez être invité à consulter votre boite mail.</label>
+                <label for="email" class="white">Vous allez être invité à consulter votre boite mail.</label>
                 <input
                   formControlName="email"
                   placeholder="contact@realtime.io"
