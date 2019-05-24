@@ -16,7 +16,9 @@ import {
   AdminGuard,
   ManagerGuard,
   NocGuard,
-  TechnicienService
+  TechnicienService,
+  WebsocketService,
+  NotificationService
 } from './services';
 
 @NgModule({
@@ -37,7 +39,9 @@ import {
     AdminGuard,
     ManagerGuard,
     NocGuard,
-    TechnicienService
+    TechnicienService,
+    WebsocketService,
+    NotificationService
   ],
   declarations: []
 })
