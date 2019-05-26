@@ -5,7 +5,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { User, Ticket, TicketsService, Role } from '../core';
 import { UserService } from '../core/services/user.service';
 import { ClientService } from '../core/services/client.service';
-
+import { NotificationService } from '../core/services/notification.service'
 
 @Component({
   selector: 'app-editor-page',
@@ -28,6 +28,8 @@ export class EditorComponent implements OnInit {
   keyword = 'name';
   keywordTech = 'username'
 
+
+
   @HostListener('document: click', ['$event'])
   public clickout(event) {
     const clickedInside = this.eRef.nativeElement.contains(event.target);
@@ -49,7 +51,8 @@ export class EditorComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private eRef: ElementRef,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private notificationService : NotificationService
   ) {
     // use the FormBuilder to create a form group
     this.articleForm = this.fb.group({
@@ -196,6 +199,7 @@ export class EditorComponent implements OnInit {
     this.article.tagList = this.article.tagList.filter(tag => tag !== tagName);
   }
 
+  
   submitForm() {
     this.isSubmitting = true;
 
@@ -205,11 +209,20 @@ export class EditorComponent implements OnInit {
     console.log(this.article);
     // post the changes
     this.articlesService.save(this.article).subscribe(
-      article => this.router.navigateByUrl('/ticket/' + article.slug),
+      (article) => {
+      this.notificationService.sendMsg({
+        tag: 'Ticket',
+        message:{ author: article.author,
+                  reference: article.slug,
+                  titre: article.title,
+                  status: article.status
+                }
+      }),
+      this.router.navigateByUrl('/ticket/' + article.slug),
       err => {
         this.errors = err;
         this.isSubmitting = false;
-      }
+      }}
     );
   }
 

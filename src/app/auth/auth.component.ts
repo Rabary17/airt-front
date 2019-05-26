@@ -1,9 +1,10 @@
 import { Component, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-
+import { io } from 'socket.io';
 import { Errors, UserService, User } from '../core';
-import { Role } from '../core/models/role.model'
+import { Role } from '../core/models/role.model';
+import { NotificationService } from '../core/services/notification.service'
 
 @Component({
   selector: 'app-auth-page',
@@ -23,7 +24,8 @@ export class AuthComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private userService: UserService,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private notificationService: NotificationService
   ) {
     // use FormBuilder to create a form group
     this.authForm = this.fb.group({
@@ -63,6 +65,11 @@ export class AuthComponent implements OnInit {
       this.userService
       .attemptAuth(this.authType, this.authForm.value)
       .subscribe( (data: any) => {
+        this.notificationService.sendMsg({
+          tag: 'userConnected',
+          username: data.user.username
+        });
+        console.log('user connécté : ',  data.user.username)
         try {
           if (data.user.role === Role.Admin){
             this.router.navigateByUrl('/profile/' + data.user.username);

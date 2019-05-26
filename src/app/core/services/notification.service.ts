@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { WebsocketService } from './websocket.service';
 import { Observable, Subject } from 'rxjs';
 import 'rxjs/add/operator/map';
+import { Response } from 'selenium-webdriver/http';
 
 
 @Injectable()
@@ -14,6 +15,7 @@ export class NotificationService {
     this.messages = <Subject<any>>wsService
       .connect()
       .map((response: any): any => {
+        console.log('response', response)
         return response;
       });
    }

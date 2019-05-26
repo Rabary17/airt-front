@@ -75,6 +75,27 @@
         </a>
       </li>
 
+      <li class="nav-item" style="position: relative;">
+        <button class="btn btn-outline-danger"
+        (click)="showNotif()">
+        <i class="fa fa-bell" aria-hidden="true"></i>
+        </button>
+        <div style="position: absolute;background-color: black;color:white;bottom: -10px;right: -10px;
+        padding: 0 8px;
+        border-radius: 50%;">{{nbrNotif}}
+        </div>
+        <div 
+            *ngIf="show === true"
+            style="position: absolute;background-color: white;
+            width: 400px;
+            right: -200px;
+            top: 50px;">
+          <ul *ngFor="let not of allNotif">
+            <li><a href="http://localhost:4200/ticket/{{ not.reference }}">le ticket {{ not.reference }} a été modifié par : {{ not.titre }}</a></li>
+          </ul>
+        </div>
+      </li>
+
       <li class="nav-item">
         <button class="btn btn-outline-danger"
         (click)="logout()">
@@ -82,8 +103,6 @@
         Déconnexion
         </button>
       </li>
-
-
 
     </ul>
 
