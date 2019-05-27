@@ -80,7 +80,7 @@
         (click)="showNotif()">
         <i class="fa fa-bell" aria-hidden="true"></i>
         </button>
-        <div style="position: absolute;background-color: black;color:white;bottom: -10px;right: -10px;
+        <div *ngIf="nbrNotif !== 0" style="position: absolute;background-color: black;color:white;bottom: -10px;right: -10px;
         padding: 0 8px;
         border-radius: 50%;">{{nbrNotif}}
         </div>
@@ -104,7 +104,7 @@
                     padding: 0 5px;
                 ">
                 <span>{{ not.status }}</span>
-                <span>{{ not.status }}</span>
+                <span>{{ not.date | date: 'longDate' }}</span>
               </div> 
               </div>
             </a>

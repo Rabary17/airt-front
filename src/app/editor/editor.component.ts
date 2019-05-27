@@ -225,6 +225,7 @@ export class EditorComponent implements OnInit {
                   titre: article.title,
                   status: article.status,
                   modifiedBy: this.currentUser,
+                  date: new Date()
                 }
       }),
       this.router.navigateByUrl('/ticket/' + article.slug),

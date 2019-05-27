@@ -17,7 +17,7 @@
     <tbody>
       <tr  *ngFor="let article of results">
         <td> <a [routerLink]="['/ticket', article.slug]" class="preview-link">{{article.slug}}</a></td>
-        <td>{{article.createdAt}}</td>
+        <td>{{article.createdAt | date: 'longDate'}}</td>
         <td>{{article.client.name}}</td>
         <td>{{article.title}}</td>
         <td>{{article.status}}</td>
