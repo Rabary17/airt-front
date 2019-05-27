@@ -14,8 +14,27 @@
     background-color: white;
     width: 400px;
     right: -200px;
-    top: 50px;
+    top: 60px;
     z-index: 999;
+    box-shadow: 3px 3px 10px #d8d8d8;
+}
+
+.notification_container_child{
+    border-top: 1px solid #eee;
+}
+
+.notification_container:before{
+    content: " ";
+    height: 0;
+    width: 0;
+    border: solid transparent;
+    border-bottom-color: #fff;
+    border-width: 0 6px 8px 6px;
+    position: absolute;
+    -webkit-transform: translate(-50%,0);
+    transform: translate(-50%,0);
+    left: 50%;
+    top: -8px;
 }
 .notification_container ul{
     list-style-type: none;
@@ -30,6 +49,10 @@
     background-color: #eee;
     color: #333;
     text-decoration: none;
+}
+ 
+.notification_container a:hover ~ .notification_container:hover{
+    background-color: #eee;
 }
 
 .pdp-notification img{

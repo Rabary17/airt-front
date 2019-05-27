@@ -30,6 +30,7 @@ export class EditorComponent implements OnInit {
   keyword = 'name';
   keywordTech = 'username'
   currentUser;
+  currentClient;
 
 
 
@@ -88,6 +89,8 @@ export class EditorComponent implements OnInit {
       if (data.article) {
         this.article = data.article;
         this.articleForm.patchValue(data.article);
+        this.currentClient = data.article.client;
+        console.log('data.article.client ', data.article.client)
         this.articleForm.controls['client'].setValue(data.article.client.name);
         this.articleForm.controls['technician'].setValue(data.article.technician.username);
       }
@@ -222,10 +225,12 @@ export class EditorComponent implements OnInit {
         tag: 'Ticket',
         message:{ author: article.author,
                   reference: article.slug,
+                  client: this.currentClient,
                   titre: article.title,
                   status: article.status,
                   modifiedBy: this.currentUser,
-                  date: new Date()
+                  date: new Date(),
+                  type: 'Ticket'
                 }
       }),
       this.router.navigateByUrl('/ticket/' + article.slug),

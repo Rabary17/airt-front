@@ -9,6 +9,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { QuillInitializeService } from '../core/services/quillInitialize.service';
 import { MailerService } from '../core/services/mailer.service';
 import { Mail } from '../core/models/mail.model';
+import { NotificationService } from '../../app/core'
 import 'quill-mention';
 import 'quill-emoji';
 
@@ -42,7 +43,8 @@ export class ArticleComponent implements OnInit {
     private http: HttpClient,
     private fb: FormBuilder,
     private quillInitializeService: QuillInitializeService,
-    private mailerService: MailerService
+    private mailerService: MailerService,
+    private notificationService: NotificationService
   ) { }
 
   
@@ -260,6 +262,19 @@ export class ArticleComponent implements OnInit {
       .add(this.article.slug, commentBody, this.fileList)
       .subscribe(
         comment => {
+          this.notificationService.sendMsg({
+            tag: 'Ticket',
+            message:{ author: comment.author,
+                      reference: this.article.slug,
+                      client: this.article.client,
+                      titre: this.article.title,
+                      status: this.article.status,
+                      modifiedBy: this.currentUser,
+                      date: new Date(),
+                      type: 'Comment'
+                    }
+          })
+
           let com = comment.file.map((res) => {
             return 'http://localhost:3000/api/public/uploads/' + res;
           })

@@ -87,7 +87,7 @@
         <div 
             *ngIf="show === true"
             class="notification_container">
-          <div *ngFor="let not of allNotif" class="">
+          <div *ngFor="let not of allNotif" class="notification_container_child">
             <a href="http://localhost:4200/ticket/{{ not.reference }}" style="display: flex">
               <div class="pdp-notification" style="flex: 2;">
                 <img [src]="not.modifiedBy.image" alt="user-img"/>
@@ -95,17 +95,20 @@
               <div class="" style="font-style: italic;flex: 8;">
                 <h3 style="font-size: 18px;display:bloc;text-align: left;margin:0">{{ not.modifiedBy.username  }}
                   <span style="background-color: red;color:white;font-size: 12px;padding: 0 5px;">{{ not.modifiedBy.role }}</span></h3>
-                a modifié le ticket {{ not.reference }} : {{ not.titre }}
+                  <span *ngIf="not.type === 'Ticket'">a modifié le ticket {{ not.reference }} : {{ not.titre }}</span>
+                  <span *ngIf="not.type === 'Comment'">a commenté le ticket {{ not.reference }} : {{ not.titre }}</span>
+                  <h4 style="text-align: right;">{{not.client.name}}</h4>
                 <div style="
-                    justify-content: space-between;
-                    background-color: #333;
-                    color: white;
-                    display: flex;
-                    padding: 0 5px;
-                ">
-                <span>{{ not.status }}</span>
-                <span>{{ not.date | date: 'longDate' }}</span>
-              </div> 
+                      justify-content: space-between;
+                      background-color: #bcbbbb;
+                      color: white;
+                      display: flex;
+                      padding: 0 5px;
+                  ">
+                  <span>{{ not.status }}</span>
+                  <span>{{ not.date | date: 'longDate' }}</span>
+                </div> 
+                
               </div>
             </a>
           </div>
