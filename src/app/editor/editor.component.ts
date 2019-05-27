@@ -1,11 +1,13 @@
 import { Component, OnInit, ElementRef, HostListener, Output, EventEmitter, Input  } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { concatMap ,  tap } from 'rxjs/operators';
 
 import { User, Ticket, TicketsService, Role } from '../core';
 import { UserService } from '../core/services/user.service';
 import { ClientService } from '../core/services/client.service';
 import { NotificationService } from '../core/services/notification.service'
+import { Profile } from '../core/models/profile.model'
 
 @Component({
   selector: 'app-editor-page',
@@ -27,6 +29,7 @@ export class EditorComponent implements OnInit {
   formAddClient:boolean =  false;
   keyword = 'name';
   keywordTech = 'username'
+  currentUser;
 
 
 
@@ -52,6 +55,7 @@ export class EditorComponent implements OnInit {
     private router: Router,
     private eRef: ElementRef,
     private fb: FormBuilder,
+
     private notificationService : NotificationService
   ) {
     // use the FormBuilder to create a form group
@@ -63,6 +67,7 @@ export class EditorComponent implements OnInit {
       body: ['', [Validators.required, Validators.minLength(6)]],
       technician: '',
       client: '',
+      modifiedBy: ''
     });
     this.clientForm = this.fb.group({
       name: ['', [Validators.required, Validators.minLength(2)]],  
@@ -97,9 +102,11 @@ export class EditorComponent implements OnInit {
         listTech.push(res);
         this.users = res;
       })
-      
     });
-    
+
+    this.userService.currentUser.subscribe(res=>{
+      this.currentUser = res;
+    });
     // console.log('*********************************');
     this.clientService.getAllClient().subscribe((res) => {
       this.clients = res.clients,
@@ -202,7 +209,8 @@ export class EditorComponent implements OnInit {
   
   submitForm() {
     this.isSubmitting = true;
-
+    // setting modifiedBy by last user who modified
+    this.articleForm.controls['modifiedBy'].setValue(this.currentUser.username);
     // update the model
     this.updateArticle(this.articleForm.value);
     console.log('client', this.articleForm.value);
@@ -215,7 +223,8 @@ export class EditorComponent implements OnInit {
         message:{ author: article.author,
                   reference: article.slug,
                   titre: article.title,
-                  status: article.status
+                  status: article.status,
+                  modifiedBy: this.currentUser,
                 }
       }),
       this.router.navigateByUrl('/ticket/' + article.slug),

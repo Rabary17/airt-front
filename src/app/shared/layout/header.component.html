@@ -86,13 +86,29 @@
         </div>
         <div 
             *ngIf="show === true"
-            style="position: absolute;background-color: white;
-            width: 400px;
-            right: -200px;
-            top: 50px;">
-          <ul *ngFor="let not of allNotif">
-            <li><a href="http://localhost:4200/ticket/{{ not.reference }}">le ticket {{ not.reference }} a été modifié par : {{ not.titre }}</a></li>
-          </ul>
+            class="notification_container">
+          <div *ngFor="let not of allNotif" class="">
+            <a href="http://localhost:4200/ticket/{{ not.reference }}" style="display: flex">
+              <div class="pdp-notification" style="flex: 2;">
+                <img [src]="not.modifiedBy.image" alt="user-img"/>
+              </div>
+              <div class="" style="font-style: italic;flex: 8;">
+                <h3 style="font-size: 18px;display:bloc;text-align: left;margin:0">{{ not.modifiedBy.username  }}
+                  <span style="background-color: red;color:white;font-size: 12px;padding: 0 5px;">{{ not.modifiedBy.role }}</span></h3>
+                a modifié le ticket {{ not.reference }} : {{ not.titre }}
+                <div style="
+                    justify-content: space-between;
+                    background-color: #333;
+                    color: white;
+                    display: flex;
+                    padding: 0 5px;
+                ">
+                <span>{{ not.status }}</span>
+                <span>{{ not.status }}</span>
+              </div> 
+              </div>
+            </a>
+          </div>
         </div>
       </li>
 
