@@ -8,13 +8,16 @@ import { ListTicketComponent } from './list-ticket/list-ticket.component';
 import { AdminMenuComponent } from './admin-menu/admin-menu.component';
 import { SharedModule } from '../shared';
 import { AdminRoutingModule } from './admin-routing.module';
+import { ImportComponent } from './import/import.component';
+import { ReactiveFormsModule  } from '@angular/forms';
 
 @NgModule({
   imports: [
     CommonModule,
     RouterModule,
-    AdminRoutingModule
+    AdminRoutingModule,
+    ReactiveFormsModule
   ],
-  declarations: [AdminComponent, ListUserComponent, ListClientComponent, ListTicketComponent, AdminMenuComponent]
+  declarations: [AdminComponent, ListUserComponent, ListClientComponent, ListTicketComponent, AdminMenuComponent, ImportComponent]
 })
 export class AdminModule { }

@@ -18,7 +18,8 @@ import {
   NocGuard,
   TechnicienService,
   WebsocketService,
-  NotificationService
+  NotificationService,
+  ImportService
 } from './services';
 
 @NgModule({
@@ -41,7 +42,8 @@ import {
     NocGuard,
     TechnicienService,
     WebsocketService,
-    NotificationService
+    NotificationService,
+    ImportService
   ],
   declarations: []
 })

@@ -1,0 +1,23 @@
+<form  [formGroup]="importForm" autocomplete="off">
+  <fieldset [disabled]="isSubmitting">
+    <div class="row">
+        <div class="col-md-12">
+              <div class="row">
+                <div class="col-md-6 ">
+                    <fieldset class="form-group">
+                        <label for="data">Fichier au format CSV</label>
+                        <div class="ng-autocomplete">
+                          <input type="file" class="form-control" formControlName="data" id="data" (change)="onFileChange($event)" required/>
+                        </div>
+                    </fieldset>
+                </div>
+                <div class="col-md-6  offset-md-1">
+                    <button class="btn btn-lg pull-xs-right btn-primary" type="button" (click)="submitForm()">
+                        Démarrer l'importation
+                    </button>
+                </div>
+              </div>
+          </div>
+      </div>
+  </fieldset>
+</form>

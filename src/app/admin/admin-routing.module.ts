@@ -4,6 +4,7 @@ import { AdminComponent } from './admin.component';
 import { ListUserComponent } from './list-user/list-user.component';
 import { ListClientComponent } from './list-client/list-client.component';
 import { ListTicketComponent } from './list-ticket/list-ticket.component';
+import { ImportComponent } from './import/import.component'
 
 const adminRoutes: Routes = [
     {
@@ -23,6 +24,11 @@ const adminRoutes: Routes = [
         {
           path: 'ticket',
           component: ListTicketComponent,
+          resolve: {}
+        },
+        {
+          path: 'import',
+          component: ImportComponent,
           resolve: {}
         }
       ]
