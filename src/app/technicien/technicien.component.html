@@ -71,8 +71,12 @@
         
         <tbody *ngIf="filtre === 'All'">
           <tr  *ngFor="let article of allTicket">
-            <td> <a [routerLink]="['/ticket', article.slug]" class="preview-link">{{article.slug}}</a></td>
-            <td>{{article.createdAt}}</td>
+            <td>
+              <a [routerLink]="['/ticket', article.slug]" class="preview-link">{{article.slug}}
+                <span class="author-bloc">créé par {{article.author.username}}</span>
+              </a>
+            </td>
+            <td>{{article.createdAt | date: 'longDate'}}</td>
             <td>{{article.client.name}}</td>
             <td>{{article.title}}</td>
             <td>{{article.status}}</td>
@@ -83,8 +87,12 @@
 
         <tbody *ngIf="filtre === 'Open'">
             <tr  *ngFor="let article of openTicket">
-              <td> <a [routerLink]="['/ticket', article.slug]" class="preview-link">{{article.slug}}</a></td>
-              <td>{{article.createdAt}}</td>
+              <td>
+                <a [routerLink]="['/ticket', article.slug]" class="preview-link">{{article.slug}}
+                  <span class="author-bloc">créé par {{article.author.username}}</span>
+                </a>
+              </td>
+              <td>{{article.createdAt | date: 'longDate'}}</td>
               <td>{{article.client.name}}</td>
               <td>{{article.title}}</td>
               <td>{{article.status}}</td>
@@ -95,8 +103,12 @@
 
           <tbody *ngIf="filtre === 'In progress'">
               <tr  *ngFor="let article of inprogressTicket">
-                <td> <a [routerLink]="['/ticket', article.slug]" class="preview-link">{{article.slug}}</a></td>
-                <td>{{article.createdAt}}</td>
+                <td>
+                  <a [routerLink]="['/ticket', article.slug]" class="preview-link">{{article.slug}}
+                    <span class="author-bloc">créé par {{article.author.username}}</span>
+                  </a>
+                </td>
+                <td>{{article.createdAt | date: 'longDate'}}</td>
                 <td>{{article.client.name}}</td>
                 <td>{{article.title}}</td>
                 <td>{{article.status}}</td>
@@ -107,8 +119,12 @@
 
           <tbody *ngIf="filtre === 'Pending'">
               <tr  *ngFor="let article of pendingTicket">
-                <td> <a [routerLink]="['/ticket', article.slug]" class="preview-link">{{article.slug}}</a></td>
-                <td>{{article.createdAt}}</td>
+                <td>
+                  <a [routerLink]="['/ticket', article.slug]" class="preview-link">{{article.slug}}
+                    <span class="author-bloc">créé par {{article.author.username}}</span>
+                  </a>
+                </td>
+                <td>{{article.createdAt | date: 'longDate'}}</td>
                 <td>{{article.client.name}}</td>
                 <td>{{article.title}}</td>
                 <td>{{article.status}}</td>
@@ -120,8 +136,12 @@
           
             <tbody  *ngIf="filtre === 'Close'">
                 <tr  *ngFor="let article of closeTicket">
-                  <td> <a [routerLink]="['/ticket', article.slug]" class="preview-link">{{article.slug}}</a></td>
-                  <td>{{article.createdAt}}</td>
+                  <td>
+                    <a [routerLink]="['/ticket', article.slug]" class="preview-link">{{article.slug}}
+                      <span class="author-bloc">créé par {{article.author.username}}</span>
+                    </a>
+                  </td>
+                  <td>{{article.createdAt | date: 'longDate'}}</td>
                   <td>{{article.client.name}}</td>
                   <td>{{article.title}}</td>
                   <td>{{article.status}}</td>

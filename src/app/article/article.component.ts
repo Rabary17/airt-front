@@ -261,6 +261,7 @@ export class ArticleComponent implements OnInit {
       .add(this.article.slug, commentBody, this.fileList)
       .subscribe(
         comment => {
+          console.log('this.article.client', this.article.client)
           this.notificationService.sendMsg({
             tag: 'Ticket',
             message:{ author: comment.author,

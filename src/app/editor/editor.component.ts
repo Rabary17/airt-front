@@ -212,11 +212,12 @@ export class EditorComponent implements OnInit {
     // post the changes
     this.articlesService.save(this.article).subscribe(
       (article) => {
+        console.log('this.currentClient', this.articleForm.controls['client'].value)
       this.notificationService.sendMsg({
         tag: 'Ticket',
         message:{ author: article.author,
                   reference: article.slug,
-                  client: this.currentClient,
+                  client: this.articleForm.controls['client'].value,
                   titre: article.title,
                   status: article.status,
                   modifiedBy: this.currentUser,

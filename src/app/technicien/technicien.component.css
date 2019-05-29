@@ -37,3 +37,12 @@
     color: #dc3545;
     background-color: #cacaca;
 }
+
+.preview-link{
+    position: relative;
+}
+
+.author-bloc{
+    display: block;
+    font-size: 10px;
+}

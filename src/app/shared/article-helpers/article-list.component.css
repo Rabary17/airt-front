@@ -2,3 +2,18 @@
   cursor: pointer;
 }
 
+.author-bloc{
+display: block;
+font-size: 10px;
+}
+
+.author-bloc img{
+  width: 30px;
+  border-radius: 50%;
+  position: absolute;
+  left: -55px;
+  top: -15px;
+}
+.preview-link{
+  position: relative;
+}
