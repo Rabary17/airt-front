@@ -21,8 +21,6 @@ export class NocGuard implements CanActivate {
 
     this.userService.currentUser.subscribe((userData) => {
         if (userData.role === Role.Noc ) {
-          console.log('userData.role', userData.role);
-          console.log('Role.Noc', Role.Noc);
             return this.isNoc = true;
         }
     });

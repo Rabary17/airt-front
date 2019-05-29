@@ -28,7 +28,6 @@ export class AppComponent implements OnInit {
       const number = this.document.body.scrollTop;
       if (number > 150) {
           this.isScrolled = true;
-          console.log(number);
       } else if (this.isScrolled && number < 10) {
           this.isScrolled = false;
       }
@@ -41,10 +40,8 @@ export class AppComponent implements OnInit {
         return this.router.navigateByUrl('/reset');
       } else {
                   if (this.jwtService.getToken()) {
-                    console.log('connécté');
                   } else 
                     { 
-                      console.log('loggggggin')
                     this.router.navigateByUrl('/login');
                   }
       }

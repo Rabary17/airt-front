@@ -27,7 +27,6 @@ export class ResetComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log(this.errors);
     this.userService.currentUser.subscribe(
       (userData) => {
         this.currentUser = userData;

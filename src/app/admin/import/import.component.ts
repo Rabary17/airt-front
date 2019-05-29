@@ -41,7 +41,6 @@ export class ImportComponent implements OnInit {
       reader.readAsDataURL(file);
      
       reader.onload = () => {
-        console.log(reader.result)
         this.base64file = reader.result;
         // this.importForm.patchValue({
         //   data: reader.result
@@ -57,10 +56,8 @@ export class ImportComponent implements OnInit {
       file: base64data,
       filename: this.fileName
     }
-    console.log('this.importForm.value', this.importForm.value);
     // this.fileService.upload(this.fileName, this.base64file)
     this.importService.importCsvFile(body).subscribe(res => {
-      console.log(res)
     })
   }
 }

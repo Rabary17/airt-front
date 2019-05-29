@@ -60,7 +60,6 @@ export class ResetFormComponent implements OnInit {
             this.errors = res.errors,
             this.isSubmitting = false
           } else if(res.msg) {
-            console.log(res.msg)
             this.msg = res.msg;
             this.isSubmitting = false
           }

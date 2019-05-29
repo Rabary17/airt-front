@@ -111,11 +111,9 @@ export class UserService {
     }
       // check email user
       postNewPassword(data) {
-        console.log(data);
         return this.apiService.post('/reset/token', {data: data})
           .pipe(map(
           data => {
-            console.log(data);
             return data;
           }
         ));

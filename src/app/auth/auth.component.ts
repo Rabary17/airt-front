@@ -35,7 +35,6 @@ export class AuthComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log(this.errors);
     this.userService.currentUser.subscribe(
       (userData) => {
         this.currentUser = userData;
@@ -69,27 +68,21 @@ export class AuthComponent implements OnInit {
           tag: 'userConnected',
           username: data.user.username
         });
-        console.log('user connécté : ',  data.user.username)
         try {
           if (data.user.role === Role.Admin){
             this.router.navigateByUrl('/profile/' + data.user.username);
-              console.log('redirect to Admin but admin protected by manager');
            } else if (data.user.role === Role.Tech){
               this.router.navigateByUrl('/technicien');
-              console.log('redirect to technicien with no guard');
            } else if (data.user.role === Role.Noc) {
             this.router.navigateByUrl('/profile/' + data.user.username);
-            console.log('redirect to Noc');
            } else if (data.user.role === Role.Manager) {
             this.router.navigateByUrl('/');
-            console.log('redirect to Manager');
             } 
         } catch (error) {
             console.log(error);
         }
       },
         err => {
-          console.log(err);
           this.errors = err;
           this.isSubmitting = false;
         }

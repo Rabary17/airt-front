@@ -10,11 +10,12 @@
                           <input type="file" class="form-control" formControlName="data" id="data" (change)="onFileChange($event)" required/>
                         </div>
                     </fieldset>
-                </div>
-                <div class="col-md-6  offset-md-1">
-                    <button class="btn btn-lg pull-xs-right btn-primary" type="button" (click)="submitForm()">
-                        Démarrer l'importation
-                    </button>
+                    <br>
+                    <fieldset class="form-group">
+                        <button class="btn btn-lg pull-xs-left btn-primary" type="button" (click)="submitForm()">
+                            Démarrer l'importation
+                        </button>
+                      </fieldset>
                 </div>
               </div>
           </div>

@@ -30,7 +30,6 @@ export class HomeComponent implements OnInit {
   toogle = false;
 
   ngOnInit() {
-    console.log(this.toogle);
     this.userService.isAuthenticated.subscribe(
       (authenticated) => {
         this.isAuthenticated = authenticated;

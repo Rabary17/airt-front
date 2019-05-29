@@ -90,7 +90,6 @@ export class EditorComponent implements OnInit {
         this.article = data.article;
         this.articleForm.patchValue(data.article);
         this.currentClient = data.article.client;
-        console.log('data.article.client ', data.article.client)
         this.articleForm.controls['client'].setValue(data.article.client.name);
         this.articleForm.controls['technician'].setValue(data.article.technician.username);
       }
@@ -101,7 +100,6 @@ export class EditorComponent implements OnInit {
         return tech.role === Role.Tech;
       });
       Promise.all(prom).then((res) =>{
-        console.log(res);
         listTech.push(res);
         this.users = res;
       })
@@ -112,8 +110,7 @@ export class EditorComponent implements OnInit {
     });
     // console.log('*********************************');
     this.clientService.getAllClient().subscribe((res) => {
-      this.clients = res.clients,
-      console.log(this.clients);
+      this.clients = res.clients
     });
 
   }
@@ -141,7 +138,6 @@ export class EditorComponent implements OnInit {
   }
 
   addClient() {
-    console.log(this.clientForm.value);
     this.clientService.addNewClient(this.clientForm.value).subscribe((res) => {
       this.clients.unshift(res);
       this.formAddClient = false;
@@ -169,12 +165,10 @@ export class EditorComponent implements OnInit {
     this.articleForm.patchValue({
       client: client.name
     });
-    console.log(client._id);
   }
   autoCompleteTechnician() {
     const regex = new RegExp(this.articleForm.value.technician, 'i');
     if (this.articleForm.value.technician.length > 1) {
-      console.log(this.articleForm.value.technician);
         this.users = this.users.filter( res => {
           this.showUsers = true;
           return res['username'].match(regex);
@@ -191,7 +185,6 @@ export class EditorComponent implements OnInit {
     this.articleForm.patchValue({
       technician: tech.username
     });
-    console.log(tech.username);
   }
 
   addTag() {
@@ -216,8 +209,6 @@ export class EditorComponent implements OnInit {
     this.articleForm.controls['modifiedBy'].setValue(this.currentUser.username);
     // update the model
     this.updateArticle(this.articleForm.value);
-    console.log('client', this.articleForm.value);
-    console.log(this.article);
     // post the changes
     this.articlesService.save(this.article).subscribe(
       (article) => {

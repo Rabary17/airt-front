@@ -148,7 +148,6 @@ export class ArticleComponent implements OnInit {
         enter:{
           key:13,
           handler: (range, context)=>{
-            console.log("enter");
             return true;
           }
         }
