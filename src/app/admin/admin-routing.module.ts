@@ -1,10 +1,13 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule, PreloadAllModules } from '@angular/router';
 import { AdminComponent } from './admin.component';
-import { ListUserComponent } from './list-user/list-user.component';
+import { ListUserComponent } from './list-user/list/list-user.component';
 import { ListClientComponent } from './list-client/list-client.component';
 import { ListTicketComponent } from './list-ticket/list-ticket.component';
-import { ImportComponent } from './import/import.component'
+import { ImportComponent } from './import/import.component';
+import { AddUserComponent } from '../admin/list-user/crud/add-user.component';
+import { UserModule } from './list-user/user.module';
+import { UserComponent } from './list-user/user.component'
 
 const adminRoutes: Routes = [
     {
@@ -13,8 +16,7 @@ const adminRoutes: Routes = [
       children: [
         {
           path: 'user',
-          component: ListUserComponent,
-          resolve: {}
+          loadChildren: './list-user/user.module#UserModule'
         },
         {
           path: 'client',

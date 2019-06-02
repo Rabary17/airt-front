@@ -5,7 +5,9 @@ import { AuthModule } from './auth/auth.module';
 import { HomeModule } from './home/home.module';
 import { AdminModule } from './admin/admin.module';
 import { AdminRoutingModule } from './admin/admin-routing.module';
-import { TechnicienModule } from './technicien/technicien.module'
+import { TechnicienModule } from './technicien/technicien.module';
+import { UserModule } from './admin/list-user/user.module';
+import { UserRoutingModule } from './admin/list-user/user-routing.module'
 
 
 import {
@@ -27,7 +29,9 @@ import { CoreModule } from './core/core.module';
     AuthModule,
     AppRoutingModule,
     AdminModule,
-    AdminRoutingModule
+    AdminRoutingModule,
+    UserModule,
+    UserRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]
