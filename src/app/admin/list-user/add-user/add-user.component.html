@@ -1,0 +1,45 @@
+<form [formGroup]="addUserForm" (ngSubmit)="submitForm()">
+        <fieldset [disabled]="isSubmitting">
+          <fieldset class="form-group">
+            <input
+              formControlName="username"
+              placeholder="Nom d'utilisateur"
+              class="form-control form-control-lg"
+              type="text"
+              />
+          </fieldset>
+          <fieldset class="form-group">
+            <select formControlName="role" 
+            style="width: 100%;
+            border: none;
+            height: 50px;
+            background-color: white;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding-left: 20px;
+            color: rgb(85, 89, 92);">
+            <option value="Manager">Manager</option>
+              <option value="Admin">Administrateur</option>
+              <option value="Noc">Noc</option>
+              <option value="Tech" default="default">Technicien</option>
+            </select>
+        </fieldset>
+          <fieldset class="form-group">
+            <input
+              formControlName="email"
+              placeholder="Email"
+              class="form-control form-control-lg"
+              type="text" />
+          </fieldset>
+          <fieldset class="form-group">
+            <input
+              formControlName="password"
+              placeholder="Mot de passe"
+              class="form-control form-control-lg"
+              type="password" />
+          </fieldset>
+          <button class="btn btn-lg btn-primary pull-xs-right" type="submit">
+            Ajouter
+          </button>
+        </fieldset>
+      </form>

@@ -1,18 +1,18 @@
 import { Component, OnInit } from '@angular/core';
-import { UserService } from '../../core/services/user.service';
-import { User } from '../../core/models/user.model';
+import { UserService } from '../../../core/services/user.service';
+import { User } from '../../../core/models/user.model';
 import { FormBuilder, FormGroup, FormControl, Validators  } from '@angular/forms';
-import { ImportService } from '../../core/services/import.service'
-import { FileService } from '../../core/services/file.service'
+import { ImportService } from '../../../core/services/import.service'
+import { FileService } from '../../../core/services/file.service'
 
 @Component({
-  selector: 'app-import',
-  templateUrl: './import.component.html',
-  styleUrls: ['./import.component.css']
+  selector: 'app-import-user',
+  templateUrl: './import-user.component.html',
+  styleUrls: ['./import-user.component.css']
 })
-export class ImportComponent implements OnInit {
+export class ImportUserComponent implements OnInit {
 
-  importForm: FormGroup;
+    importUserForm: FormGroup;
   isSubmitting = false;
   private fileName;
   private base64file;
@@ -23,7 +23,7 @@ export class ImportComponent implements OnInit {
     private importService: ImportService,
     private fileService: FileService
   ) {
-    this.importForm = this.fb.group({
+    this.importUserForm = this.fb.group({
       data: ['', [Validators.required, Validators.minLength(2)]],  
     });
    }
@@ -31,7 +31,6 @@ export class ImportComponent implements OnInit {
   ngOnInit() {
   }
 
-   
   public onFileChange(event) {
     const reader = new FileReader();
  
@@ -46,7 +45,7 @@ export class ImportComponent implements OnInit {
         //   data: reader.result
         // });
       };
-      
+
     }
   }
 

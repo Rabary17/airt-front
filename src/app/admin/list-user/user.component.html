@@ -1,2 +1,32 @@
-<app-user-menu></app-user-menu>
-<router-outlet></router-outlet>
+<div class="container">
+        <div class="user-menu">
+            <h2>Liste des utilisateurs avec leur role</h2>
+            <button (click)="modalService.getModal('addUserModal').open()"><i class="fa fa-plus-circle"></i> ajouter</button>
+            <button (click)="modalService.getModal('importUserModal').open()"><i class="fa fa-plus-circle"></i> importer</button>
+        </div>
+        <p>avec leur role</p>
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>Nom</th>
+              <th>Role</th>
+              <th>Ticket affécté</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let user of Users">
+              <td>{{user.username}}</td>
+              <td>{{user.role || '-'}}</td>
+              <td>2</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <ngx-smart-modal #addUserModal identifier="addUserModal">
+            <app-add-user></app-add-user>
+      </ngx-smart-modal>
+
+      <ngx-smart-modal #importUserModal identifier="importUserModal">
+            <app-import-user></app-import-user>
+      </ngx-smart-modal>

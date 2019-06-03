@@ -3,10 +3,13 @@ import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
 import { SharedModule } from '../../shared';
 import { UserRoutingModule } from '../list-user/user-routing.module'
-import { AddUserComponent } from '../list-user/crud/add-user.component'
+import { AddUserComponent } from './add-user/add-user.component'
 import { ListUserComponent } from './list/list-user.component'
 import { UserMenuComponent } from '../list-user/user-menu/user-menu.component'
 import { UserComponent } from '../list-user/user.component'
+import { NgxSmartModalModule } from 'ngx-smart-modal';
+import { ImportUserComponent } from '../list-user/import-user/import-user.component'
+
 
 import { ReactiveFormsModule  } from '@angular/forms';
 
@@ -15,9 +18,10 @@ import { ReactiveFormsModule  } from '@angular/forms';
     CommonModule,
     RouterModule,
     UserRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+        NgxSmartModalModule.forRoot()
   ],
-  declarations: [AddUserComponent, ListUserComponent, UserMenuComponent, UserComponent]
+  declarations: [AddUserComponent, ListUserComponent, UserMenuComponent, UserComponent, ImportUserComponent]
 })
 
 export class UserModule { }

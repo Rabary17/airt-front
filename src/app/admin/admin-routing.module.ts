@@ -5,7 +5,7 @@ import { ListUserComponent } from './list-user/list/list-user.component';
 import { ListClientComponent } from './list-client/list-client.component';
 import { ListTicketComponent } from './list-ticket/list-ticket.component';
 import { ImportComponent } from './import/import.component';
-import { AddUserComponent } from '../admin/list-user/crud/add-user.component';
+import { AddUserComponent } from './list-user/add-user/add-user.component';
 import { UserModule } from './list-user/user.module';
 import { UserComponent } from './list-user/user.component'
 

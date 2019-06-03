@@ -17,14 +17,32 @@ constructor (
   private jwtService: JwtService
 ) {}
 
-importCsvFile (file) {
-return this.apiService.post('/import', {body: file})
+importUserCsvFile (file) {
+  return this.apiService.post('/import', {body: file})
+    .pipe(map(
+      data => {
+        return data;
+      }
+    ));
+  }
+
+importClientCsvFile (file) {
+return this.apiService.post('/import/client', {body: file})
   .pipe(map(
     data => {
       return data;
     }
   ));
 }
+
+importTicketCsvFile (file) {
+  return this.apiService.post('/import/ticket', {body: file})
+    .pipe(map(
+      data => {
+        return data;
+      }
+    ));
+  }
 
 exportToCsvFile () {
     return this.apiService.get('/client')

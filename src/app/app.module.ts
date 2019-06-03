@@ -9,7 +9,6 @@ import { TechnicienModule } from './technicien/technicien.module';
 import { UserModule } from './admin/list-user/user.module';
 import { UserRoutingModule } from './admin/list-user/user-routing.module'
 
-
 import {
   FooterComponent,
   HeaderComponent,

@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule, PreloadAllModules } from '@angular/router';
-import { AddUserComponent } from '../list-user/crud/add-user.component';
+import { AddUserComponent } from './add-user/add-user.component';
 import { UserComponent } from '../list-user/user.component'
 import { ListUserComponent } from '../list-user/list/list-user.component'
 
