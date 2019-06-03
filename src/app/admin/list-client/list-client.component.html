@@ -1,5 +1,9 @@
 <div class="container">
-  <h2>Liste des clients</h2>
+  <div class="user-menu">
+    <h2>Liste des clients</h2>
+    <button (click)="modalService.getModal('addClientModal').open()"><i class="fa fa-plus-circle"></i> ajouter</button>
+    <button (click)="modalService.getModal('importClientModal').open()"><i class="fa fa-plus-circle"></i> importer</button>
+</div>
   <p>avec les détails</p>            
   <table class="table table-striped">
     <thead>
@@ -20,3 +24,11 @@
     </tbody>
   </table>
 </div>
+
+<ngx-smart-modal #addClientModal identifier="addClientModal">
+  <app-add-client></app-add-client>
+</ngx-smart-modal>
+
+<ngx-smart-modal #importClientModal identifier="importClientModal">
+  <app-import-client></app-import-client>
+</ngx-smart-modal>

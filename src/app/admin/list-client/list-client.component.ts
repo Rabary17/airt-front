@@ -1,6 +1,7 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { ClientService } from '../../core/services/client.service';
 import { TicketsService } from '../../core';
+import { NgxSmartModalService } from 'ngx-smart-modal';
 
 @Component({
   selector: 'app-list-client',
@@ -16,6 +17,7 @@ total: number;
   constructor(
     private clientService: ClientService,
     private ticketService: TicketsService,
+    private modalService: NgxSmartModalService
   ) { }
 
   ngOnInit() {
