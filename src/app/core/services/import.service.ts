@@ -18,7 +18,7 @@ constructor (
 ) {}
 
 importUserCsvFile (file) {
-  return this.apiService.post('/import', {body: file})
+  return this.apiService.post('/import/user', {body: file})
     .pipe(map(
       data => {
         return data;
