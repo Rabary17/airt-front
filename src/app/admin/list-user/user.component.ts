@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { UserMenuComponent } from '../list-user/user-menu/user-menu.component'
+import { User } from '../../core/models/user.model';
+import { UserService } from '../../core/services';
+
+
 @Component({
   selector: 'app-user',
   templateUrl: './user.component.html',
@@ -8,12 +12,16 @@ import { UserMenuComponent } from '../list-user/user-menu/user-menu.component'
 
 export class UserComponent implements OnInit {
 
-  constructor() { 
+  Users: Array<User>;
+
+  constructor(
+    private userService: UserService
+  ) { 
         
    }
 
   ngOnInit() {
-
+    this.userService.getAllUser().subscribe(res => this.Users = res.user);
   }
 
 }
