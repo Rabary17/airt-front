@@ -57,7 +57,7 @@ export class ImportComponent implements OnInit {
       filename: this.fileName
     }
     // this.fileService.upload(this.fileName, this.base64file)
-    this.importService.importUserCsvFile(body).subscribe(res => {
+    this.importService.importTicketCsvFile(body).subscribe(res => {
     })
   }
 }
