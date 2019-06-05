@@ -63,3 +63,7 @@ fieldset > label {
 .white{
     color: white !important;
 }
+
+.table td, .table th {
+    padding: .10rem;
+}

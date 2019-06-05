@@ -4,7 +4,7 @@ import { AdminComponent } from './admin.component';
 import { ListUserComponent } from './list-user/list/list-user.component';
 import { ListClientComponent } from './list-client/list-client.component';
 import { ListTicketComponent } from './list-ticket/list-ticket.component';
-import { ImportComponent } from './import/import.component';
+import { ConfigurationComponent } from './configuration/configuration.component';
 import { AddUserComponent } from './list-user/add-user/add-user.component';
 import { UserModule } from './list-user/user.module';
 import { UserComponent } from './list-user/user.component'
@@ -29,8 +29,8 @@ const adminRoutes: Routes = [
           resolve: {}
         },
         {
-          path: 'import',
-          component: ImportComponent,
+          path: 'configuration',
+          component: ConfigurationComponent,
           resolve: {}
         }
       ]

@@ -5,7 +5,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { AdminMenuComponent } from './admin-menu/admin-menu.component';
 import { SharedModule } from '../shared';
 import { AdminRoutingModule } from './admin-routing.module';
-import { ImportComponent } from './import/import.component';
+import { ConfigurationComponent } from './configuration/configuration.component';
 import { ReactiveFormsModule  } from '@angular/forms';
 import { TicketModule } from '../admin/list-ticket/ticket.module';
 import { ClientModule } from '../admin/list-client/client.module'
@@ -19,6 +19,6 @@ import { ClientModule } from '../admin/list-client/client.module'
     TicketModule,
     ClientModule
   ],
-  declarations: [AdminComponent, AdminMenuComponent, ImportComponent]
+  declarations: [AdminComponent, AdminMenuComponent, ConfigurationComponent]
 })
 export class AdminModule { }

@@ -8,16 +8,24 @@
         <table class="table table-striped">
           <thead>
             <tr>
+              <th></th>
               <th>Nom</th>
+              <th>Email</th>
               <th>Role</th>
-              <th>Ticket affécté</th>
+              <th class="center">Ticket affécté</th>
+              <th class="center">Suspendre</th>
+              <th class="center">outils</th>
             </tr>
           </thead>
           <tbody>
             <tr *ngFor="let user of Users">
+              <td class="user-list-image"><img class="user-list-image" [src]="user.image || 'http://localhost:4200/assets/avatar.jpg'" alt="user-image"/></td>
               <td>{{user.username}}</td>
+              <td>{{user.email}}</td>
               <td>{{user.role || '-'}}</td>
-              <td>2</td>
+              <td class="center">2</td>
+              <td class="center"><input type="checkbox"></td>
+              <td class="user-tools center"><i class="fa fa-pencil-alt"></i><i class="fa fa-trash-alt"></i></td>
             </tr>
           </tbody>
         </table>

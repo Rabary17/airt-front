@@ -6,11 +6,11 @@ import { ImportService } from '../../core/services/import.service'
 import { FileService } from '../../core/services/file.service'
 
 @Component({
-  selector: 'app-import',
-  templateUrl: './import.component.html',
-  styleUrls: ['./import.component.css']
+  selector: 'app-configuration',
+  templateUrl: './configuration.component.html',
+  styleUrls: ['./configuration.component.css']
 })
-export class ImportComponent implements OnInit {
+export class ConfigurationComponent implements OnInit {
 
   importForm: FormGroup;
   isSubmitting = false;
