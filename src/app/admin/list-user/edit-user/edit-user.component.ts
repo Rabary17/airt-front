@@ -23,7 +23,6 @@ export class EditUserComponent implements OnInit {
     'id': '',
     'username': '',
     'email': '',
-    'password': '',
     'role': '',
   }
 
@@ -38,7 +37,6 @@ export class EditUserComponent implements OnInit {
           'id': ['', Validators.required],
           'username': ['', Validators.required],
           'email': ['', Validators.required],
-          'password': ['', Validators.required],
           'role': ['', Validators.required],
         });
    }
@@ -59,6 +57,8 @@ export class EditUserComponent implements OnInit {
       console.log(this.UserToUpdate)
       this.userService.updateOneUser(this.UserToUpdate).subscribe(res => {
           this.userUpdated = res;
+          this.modalService.getModal('editUserModal').close();
+          this.router.navigateByUrl('/admin/user')
       })
   }
 

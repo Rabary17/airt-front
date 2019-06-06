@@ -144,49 +144,6 @@ export class EditorComponent implements OnInit {
       this.clientForm.reset('');
     })
   }
-  autoCompleteClient() {
-    const regex = new RegExp(this.articleForm.value.client, 'i');
-    if (this.articleForm.value.client.length > 1) {
-        this.clients = this.clients.filter( res => {
-          this.showClients = true;
-            return res['name'].match(regex);
-          }
-        );
-    } else if (this.articleForm.value.client.length < 1) {
-      this.showClients = false;
-        this.clientService.getAllClient().subscribe((res) =>  {
-          this.clients = res.clients;
-        });
-    }
-  }
-
-  setClientValue(client) {
-    this.showClients = false;
-    this.articleForm.patchValue({
-      client: client.name
-    });
-  }
-  autoCompleteTechnician() {
-    const regex = new RegExp(this.articleForm.value.technician, 'i');
-    if (this.articleForm.value.technician.length > 1) {
-        this.users = this.users.filter( res => {
-          this.showUsers = true;
-          return res['username'].match(regex);
-          }
-        );
-    } else if (this.articleForm.value.technician.length < 1) {
-        this.showUsers = false;
-        this.userService.getAllUser().subscribe(res => this.users = res.user);
-    }
-  }
-
-  setTechValue(tech) {
-    this.showUsers = false;
-    this.articleForm.patchValue({
-      technician: tech.username
-    });
-  }
-
   addTag() {
     // retrieve tag control
     const tag = this.tagField.value;

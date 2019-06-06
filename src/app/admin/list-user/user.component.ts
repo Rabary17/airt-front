@@ -23,7 +23,7 @@ export class UserComponent implements OnInit {
 
   edit(user) {
     this.userService.getUser(user.id).subscribe(res => {
-      console.log('user to modify', res)
+      console.log('user to edit' , res)
       this.modalService.setModalData(res, 'editUserModal');
     })
   }
