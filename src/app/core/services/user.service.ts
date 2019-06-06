@@ -67,6 +67,15 @@ export class UserService {
     ));
   }
 
+  getUser(id): Observable<User> {
+    return this.apiService.get('/user/'+ id)
+      .pipe(map(
+      data => {
+        return data;
+      }
+    ));
+  }
+
   addTech(type, credentials): Observable<User> {
     const route = (type === 'login') ? '/login' : '';
     return this.apiService.post('/users' + route, {user: credentials})
@@ -93,6 +102,17 @@ export class UserService {
   update(user): Observable<User> {
     return this.apiService
     .put('/user', { user })
+    .pipe(map(data => {
+      // Update the currentUser observable
+      this.currentUserSubject.next(data.user);
+      return data.user;
+    }));
+  }
+  // Update ond user on the server (email, pass, etc)
+  updateOneUser(user): Observable<User> {
+    console.log(user)
+    return this.apiService
+    .put('/userUpdate', { user })
     .pipe(map(data => {
       // Update the currentUser observable
       this.currentUserSubject.next(data.user);

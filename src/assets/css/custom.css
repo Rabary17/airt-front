@@ -67,3 +67,9 @@ fieldset > label {
 .table td, .table th {
     padding: .10rem;
 }
+
+.user-list-image,
+.client-list-image,
+.ticket-list-image{
+    width: 30px;
+}

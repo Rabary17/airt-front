@@ -8,7 +8,8 @@ import { ListUserComponent } from './list/list-user.component'
 import { UserMenuComponent } from '../list-user/user-menu/user-menu.component'
 import { UserComponent } from '../list-user/user.component'
 import { NgxSmartModalModule } from 'ngx-smart-modal';
-import { ImportUserComponent } from '../list-user/import-user/import-user.component'
+import { ImportUserComponent } from '../list-user/import-user/import-user.component';
+import { EditUserComponent } from '../list-user/edit-user/edit-user.component'
 
 
 import { ReactiveFormsModule  } from '@angular/forms';
@@ -21,7 +22,7 @@ import { ReactiveFormsModule  } from '@angular/forms';
     ReactiveFormsModule,
         NgxSmartModalModule.forRoot()
   ],
-  declarations: [AddUserComponent, ListUserComponent, UserMenuComponent, UserComponent, ImportUserComponent]
+  declarations: [AddUserComponent, ListUserComponent, UserMenuComponent, UserComponent, ImportUserComponent, EditUserComponent]
 })
 
 export class UserModule { }

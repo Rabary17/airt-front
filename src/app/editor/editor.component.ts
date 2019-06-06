@@ -28,7 +28,7 @@ export class EditorComponent implements OnInit {
   clientForm: FormGroup;
   formAddClient:boolean =  false;
   keyword = 'name';
-  keywordTech = 'username'
+  keywordTech = 'username';
   currentUser;
   currentClient;
 

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit, Output} from '@angular/core';
 import { UserService } from '../../core/services';
 import { User } from '../../core/models/user.model';
 import { NgxSmartModalService } from 'ngx-smart-modal';
@@ -10,6 +10,7 @@ import { NgxSmartModalService } from 'ngx-smart-modal';
 export class UserComponent implements OnInit {
 
   Users: Array<User>;
+  @Output() user: User;
 
   constructor(
     private userService: UserService,
@@ -20,4 +21,14 @@ export class UserComponent implements OnInit {
     this.userService.getAllUser().subscribe(res => this.Users = res.user);
   }
 
+  edit(user) {
+    this.userService.getUser(user.id).subscribe(res => {
+      console.log('user to modify', res)
+      this.modalService.setModalData(res, 'editUserModal');
+    })
+  }
+
+  removeData(){
+    this.modalService.resetModalData('editUserModal');
+  }
 }

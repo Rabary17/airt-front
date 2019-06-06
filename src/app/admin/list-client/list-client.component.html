@@ -8,6 +8,7 @@
   <table class="table table-striped">
     <thead>
       <tr>
+        <th></th>
         <th>Nom</th>
         <th>Nombre de ticket(s) traité(s) <span class="badge  badge-blue">{{ termine }}</span></th>
         <th>Nombre de ticket(s) restant(s) <span class="badge  badge-blue">{{ restant }}</span></th>
@@ -16,6 +17,7 @@
     </thead>
     <tbody>
       <tr *ngFor="let client of clients">
+        <td><img class="client-list-image" [src]="client.image || 'http://localhost:4200/assets/avatar.jpg'" alt="user-image"/></td>
         <td>{{client.name}}</td>
         <td>{{client.TicTer}}</td>
         <td>{{client.TicEnc}}</td>
