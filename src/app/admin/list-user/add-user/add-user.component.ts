@@ -43,11 +43,11 @@ export class AddUserComponent implements OnInit {
 
   submitForm(){
     this.userService
-    .addTech(this.authType, this.addUserForm.value)
+    .addUser(this.authType, this.addUserForm.value)
     .subscribe(
       data => {
         this.modalService.getModal('addUserModal').close();
-        this.router.navigateByUrl('')
+        this.userService.userListChanged.next(data);
       },
       err => {
         this.isSubmitting = false;

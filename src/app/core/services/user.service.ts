@@ -72,6 +72,15 @@ export class UserService {
     ));
   }
 
+  addUser(type, credentials): Observable<User> {
+    return this.apiService.post('/users', {user: credentials})
+      .pipe(map(
+      data => {
+        return data;
+      }
+    ));
+  }
+
   getUser(id): Observable<User> {
     return this.apiService.get('/user/'+ id)
       .pipe(map(
@@ -99,6 +108,8 @@ export class UserService {
       }
     ));
   }
+
+
 
   getCurrentUser(): User {
     return this.currentUserSubject.value;
