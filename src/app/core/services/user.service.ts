@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable ,  BehaviorSubject ,  ReplaySubject } from 'rxjs';
+import * as Rx from 'rxjs';
 
 import { ApiService } from './api.service';
 import { JwtService } from './jwt.service';
@@ -12,6 +13,7 @@ import { map ,  distinctUntilChanged } from 'rxjs/operators';
 export class UserService {
   private currentUserSubject = new BehaviorSubject<User>({} as User);
   public currentUser = this.currentUserSubject.asObservable().pipe(distinctUntilChanged());
+  public userListChanged = new BehaviorSubject<User>({} as User);
 
   private isAuthenticatedSubject = new ReplaySubject<boolean>(1);
   public isAuthenticated = this.isAuthenticatedSubject.asObservable();
@@ -20,8 +22,11 @@ export class UserService {
     private apiService: ApiService,
     private http: HttpClient,
     private jwtService: JwtService
-  ) {}
+  ) {
 
+  }
+
+  
   // Verify JWT in localstorage with server & load user's info.
   // This runs once on application startup.
   populate() {
@@ -107,6 +112,7 @@ export class UserService {
       }
     ));
   }
+
   // Update the user on the server (email, pass, etc)
   update(user): Observable<User> {
     return this.apiService
@@ -138,6 +144,7 @@ export class UserService {
         }
       ));
     }
+
       // check email user
       postNewPassword(data) {
         return this.apiService.post('/reset/token', {data: data})
@@ -147,4 +154,5 @@ export class UserService {
           }
         ));
       }
+
 }

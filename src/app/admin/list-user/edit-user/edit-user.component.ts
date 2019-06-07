@@ -13,7 +13,6 @@ import { NgxSmartModalService } from 'ngx-smart-modal';
 export class EditUserComponent implements OnInit {
 
   @Input() user;
-  @Output() userUpdated;
   authType: String = '';
   title: String = '';
   isSubmitting = false;
@@ -44,7 +43,7 @@ export class EditUserComponent implements OnInit {
   ngOnInit() {
     this.editUserForm.patchValue(this.user.user);
     this.editUserForm.controls['id'].setValue(this.user.user.id);
-    console.log('this.user.user.id', this.user.id)
+    console.log('this.user.user.id', this.user.user.id)
     this.userService.currentUser.subscribe(
       (userData) => {
         this.currentUser = userData;
@@ -56,7 +55,7 @@ export class EditUserComponent implements OnInit {
       this.updateUser(this.editUserForm.value);
       console.log(this.UserToUpdate)
       this.userService.updateOneUser(this.UserToUpdate).subscribe(res => {
-          this.userUpdated = res;
+          this.userService.userListChanged.next(res);
           this.modalService.getModal('editUserModal').close();
           this.router.navigateByUrl('/admin/user')
       })

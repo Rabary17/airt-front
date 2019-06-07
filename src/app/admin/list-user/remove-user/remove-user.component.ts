@@ -4,6 +4,7 @@ import { User } from '../../../core/models/user.model';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgxSmartModalService } from 'ngx-smart-modal';
+import { ObserveOnOperator } from 'rxjs/internal/operators/observeOn';
 
 @Component({
   selector: 'app-remove-user',
@@ -13,6 +14,7 @@ import { NgxSmartModalService } from 'ngx-smart-modal';
 export class RemoveUserComponent implements OnInit {
 
   @Input() user;
+  @Output() userRemoved;
   authType: String = '';
   title: String = '';
   isSubmitting = false;
@@ -30,8 +32,9 @@ export class RemoveUserComponent implements OnInit {
   }
 
   remove(user){
-    console.log(user)
     this.userService.deleteUser(user.id).subscribe(res => {
+      user['tag'] = 'delete';
+      this.userService.userListChanged.next(user);
       this.modalService.getModal('removeUserModal').close();
     })
   }
