@@ -73,3 +73,13 @@ fieldset > label {
 .ticket-list-image{
     width: 30px;
 }
+
+.center{
+    text-align: center
+}
+
+.user-info-img{
+    width: 100px;
+    border-radius:50%;
+    height: 100px;
+}

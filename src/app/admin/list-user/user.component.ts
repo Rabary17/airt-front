@@ -28,7 +28,17 @@ export class UserComponent implements OnInit {
     })
   }
 
-  removeData(){
+  delete(user){
+    this.userService.getUser(user.id).subscribe(res => {
+      this.modalService.setModalData(res, 'removeUserModal');
+    })
+  }
+
+  removeEditData(){
     this.modalService.resetModalData('editUserModal');
+  }
+  
+  removeDeleteData(){
+    this.modalService.resetModalData('removeUserModal');
   }
 }

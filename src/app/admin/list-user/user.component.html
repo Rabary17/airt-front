@@ -25,7 +25,9 @@
               <td>{{user.role || '-'}}</td>
               <td class="center">2</td>
               <td class="center"><input type="checkbox"></td>
-              <td class="user-tools center"><i (click)="edit(user); modalService.getModal('editUserModal').open()" class="fa fa-pencil-alt"></i><i (click)="delete(user)" class="fa fa-trash-alt"></i></td>
+              <td class="user-tools center">
+                <i (click)="edit(user); modalService.getModal('editUserModal').open()" class="fa fa-pencil-alt"></i>
+                <i (click)="delete(user); modalService.getModal('removeUserModal').open()" class="fa fa-trash-alt"></i></td>
             </tr>
           </tbody>
         </table>
@@ -39,10 +41,16 @@
             <app-import-user></app-import-user>
       </ngx-smart-modal>
 
-      <ngx-smart-modal #editUserModal identifier="editUserModal" (onAnyCloseEventFinished)="removeData()">
+      <ngx-smart-modal #editUserModal identifier="editUserModal" (onAnyCloseEventFinished)="removeEditData()">
           <div *ngIf="editUserModal.hasData()">
-              <pre>{{ editUserModal.getData() | json }}</pre>
+              <!-- <pre>{{ editUserModal.getData() | json }}</pre> -->
               <app-edit-user [user]="editUserModal.getData()"></app-edit-user>
             </div>
-          
+      </ngx-smart-modal>
+
+      <ngx-smart-modal #removeUserModal identifier="removeUserModal" (onAnyCloseEventFinished)="removeDeleteData()">
+          <div *ngIf="removeUserModal.hasData()">
+              <!-- <pre>{{ removeUserModal.getData() | json }}</pre> -->
+              <app-remove-user [user]="removeUserModal.getData()"></app-remove-user>
+          </div>
       </ngx-smart-modal>

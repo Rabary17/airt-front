@@ -76,6 +76,15 @@ export class UserService {
     ));
   }
 
+  deleteUser(id): Observable<User> {
+    return this.apiService.delete('/user/'+ id)
+      .pipe(map(
+      data => {
+        return data;
+      }
+    ));
+  }
+
   addTech(type, credentials): Observable<User> {
     const route = (type === 'login') ? '/login' : '';
     return this.apiService.post('/users' + route, {user: credentials})

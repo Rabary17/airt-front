@@ -1,0 +1,14 @@
+<div class="center">
+  <h6 class="edit-user-modal-title"><i class="fa fa-info-circle"></i> SUPPRIMER UN UTILISATEUR</h6>
+  <p class="center" style="font-size: 10px">êtes-vous sûr de vouloir supprimer</p>
+  <div class="user-info">
+      <img class="user-info-img" [src]="user.user.image" alt="img-user" /><br>
+      {{user.user.username}}<br>
+      {{user.user.email}}
+  </div><br>
+  <fieldset>
+    <button class="btn btn-lg btn-primary" type="submit" (click)="remove(user.user)">
+            Supprimer
+    </button>
+  </fieldset>
+</div>

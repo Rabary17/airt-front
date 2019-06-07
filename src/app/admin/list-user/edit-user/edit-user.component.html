@@ -1,16 +1,29 @@
-EDIT USER COMPONENT WORKS!
+<h6 class="edit-user-modal-title"><i class="fa fa-user"></i> MODIFIER L'UTILISATEUR</h6>
 <form [formGroup]="editUserForm" (ngSubmit)="submitForm()">
         <fieldset [disabled]="isSubmitting">
           <fieldset class="form-group">
+            <label for="username">Username</label>
             <input
               formControlName="username"
               placeholder="Nom d'utilisateur"
               class="form-control form-control-lg"
+              id="username"
               type="text"
               />
           </fieldset>
           <fieldset class="form-group">
+                <label for="role">Email</label>
+                <input
+                  formControlName="email"
+                  placeholder="Email"
+                  class="form-control form-control-lg"
+                  type="text"
+                  id="email" />
+          </fieldset>
+          <fieldset class="form-group">
+            <label for="role">Role</label>
             <select formControlName="role" 
+            id="role"
             style="width: 100%;
             border: none;
             height: 50px;
@@ -24,14 +37,8 @@ EDIT USER COMPONENT WORKS!
               <option value="Noc">Noc</option>
               <option value="Tech" default="default">Technicien</option>
             </select>
-        </fieldset>
-          <fieldset class="form-group">
-            <input
-              formControlName="email"
-              placeholder="Email"
-              class="form-control form-control-lg"
-              type="text" />
-          </fieldset>
+        </fieldset><br>
+
           <button class="btn btn-lg btn-primary pull-xs-right" type="submit" [disabled]="!editUserForm.valid">
             mettre à jour
           </button>
