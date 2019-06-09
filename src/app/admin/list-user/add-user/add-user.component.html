@@ -1,15 +1,19 @@
 <form [formGroup]="addUserForm" (ngSubmit)="submitForm()">
         <fieldset [disabled]="isSubmitting">
           <fieldset class="form-group">
+            <label for="username">Username</label>
             <input
               formControlName="username"
               placeholder="Nom d'utilisateur"
               class="form-control form-control-lg"
               type="text"
+              id="username"
               />
           </fieldset>
           <fieldset class="form-group">
-            <select formControlName="role" 
+            <label for="role">Role</label>
+            <select formControlName="role"
+            id="role" 
             style="width: 100%;
             border: none;
             height: 50px;
@@ -25,19 +29,23 @@
             </select>
         </fieldset>
           <fieldset class="form-group">
+            <label for="email">Email</label>
             <input
               formControlName="email"
               placeholder="Email"
               class="form-control form-control-lg"
-              type="text" />
+              type="text"
+              id="email" />
           </fieldset>
           <fieldset class="form-group">
+            <label for="password">Password</label>
             <input
               formControlName="password"
               placeholder="Mot de passe"
               class="form-control form-control-lg"
-              type="password" />
-          </fieldset>
+              type="password"
+              id="password" />
+          </fieldset><br>
           <button class="btn btn-lg btn-primary pull-xs-right" type="submit">
             Ajouter
           </button>

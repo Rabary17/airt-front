@@ -36,6 +36,13 @@ total: number;
       this.total = res.length;
     });
 
+    this.clientService.clientListChanged.subscribe(res => {
+      return this.clientService.getAllClient().subscribe(res => {
+        this.clients = res.clients
+        console.log(res.clients)
+      })
+    })
+
     this.clientService.getAllClient().subscribe(res => {
       const Cli = [];
       res.clients.map( cl => {

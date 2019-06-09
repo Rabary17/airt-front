@@ -1,1 +1,37 @@
-ADD CLIENT WORKS!!!!
+    <form [formGroup]="addClientForm" (ngSubmit)="submitForm()">
+        <fieldset [disabled]="isSubmitting">
+            <fieldset class="form-group">
+                <label for="name">Nom</label>
+                <input
+                formControlName="name"
+                placeholder="Nom du client"
+                class="form-control form-control-lg"
+                type="text"
+                id="name"
+                />
+            </fieldset>
+            <fieldset class="form-group">
+                <label for="email">Email</label>
+                <input
+                    formControlName="email"
+                    placeholder="Email"
+                    class="form-control form-control-lg"
+                    type="text"
+                    id="email" />
+            </fieldset>
+            <fieldset class="form-group">
+                <label for="image">Image</label>
+                <input
+                formControlName="image"
+                class="form-control form-control-lg"
+                type="file"
+                (change)="onFileChange($event)"
+                id="image" />
+            </fieldset>
+            <br>
+
+            <button class="btn btn-lg btn-primary pull-xs-right" type="submit">
+                Ajouter
+            </button>
+        </fieldset>
+    </form>

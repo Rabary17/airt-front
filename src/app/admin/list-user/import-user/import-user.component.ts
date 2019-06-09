@@ -2,8 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { UserService } from '../../../core/services/user.service';
 import { User } from '../../../core/models/user.model';
 import { FormBuilder, FormGroup, FormControl, Validators  } from '@angular/forms';
-import { ImportService } from '../../../core/services/import.service'
-import { FileService } from '../../../core/services/file.service'
+import { ImportService } from '../../../core/services/import.service';
+import { FileService } from '../../../core/services/file.service';
+import { NgxSmartModalService } from 'ngx-smart-modal';
 
 @Component({
   selector: 'app-import-user',
@@ -21,7 +22,9 @@ export class ImportUserComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private importService: ImportService,
-    private fileService: FileService
+    private fileService: FileService,
+    private modalService: NgxSmartModalService,
+    private userService: UserService
   ) {
     this.importUserForm = this.fb.group({
       data: ['', [Validators.required, Validators.minLength(2)]],  
@@ -57,6 +60,8 @@ export class ImportUserComponent implements OnInit {
     }
     // this.fileService.upload(this.fileName, this.base64file)
     this.importService.importUserCsvFile(body).subscribe(res => {
+      this.modalService.close('importUserModal');
+      this.userService.userListChanged.next(res)
     })
   }
 }
