@@ -64,6 +64,11 @@ export class TicketsService {
     }
   }
 
+  archiveTicket(slug){
+    return this.apiService.get('/tickets/archive/' + slug)
+      .pipe(map(data => data.article));
+  }
+
   favorite(slug): Observable<Ticket> {
     return this.apiService.post('/tickets/' + slug + '/favorite');
   }

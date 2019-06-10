@@ -8,7 +8,8 @@ import { ImportTicketComponent } from '../list-ticket/import-ticket/import-ticke
 import { ListTicketComponent } from '../list-ticket/list-ticket.component';
 import {NgSelectModule, NgOption} from '@ng-select/ng-select';
 import {AutocompleteLibModule} from 'angular-ng-autocomplete';
-import { EditTicketComponent } from '../list-ticket/edit-ticket/edit-ticket.component'
+import { EditTicketComponent } from '../list-ticket/edit-ticket/edit-ticket.component';
+import { ArchiveTicketComponent } from '../list-ticket/archive-ticket/archive-ticket.component'
 
 import { ReactiveFormsModule  } from '@angular/forms';
 
@@ -21,7 +22,7 @@ import { ReactiveFormsModule  } from '@angular/forms';
     AutocompleteLibModule,
     NgxSmartModalModule.forRoot()
   ],
-  declarations: [AddTicketComponent, ImportTicketComponent, ListTicketComponent, EditTicketComponent]
+  declarations: [AddTicketComponent, ImportTicketComponent, ListTicketComponent, EditTicketComponent, ArchiveTicketComponent]
 })
 
 export class TicketModule { }

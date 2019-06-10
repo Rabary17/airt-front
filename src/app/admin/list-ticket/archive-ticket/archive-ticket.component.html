@@ -1,0 +1,21 @@
+<div class="center">
+        <h6 class="edit-user-modal-title"><i class="fa fa-info-circle"></i> ARCHIVER UN TICKET</h6>
+        <p class="center" style="font-size: 10px">êtes-vous sûr de vouloir d'archiver</p>
+        <div class="user-info">
+            <!-- <img class="user-info-img" [src]="client.client.image" alt="img-user" /><br> -->
+            <h6 class="edit-user-modal-title">{{ticket.slug}}</h6>
+            <span style="font-style: italic;font-size: 25px;">{{ticket.title}}</span><br>
+            <span style="font-size: 15px;">{{ticket.status}}</span><br>
+            <!-- <div style="align-items: center;justify-content: space-evenly;">
+                    {{ticket.technician.username}}
+                    <img class="user-info-img" [src]="ticket.technician.image" alt="img-user" />
+            </div>
+            {{ticket.client.name}}<br> -->
+
+        </div><br>
+        <fieldset>
+          <button class="btn btn-lg btn-primary" type="submit" (click)="archiveTicket(ticket.slug)">
+                  Archiver
+          </button>
+        </fieldset>
+      </div>
