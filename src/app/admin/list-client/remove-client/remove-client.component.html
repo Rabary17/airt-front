@@ -1,0 +1,14 @@
+<div class="center">
+        <h6 class="edit-user-modal-title"><i class="fa fa-info-circle"></i> SUPPRIMER UN CLIENT</h6>
+        <p class="center" style="font-size: 10px">êtes-vous sûr de vouloir supprimer</p>
+        <div class="user-info">
+            <img class="user-info-img" [src]="client.client.image" alt="img-user" /><br>
+            {{client.client.name}}<br>
+            {{client.client.email}}
+        </div><br>
+        <fieldset>
+          <button class="btn btn-lg btn-primary" type="submit" (click)="remove(client.client)">
+                  Supprimer
+          </button>
+        </fieldset>
+      </div>

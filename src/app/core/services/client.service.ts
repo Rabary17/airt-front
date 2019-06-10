@@ -27,6 +27,33 @@ return this.apiService.post('/client/add', client)
   ));
 }
 
+getClient (id) {
+  return this.apiService.get('/client/' + id)
+    .pipe(map(
+      data => {
+        return data;
+      }
+    ));
+  }
+
+  updateClient (id, body) {
+    return this.apiService.put('/client/' + id, body)
+      .pipe(map(
+        data => {
+          return data;
+        }
+      ));
+    }
+
+deleteClient (id) {
+  return this.apiService.delete('/client/' + id)
+    .pipe(map(
+      data => {
+        return data;
+      }
+    ));
+  }
+
 getAllClient () {
     return this.apiService.get('/client')
     .pipe(map(

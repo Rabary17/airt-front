@@ -1,7 +1,8 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { ClientService } from '../../core/services/client.service';
 import { TicketsService } from '../../core';
 import { NgxSmartModalService } from 'ngx-smart-modal';
+import { Client } from '../../core';
 
 @Component({
   selector: 'app-list-client',
@@ -71,4 +72,25 @@ total: number;
     // this.clientService.getAllClient().subscribe(res => console.log(res.clients));
   }
 
+  
+  edit(client) {
+    this.clientService.getClient(client._id).subscribe(res => {
+      console.log('resssssssssssssss', res)
+      this.modalService.setModalData(res, 'editClientModal');
+    })
+  }
+
+  delete(client){
+    this.clientService.getClient(client._id).subscribe(res => {
+      this.modalService.setModalData(res, 'removeClientModal');
+    })
+  }
+
+  removeEditData(){
+    this.modalService.resetModalData('editClientModal');
+  }
+  
+  removeDeleteData(){
+    this.modalService.resetModalData('removeClientModal');
+  }
 }

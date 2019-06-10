@@ -26,8 +26,8 @@
         <td>{{client.Tickets.length}}</td>
         <td class="center"><input type="checkbox"></td>
         <td class="user-tools center">
-          <i (click)="edit(user); modalService.getModal('editUserModal').open()" class="fa fa-pencil-alt"></i>
-          <i (click)="delete(user); modalService.getModal('removeUserModal').open()" class="fa fa-trash-alt"></i>
+          <i (click)="edit(client); modalService.getModal('editClientModal').open()" class="fa fa-pencil-alt"></i>
+          <i (click)="delete(client); modalService.getModal('removeClientModal').open()" class="fa fa-trash-alt"></i>
         </td>
       </tr>
     </tbody>
@@ -41,3 +41,18 @@
 <ngx-smart-modal #importClientModal identifier="importClientModal">
   <app-import-client></app-import-client>
 </ngx-smart-modal>
+
+<ngx-smart-modal #editClientModal identifier="editClientModal" (onAnyCloseEventFinished)="removeEditData()">
+  <div *ngIf="editClientModal.hasData()">
+    <!-- <pre>{{ editClientModal.getData() | json }}</pre> -->
+    <app-edit-client [client]="editClientModal.getData()"></app-edit-client>
+  </div>
+</ngx-smart-modal>
+
+<ngx-smart-modal #removeClientModal identifier="removeClientModal" (onAnyCloseEventFinished)="removeDeleteData()">
+    <div *ngIf="removeClientModal.hasData()">
+      <!-- <pre>{{ removeClientModal.getData() | json }}</pre> -->
+      <app-remove-client [client]="removeClientModal.getData()"></app-remove-client>
+    </div>
+  </ngx-smart-modal>
+  

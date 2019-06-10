@@ -1,0 +1,38 @@
+<h6 class="edit-user-modal-title"><i class="fa fa-user"></i> MODIFIER LE CLIENT</h6>
+<form [formGroup]="editClientForm" (ngSubmit)="submitForm()">
+    <div style="display: flex">
+        <div  *ngIf="prev" innerHTML="{{preview}}"></div>
+            <img style="width: 100px;height: 100px;margin-right: 20px;" [src]="this.client.client.image" alt="client-image"/>
+        <!-- </div> -->
+        <fieldset class="form-group">
+                <label for="image">Modifier l'image</label>
+                <input type="file"  class="form-control form-control-lg" formControlName="image"  (change)="onFileChange($event)"/>
+        </fieldset>
+    </div>
+        <fieldset [disabled]="isSubmitting">
+          <fieldset class="form-group">
+            <label for="name">name</label>
+            <input
+              formControlName="name"
+              placeholder="Nom d'utilisateur"
+              class="form-control form-control-lg"
+              id="name"
+              type="text"
+              />
+          </fieldset>
+          <fieldset class="form-group">
+                <label for="role">Email</label>
+                <input
+                  formControlName="email"
+                  placeholder="Email"
+                  class="form-control form-control-lg"
+                  type="text"
+                  id="email" />
+          </fieldset>
+          <br>
+
+          <button class="btn btn-lg btn-primary pull-xs-right" type="submit" [disabled]="!editClientForm.valid">
+            mettre à jour
+          </button>
+        </fieldset>
+      </form>
