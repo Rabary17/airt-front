@@ -1,13 +1,16 @@
 import { Injectable } from '@angular/core';
 import { HttpParams } from '@angular/common/http';
-import { Observable } from 'rxjs';
-
+import { Observable ,  BehaviorSubject ,  ReplaySubject } from 'rxjs';
 import { ApiService } from './api.service';
 import { Ticket, ArticleListConfig } from '../models';
 import { map } from 'rxjs/operators';
+import { Client } from '../../core'
 
 @Injectable()
 export class TicketsService {
+
+  public ticketListChanged = new BehaviorSubject<Ticket>({} as Ticket);
+
   constructor (
     private apiService: ApiService
   ) {}
@@ -30,6 +33,11 @@ export class TicketsService {
 
   get(slug): Observable<Ticket> {
     return this.apiService.get('/tickets/' + slug)
+      .pipe(map(data => data.article));
+  }
+// return one ticket
+  getTicket(id): Observable<Ticket> {
+    return this.apiService.get('/tickets/' + id)
       .pipe(map(data => data.article));
   }
 

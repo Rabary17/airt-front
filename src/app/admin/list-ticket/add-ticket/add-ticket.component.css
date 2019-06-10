@@ -1,0 +1,7 @@
+.ng-autocomplete {
+    width: auto;
+}
+
+.autocomplete-container .suggestions-container {
+    z-index: 9;
+}

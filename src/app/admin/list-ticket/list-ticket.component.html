@@ -12,6 +12,7 @@
         <th>Client</th>
         <th>Description</th>
         <th>Utilisateur affécté</th>
+        <th>Outils</th>
       </tr>
     </thead>
     <tbody>
@@ -20,11 +21,14 @@
         <td>{{ticket.client.name}}</td>
         <td>{{ticket.title}}</td>
         <td>{{ticket.technician.username}}</td>
+        <td class="user-tools center">
+            <i (click)="edit(ticket); modalService.getModal('editTicketModal').open()" class="fa fa-pencil-alt"></i>
+            <i (click)="archive(client); modalService.getModal('archiveModal').open()" class="fa fa-file-archive"></i>
+          </td>
       </tr>
     </tbody>
   </table>
 </div>
-
 
 <ngx-smart-modal #addTicketModal identifier="addTicketModal">
   <app-add-ticket></app-add-ticket>
@@ -33,3 +37,11 @@
 <ngx-smart-modal #importTicketModal identifier="importTicketModal">
   <app-import-ticket></app-import-ticket>
 </ngx-smart-modal>
+
+<ngx-smart-modal #editTicketModal identifier="editTicketModal" (onAnyCloseEventFinished)="removeEditData()">
+    <div *ngIf="editTicketModal.hasData()">
+      <!-- <pre>{{ editTicketModal.getData() | json }}</pre> -->
+      <app-edit-ticket [ticket]="editTicketModal.getData()"></app-edit-ticket>
+    </div>
+</ngx-smart-modal>
+  

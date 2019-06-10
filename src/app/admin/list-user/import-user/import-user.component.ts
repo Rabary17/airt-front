@@ -13,7 +13,7 @@ import { NgxSmartModalService } from 'ngx-smart-modal';
 })
 export class ImportUserComponent implements OnInit {
 
-    importUserForm: FormGroup;
+  importUserForm: FormGroup;
   isSubmitting = false;
   private fileName;
   private base64file;

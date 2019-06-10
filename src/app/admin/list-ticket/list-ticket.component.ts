@@ -33,6 +33,26 @@ ngOnInit() {
   const array = [];
   // this.ticketService.getAll().subscribe(res => this.tickets = res);
   this.ticketService.getAll().subscribe(res => this.tickets = res);
+  this.ticketService.ticketListChanged.subscribe(res => {
+    this.ticketService.getAll().subscribe(res => this.tickets = res);
+  })
+}
+
+edit(ticket) {
+  console.log(ticket.slug)
+  this.ticketService.getTicket(ticket.slug).subscribe(res => {
+    this.modalService.setModalData(res, 'editTicketModal');
+  })
+}
+
+delete(ticket){
+  this.ticketService.getTicket(ticket._id).subscribe(res => {
+    this.modalService.setModalData(res, 'archiveTicketModal');
+  })
+}
+
+removeEditData(){
+  this.modalService.resetModalData('editTicketModal');
 }
 
 }

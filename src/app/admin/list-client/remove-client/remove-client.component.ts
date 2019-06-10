@@ -5,6 +5,7 @@ import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms'
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgxSmartModalService } from 'ngx-smart-modal';
 import { ObserveOnOperator } from 'rxjs/internal/operators/observeOn';
+import { ClientService } from '../../../core'
 
 @Component({
   selector: 'app-remove-client',
@@ -22,7 +23,7 @@ export class RemoveClientComponent implements OnInit {
   currentUser: User;
 
   constructor(
-    private userService: UserService,
+    private clientService: ClientService,
     private router: Router,
     private modalService: NgxSmartModalService
   ) {
@@ -31,11 +32,10 @@ export class RemoveClientComponent implements OnInit {
   ngOnInit() {
   }
 
-  remove(user){
-    this.userService.deleteUser(user.id).subscribe(res => {
-      user['tag'] = 'delete';
-      this.userService.userListChanged.next(user);
-      this.modalService.getModal('removeUserModal').close();
+  remove(client){
+    this.clientService.deleteClient(client.id).subscribe(res => {
+      this.clientService.clientListChanged.next(res);
+      this.modalService.getModal('removeClientModal').close();
     })
   }
 

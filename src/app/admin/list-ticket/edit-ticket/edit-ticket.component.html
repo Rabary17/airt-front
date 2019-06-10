@@ -1,4 +1,4 @@
-    <form [formGroup]="addTicketForm" autocomplete="off">
+<form [formGroup]="editTicketForm" autocomplete="off">
         <fieldset [disabled]="isSubmitting">
         <fieldset class="form-group">
             <label for="client">Client</label>
@@ -99,7 +99,7 @@
                     [itemTemplate]="itemTemplateTech"
                     [notFoundTemplate]="notFoundTemplateTech"
                     formControlName="technician"
-                    placeHolder="Nom du technicien">                                 
+                    placeHolder="Nom du technicien">    
                 </ng-autocomplete>
                 <ng-template #itemTemplateTech let-item>
                     <a [innerHTML]="item.username"></a>
@@ -145,7 +145,7 @@
                 (keyup.enter)="addTag()" />
 
             <div class="tag-list">
-                <span *ngFor="let tag of article.tagList"
+                <span *ngFor="let tag of ticket.tagList"
                 class="tag-default tag-pill">
                 <i class="fa fa-times-circle" (click)="removeTag(tag)"></i>
                 {{ tag }}

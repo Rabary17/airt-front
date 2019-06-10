@@ -85,3 +85,11 @@ fieldset > label {
     border-radius:50%;
     height: 100px;
 }
+
+.autocomplete-container .suggestions-container {
+    z-index: 9;
+}
+
+.ng-autocomplete {
+    width: auto;
+}
