@@ -1,0 +1,36 @@
+<div class="container">
+    <div class="user-menu">
+        <h2>Liste des tickets archivé</h2>
+    </div>
+    <p></p>            
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Référence</th>
+          <th>Client</th>
+          <th>Description</th>
+          <th>Utilisateur affécté</th>
+          <th class="user-tools center">Outils</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let ticket of tickets">
+          <td>{{ticket.slug}}</td>
+          <td>{{ticket.client.name}}</td>
+          <td>{{ticket.title}}</td>
+          <td>{{ticket.technician.username}}</td>
+          <td class="user-tools center">
+              <i (click)="unarchive(ticket); modalService.getModal('unarchiveTicketModal').open()" class="fa fa-undo"></i>
+            </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <ngx-smart-modal #unarchiveTicketModal identifier="unarchiveTicketModal" (onAnyCloseEventFinished)="removeUnarchiveData()">
+      <div *ngIf="unarchiveTicketModal.hasData()">
+        <!-- <pre>{{ unarchiveTicketModal.getData() | json }}</pre> -->
+        <app-unarchive [ticket]="unarchiveTicketModal.getData()"></app-unarchive>
+      </div>
+  </ngx-smart-modal>
+    

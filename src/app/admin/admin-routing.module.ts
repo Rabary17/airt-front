@@ -8,7 +8,7 @@ import { ConfigurationComponent } from './configuration/configuration.component'
 import { AddUserComponent } from './list-user/add-user/add-user.component';
 import { UserModule } from './list-user/user.module';
 import { UserComponent } from './list-user/user.component'
-
+import { ArchiveComponent } from './archive/archive.component'
 const adminRoutes: Routes = [
     {
       path: '',
@@ -31,6 +31,11 @@ const adminRoutes: Routes = [
         {
           path: 'configuration',
           component: ConfigurationComponent,
+          resolve: {}
+        },
+        {
+          path: 'archive',
+          component: ArchiveComponent,
           resolve: {}
         }
       ]

@@ -8,8 +8,10 @@ import { AdminRoutingModule } from './admin-routing.module';
 import { ConfigurationComponent } from './configuration/configuration.component';
 import { ReactiveFormsModule  } from '@angular/forms';
 import { TicketModule } from '../admin/list-ticket/ticket.module';
-import { ClientModule } from '../admin/list-client/client.module'
-
+import { ClientModule } from '../admin/list-client/client.module';
+import { ArchiveComponent } from '../admin/archive/archive.component';
+import { UnarchiveComponent } from '../admin/archive/unarchive.component';
+import { NgxSmartModalModule } from 'ngx-smart-modal';
 @NgModule({
   imports: [
     CommonModule,
@@ -17,8 +19,9 @@ import { ClientModule } from '../admin/list-client/client.module'
     AdminRoutingModule,
     ReactiveFormsModule,
     TicketModule,
-    ClientModule
+    ClientModule,
+    NgxSmartModalModule.forRoot()
   ],
-  declarations: [AdminComponent, AdminMenuComponent, ConfigurationComponent]
+  declarations: [AdminComponent, AdminMenuComponent, ConfigurationComponent, ArchiveComponent, UnarchiveComponent]
 })
 export class AdminModule { }

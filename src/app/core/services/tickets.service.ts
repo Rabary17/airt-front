@@ -46,6 +46,10 @@ export class TicketsService {
     .pipe(map(data => data.articles));
   }
 
+  getArchived(): Observable<any> {
+    return this.apiService.get('/tickets/archived/all')
+    .pipe(map(data => data.articles));
+  }
 
   destroy(slug) {
     return this.apiService.delete('/tickets/' + slug);
@@ -66,6 +70,11 @@ export class TicketsService {
 
   archiveTicket(slug){
     return this.apiService.get('/tickets/archive/' + slug)
+      .pipe(map(data => data.article));
+  }
+
+  unarchiveTicket(slug){
+    return this.apiService.get('/tickets/unarchive/' + slug)
       .pipe(map(data => data.article));
   }
 
