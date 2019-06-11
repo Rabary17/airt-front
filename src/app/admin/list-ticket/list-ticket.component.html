@@ -30,7 +30,7 @@
   </table>
 </div>
 
-<ngx-smart-modal #addTicketModal identifier="addTicketModal">
+<ngx-smart-modal #addTicketModal identifier="addTicketModal" (onAnyCloseEventFinished)="removeAddData()">
   <app-add-ticket></app-add-ticket>
 </ngx-smart-modal>
 

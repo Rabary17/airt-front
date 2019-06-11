@@ -56,6 +56,10 @@ export class ListTicketComponent implements OnInit {
     this.modalService.resetModalData('editTicketModal');
   }
 
+  removeAddData(){
+    this.modalService.resetModalData('addTicketModal');
+  }
+
   removeArchiveData(){
     this.modalService.resetModalData('archiveTicketModal');
   }

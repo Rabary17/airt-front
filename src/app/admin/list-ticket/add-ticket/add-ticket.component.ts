@@ -78,14 +78,13 @@ export class AddTicketComponent implements OnInit {
     this.ticketService.save(this.addTicketForm.value).subscribe(res => {
       this.ticketService.ticketListChanged.next(res);
       this.modalService.close('addTicketModal');
+      this.addTicketForm.reset('');
     })
   }
 
   addTag() {
     // retrieve tag control
     const tag = this.tagField.value;
-    console.log('this.tagField.value', this.tagField.value)
-    console.log('this.article.tagList', this.article)
     // only add tag if it does not exist yet
     if (this.article.tagList.indexOf(tag) < 0) {
       this.article.tagList.push(tag);
@@ -98,7 +97,6 @@ export class AddTicketComponent implements OnInit {
     this.article.tagList = this.article.tagList.filter(tag => tag !== tagName);
   }
 
-  
   // newClient = ``
   selectEvent(item) {
     // do something with selected item
