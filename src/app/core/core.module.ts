@@ -19,7 +19,8 @@ import {
   TechnicienService,
   WebsocketService,
   NotificationService,
-  ImportService
+  ImportService,
+  ConfigurationService
 } from './services';
 
 @NgModule({
@@ -43,7 +44,8 @@ import {
     TechnicienService,
     WebsocketService,
     NotificationService,
-    ImportService
+    ImportService,
+    ConfigurationService
   ],
   declarations: []
 })

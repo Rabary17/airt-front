@@ -2,53 +2,70 @@
 <h5>LOGO</h5>
 <h5>COULEURS</h5>
 <h5>AUTOMAILINGS</h5> -->
-<div class="container">
-    <div class="user-menu">
-        <h2>CONFIGURATION DE L'APPLICATION</h2>
-    </div>
-    <p>avec leur role</p>
-    <table class="table table-striped">
-        <thead>
-        <tr>
-            <th>LOGO</th>
-            <th>COULEURS</th>
-            <th>AUTOMAILINGS</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-            <td>
-                <div class="col-md-6 ">
-                    <fieldset class="form-group">
-                        <label for="technicien">Choisissez le logo de l'application</label>
-                        <div class="ng-autocomplete">
-                            <input class="form-control" type="file" alt="file"/>
-                        </div>
-                    </fieldset>
-                </div>
-            </td>
-            <td>
-                    <div class="col-md-6 ">
+<form [formGroup]="configurationForm" (ngSubmit)="submitForm()">
+    <fieldset [disabled]="isSubmitting">
+        <div class="container">
+            <div class="user-menu">
+                <h2>CONFIGURATION DE L'APPLICATION</h2>
+            </div>
+            <p>avec leur role</p>
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th>LOGO</th>
+                    <th>COULEURS</th>
+                    <th>AUTOMAILINGS</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>
+                        <div class="col-md-6 ">
                             <fieldset class="form-group">
-                                <label for="technicien">Choisissez les deux couleurs principale de l'application</label>
+                                <label for="logo">Choisissez le logo de l'application</label>
                                 <div class="ng-autocomplete">
-                                    <input class="form-control" type="color" alt="file"/>
+                                    <input class="form-control" formControlName="logo" id="logo" type="file" alt="file" (change)="onFileChange($event)"/>
                                 </div>
                             </fieldset>
                         </div>
-            </td>
-            <td>
-                    <div class="col-md-6 ">
-                            <fieldset class="form-group">
-                                <label for="technicien">L'adresse email qui va être en copie de tous les mails envoyé automatiquement</label>
-                                <div class="ng-autocomplete">
-                                    <input class="form-control" type="text" alt="file"/>
+                    </td>
+                    <td>
+                            <div class="col-md-6 ">
+                                    <fieldset class="form-group">
+                                        <label for="color1">Choisissez la couleur principale de l'application</label>
+                                        <div class="ng-autocomplete">
+                                            <input class="form-control" formControlName="couleur1" id="couleur1" type="color" alt="file" (change)="showCouleur($event)"/>
+                                        </div>
+                                    </fieldset>
                                 </div>
-                            </fieldset>
-                        </div>
-            </td>
-        </tr>
-        </tbody>
-    </table>
-</div>
+                    </td>
+                    <td>
+                        <div class="col-md-6 ">
+                                <fieldset class="form-group">
+                                    <label for="color2">Choisissez la couleur secondaire de l'application</label>
+                                    <div class="ng-autocomplete">
+                                        <input class="form-control" formControlName="couleur2" id="couleur2" type="color" alt="file" (change)="showCouleur($event)"/>
+                                    </div>
+                                </fieldset>
+                            </div>
+                    </td>
+                    <td>
+                            <div class="col-md-6 ">
+                                    <fieldset class="form-group">
+                                        <label for="email">L'adresse email qui va être en copie de tous les mails envoyé automatiquement</label>
+                                        <div class="ng-autocomplete">
+                                            <input class="form-control" formControlName="email" id="email" type="text" alt="file"/>
+                                        </div>
+                                    </fieldset>
+                                </div>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <button class="btn btn-lg btn-primary pull-xs-right" type="submit">
+            Ajouter
+        </button>
+    </fieldset>
+</form>
 

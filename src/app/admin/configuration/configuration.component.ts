@@ -2,8 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { UserService } from '../../core/services/user.service';
 import { User } from '../../core/models/user.model';
 import { FormBuilder, FormGroup, FormControl, Validators  } from '@angular/forms';
-import { ImportService } from '../../core/services/import.service'
-import { FileService } from '../../core/services/file.service'
+import { ImportService } from '../../core/services/import.service';
+import { FileService } from '../../core/services/file.service';
+import { environment } from '../../../environments/environment';
+import { ConfigurationService } from '../../core'
 
 @Component({
   selector: 'app-configuration',
@@ -12,31 +14,37 @@ import { FileService } from '../../core/services/file.service'
 })
 export class ConfigurationComponent implements OnInit {
 
-  importForm: FormGroup;
+  configurationForm: FormGroup;
   isSubmitting = false;
   private fileName;
   private base64file;
-  file;
 
   constructor(
     private fb: FormBuilder,
     private importService: ImportService,
-    private fileService: FileService
+    private fileService: FileService,
+    private configurationService: ConfigurationService
   ) {
-    this.importForm = this.fb.group({
-      data: ['', [Validators.required, Validators.minLength(2)]],  
+    this.configurationForm = this.fb.group({
+      logo: '',
+      email: '',
+      couleur1: '',
+      couleur2: '',
     });
    }
 
   ngOnInit() {
   }
 
-   
+  showCouleur(event){
+    console.log(event.target.value)
+  }
   public onFileChange(event) {
     const reader = new FileReader();
  
     if (event.target.files && event.target.files.length) {
       this.fileName = event.target.files[0].name;
+      console.log( this.fileName)
       const [file] = event.target.files;
       reader.readAsDataURL(file);
      
@@ -51,13 +59,12 @@ export class ConfigurationComponent implements OnInit {
   }
 
   submitForm(){
-    const base64data = this.base64file.replace(/^data:.*,/, '');
-    const body = {
-      file: base64data,
-      filename: this.fileName
+    if(this.fileName){
+      this.configurationForm.value.logo = `${environment.api_url}`+ '/public/uploads/' + this.fileName;
     }
     // this.fileService.upload(this.fileName, this.base64file)
-    this.importService.importTicketCsvFile(body).subscribe(res => {
+    this.configurationService.save(this.configurationForm.value).subscribe(res => {
+      this.configurationForm.reset('');
     })
   }
 }
