@@ -33,7 +33,7 @@
           routerLink="/editor"
           routerLinkActive="active">
           <i class="fa fa-plus-circle"></i>
-          ticket
+          Ticket
         </a>
       </li>
 
@@ -71,10 +71,17 @@
           routerLink="/admin"
           routerLinkActive="active">
           <i class="fa fa-cogs"></i>
-          Admin
+          Application
         </a>
       </li>
-
+      <li class="nav-item" *ngIf="currentUser.role === 'Manager'">
+        <a class="nav-link"
+          routerLink="/report"
+          routerLinkActive="active">
+          <i class="fa fa-file"></i>
+          Rapport
+        </a>
+      </li>
       <li class="nav-item" style="position: relative;">
         <button class="btn btn-outline-danger"
         (click)="showNotif()">

@@ -21,6 +21,7 @@
               "src/favicon.ico"
             ],
             "styles": [
+              "../node_modules/@swimlane/ngx-charts/release/ngx-charts.css"
             ],
             "scripts": [
             ]

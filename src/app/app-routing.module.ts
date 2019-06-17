@@ -1,11 +1,8 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule, PreloadAllModules } from '@angular/router';
-import { AdminComponent } from '../app/admin/admin.component';
-import { ResetFormComponent } from '../app/auth/reset/reset-form.component';
-import { NoAuthGuard } from './auth/no-auth-guard.service';
-import { AdminGuard } from './core/services/admin-guard.service';
 import { ManagerGuard } from './core/services/manager-guard.service';
 import { NocGuard } from './core/services/noc-guard.service';
+import { DashboardComponent } from './report/dashboard/dashboard.component'
 const routes: Routes = [
   {
     path: 'settings',
@@ -29,6 +26,11 @@ const routes: Routes = [
     path: 'admin',
     loadChildren: './admin/admin.module#AdminModule',
     canActivate: [ManagerGuard],
+  },
+  {
+    path: 'report',
+    loadChildren: './report/report.module#ReportModule',
+    // component : DashboardComponent
   },
   {
     path: 'technicien',

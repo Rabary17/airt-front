@@ -7,7 +7,10 @@ import { AdminModule } from './admin/admin.module';
 import { AdminRoutingModule } from './admin/admin-routing.module';
 import { TechnicienModule } from './technicien/technicien.module';
 import { UserModule } from './admin/list-user/user.module';
-import { UserRoutingModule } from './admin/list-user/user-routing.module'
+import { UserRoutingModule } from './admin/list-user/user-routing.module';
+import { ReportModule } from './report/report.module';
+import { ReportRoutingModule } from './report/report-routing.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import {
   FooterComponent,
@@ -18,10 +21,12 @@ import { AppRoutingModule } from './app-routing.module';
 import { CoreModule } from './core/core.module';
 
 
+
 @NgModule({
   declarations: [AppComponent, FooterComponent, HeaderComponent],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     CoreModule,
     SharedModule,
     HomeModule,
@@ -30,7 +35,9 @@ import { CoreModule } from './core/core.module';
     AdminModule,
     AdminRoutingModule,
     UserModule,
-    UserRoutingModule
+    UserRoutingModule,
+    ReportModule,
+    ReportRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]
