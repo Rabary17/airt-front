@@ -5,6 +5,7 @@ import { DailyReportComponent } from './daily-report/daily-report.component';
 import { DashboardComponent} from './dashboard/dashboard.component';
 import {ReportRoutingModule } from './report-routing.module';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
+import { ReportMenuComponent } from './report-menu/report-menu.component'
 @NgModule({
   imports: [
     CommonModule,
@@ -12,6 +13,6 @@ import { NgxChartsModule } from '@swimlane/ngx-charts';
     NgxChartsModule,
 
   ],
-  declarations: [ReportComponent, DailyReportComponent, DashboardComponent]
+  declarations: [ReportComponent, DailyReportComponent, DashboardComponent, ReportMenuComponent]
 })
 export class ReportModule { }

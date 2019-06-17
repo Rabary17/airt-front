@@ -86,5 +86,12 @@ export class TicketsService {
     return this.apiService.delete('/tickets/' + slug + '/favorite');
   }
 
+  getDaily(date) {
+    return this.apiService.post('/tickets/report/daily', {date: date})
+      .pipe(map(data => 
+        data.article
+      ));
+  }
+
 
 }

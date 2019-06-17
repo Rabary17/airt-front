@@ -1,3 +1,21 @@
-<p>
-  daily-report works!
-</p>
+<div class="container" style="padding: 30px 0;"><h3>Rapport Journalier</h3></div>
+<div class="container page">
+  <div id="pie-chart-parent">
+    <ngx-charts-area-chart
+    (window:resize)="onResize($event)"
+          [view]="view"
+          [scheme]="colorScheme"
+          [results]="multi"
+          [gradient]="gradient"
+          [xAxis]="showXAxis"
+          [yAxis]="showYAxis"
+          [legend]="showLegend"
+          [showXAxisLabel]="showXAxisLabel"
+          [showYAxisLabel]="showYAxisLabel"
+          [xAxisLabel]="xAxisLabel"
+          [yAxisLabel]="yAxisLabel"
+          [timeline]="timeline"
+          (select)="onSelect($event)">
+      </ngx-charts-area-chart>
+    </div>
+</div>
