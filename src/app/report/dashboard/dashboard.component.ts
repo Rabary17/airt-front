@@ -13,13 +13,7 @@ export class DashboardComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    var today = new Date();
-    var todayMonth = today.getMonth()+ 1;
-    let stringDate = today.getFullYear() + '/' + todayMonth + '/' + today.getDate();
-    console.log(stringDate)
-    this.ticketService.getDaily(stringDate).subscribe(res => {
-      console.log(res)
-    })
+
   }
 
 }

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import * as shape from 'd3-shape';
 import * as d3 from 'd3';
+import { TicketsService } from '../../core'
 
 @Component({
   selector: 'app-daily-report',
@@ -36,7 +37,9 @@ export class DailyReportComponent implements OnInit {
   autoScale = true;
   
 
-  constructor() { 
+  constructor(
+    private ticketService: TicketsService
+  ) { 
     this.view = [innerWidth / 1.3, 400];
   }
 
@@ -143,6 +146,16 @@ export class DailyReportComponent implements OnInit {
         ]
       },
     ];
+
+    var today = new Date();
+    var todayMonth = today.getMonth()+ 1;
+    let stringDate = today.getFullYear() + '/' + todayMonth + '/' + today.getDate();
+    console.log(stringDate)
+    this.ticketService.getDaily(stringDate).subscribe(res => {
+      console.log(res)
+    })
   }
+
+  
 
 }
